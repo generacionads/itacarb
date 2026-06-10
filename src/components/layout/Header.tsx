@@ -2,51 +2,60 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 
 const navLinks = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Metodología", href: "#metodologia" },
-  { label: "Sobre nosotros", href: "#nosotros" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Sectores", href: "/sectores" },
+  { label: "Proyectos", href: "/proyectos" },
+  { label: "Servicio", href: "/servicio" },
+  { label: "Blog", href: "/blog" },
 ];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[var(--color-brand-primary)]/10 bg-white/95 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md" style={{ backgroundColor: "rgba(249,248,246,0.6)" }}>
       <Container>
-        <div className="flex h-16 items-center justify-between sm:h-20">
-          <Link
-            href="/"
-            className="font-display text-xl font-bold tracking-tight text-[var(--color-brand-primary)] sm:text-2xl"
-          >
-            Ítacarb
+        <div className="flex h-16 items-center justify-between sm:h-[72px]">
+          <Link href="/" aria-label="Ítacarb — Inicio">
+            <Image
+              src="/logo.svg"
+              alt="Ítacarb"
+              width={140}
+              height={37}
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-[var(--color-brand-muted)] transition-colors hover:text-[var(--color-brand-primary)]"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#contacto"
-              className="rounded-lg bg-[var(--color-brand-accent)] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[var(--color-brand-accent)]/90"
+          <nav className="hidden items-center gap-12 md:flex">
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-base font-medium tracking-[0.04em] text-[#36383a] transition-opacity hover:opacity-60"
+                  style={{ fontFamily: "Satoshi, sans-serif" }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/contacto"
+              className="px-6 py-3 text-base font-medium tracking-[0.04em] text-[#f9f8f6] transition-opacity hover:opacity-80"
+              style={{ fontFamily: "Satoshi, sans-serif", backgroundColor: "#c8553d" }}
             >
-              Hablemos
-            </a>
+              Contacto
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
           <button
-            className="inline-flex items-center justify-center rounded-md p-2 text-[var(--color-brand-primary)] md:hidden"
+            className="inline-flex items-center justify-center rounded-md p-2 text-[#36383a] md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menú"
             aria-expanded={menuOpen}
@@ -67,26 +76,28 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-[var(--color-brand-primary)]/10 bg-white md:hidden">
+        <div className="border-t border-black/10 backdrop-blur-md md:hidden" style={{ backgroundColor: "rgba(249,248,246,0.85)" }}>
           <Container>
             <nav className="flex flex-col gap-1 py-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-md px-3 py-3 text-base font-medium text-[var(--color-brand-muted)] transition-colors hover:bg-[var(--color-brand-light)] hover:text-[var(--color-brand-primary)]"
+                  className="rounded-md px-3 py-3 text-base font-medium tracking-[0.04em] text-[#36383a] transition-colors hover:bg-black/5"
+                  style={{ fontFamily: "Satoshi, sans-serif" }}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
-              <a
-                href="#contacto"
+              <Link
+                href="/contacto"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 rounded-lg bg-[var(--color-brand-accent)] px-4 py-3 text-center text-base font-medium text-white"
+                className="mt-2 px-4 py-3 text-center text-base font-medium tracking-[0.04em] text-[#f9f8f6]"
+                style={{ fontFamily: "Satoshi, sans-serif", backgroundColor: "#c8553d" }}
               >
-                Hablemos
-              </a>
+                Contacto
+              </Link>
             </nav>
           </Container>
         </div>

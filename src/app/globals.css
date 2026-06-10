@@ -8,12 +8,11 @@
   --color-brand-muted: #6b6b7b;
 
   /* Semantic */
-  --color-background: #ffffff;
-  --color-foreground: #1a1a2e;
+  --color-background: #f9f8f6;
+  --color-foreground: #36383a;
 
   /* Typography */
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-playfair);
+  --font-sans: "Satoshi", sans-serif;
 }
 
 *,

@@ -4,14 +4,10 @@ import { useState } from "react";
 import { LogoAnimated } from "@/components/ui/LogoAnimated";
 
 export function Hero() {
-  const [fading, setFading] = useState(false);
   const [ended, setEnded] = useState(false);
 
   const handleEnded = () => {
-    setTimeout(() => {
-      setFading(true);
-      setTimeout(() => setEnded(true), 800);
-    }, 600);
+    setTimeout(() => setEnded(true), 600);
   };
 
   return (
@@ -24,7 +20,6 @@ export function Hero() {
         muted
         playsInline
         onEnded={handleEnded}
-        style={{ opacity: fading ? 0 : 1, transition: "opacity 0.8s ease" }}
       />
       {/* Mobile */}
       <video
@@ -34,11 +29,10 @@ export function Hero() {
         muted
         playsInline
         onEnded={handleEnded}
-        style={{ opacity: fading ? 0 : 1, transition: "opacity 0.8s ease" }}
       />
 
       {ended && (
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-end justify-start p-8 sm:p-12">
           <LogoAnimated />
         </div>
       )}

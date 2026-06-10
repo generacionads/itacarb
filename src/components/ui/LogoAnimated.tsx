@@ -22,7 +22,7 @@ export function LogoAnimated() {
       viewBox="0 0 175 46"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-40 sm:w-56 md:w-72 lg:w-96"
+      className="w-56 sm:w-72 md:w-96 lg:w-[480px]"
     >
       {/* Icon (punto sobre la Í) */}
       <g data-el="icon">

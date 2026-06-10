@@ -44,7 +44,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       />
 
       {/* Label centrado */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center border border-[#36383a]">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center border border-[#36383a] bg-[#f9f8f6]">
         <span
           className="bg-[#f9f8f6] px-8 py-8 text-[32px] font-medium leading-8 tracking-[-0.04em] text-[#36383a] whitespace-nowrap"
           style={{ fontFamily: "Satoshi, sans-serif" }}

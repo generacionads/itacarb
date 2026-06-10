@@ -37,7 +37,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-base font-medium tracking-[0.04em] text-[#36383a] transition-opacity hover:opacity-60"
+                  className="text-base font-medium tracking-[0.04em] text-[#36383a] transition-colors hover:text-[#a3422e]"
                   style={{ fontFamily: "Satoshi, sans-serif" }}
                 >
                   {link.label}
@@ -46,8 +46,10 @@ export function Header() {
             </div>
             <Link
               href="/contacto"
-              className="px-6 py-3 text-base font-medium tracking-[0.04em] text-[#f9f8f6] transition-opacity hover:opacity-80"
+              className="px-6 py-3 text-base font-medium tracking-[0.04em] text-[#f9f8f6] transition-colors"
               style={{ fontFamily: "Satoshi, sans-serif", backgroundColor: "#c8553d" }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#a3422e")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#c8553d")}
             >
               Contacto
             </Link>
@@ -84,7 +86,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-md px-3 py-3 text-base font-medium tracking-[0.04em] text-[#36383a] transition-colors hover:bg-black/5"
+                  className="rounded-md px-3 py-3 text-base font-medium tracking-[0.04em] text-[#36383a] transition-colors hover:text-[#a3422e]"
                   style={{ fontFamily: "Satoshi, sans-serif" }}
                 >
                   {link.label}

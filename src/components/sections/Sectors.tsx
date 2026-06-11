@@ -65,7 +65,7 @@ function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
 
 export function Sectors() {
   const [current, setCurrent] = useState(0);
-  const maxIndex = 1;
+  const maxIndex = 2;
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -108,19 +108,13 @@ export function Sectors() {
     <section className="py-24 bg-[#f9f8f6] overflow-hidden">
       {/* H2 + subtítulo */}
       <Container>
-        <div className="flex flex-col gap-6 mb-16">
+        <div className="mb-16">
           <h2
             className="text-[#36383a] text-4xl md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
             style={{ fontFamily: "Satoshi, sans-serif" }}
           >
             Sectores que conocemos bien
           </h2>
-          <p
-            className="text-[#36383a] text-[18px] font-light tracking-[0.04em] max-w-3xl"
-            style={{ fontFamily: "Satoshi, sans-serif" }}
-          >
-            Diseñamos y damos forma a cómo los players más importantes de diferentes sectores dejan una huella positiva más allá de los tendencias y cánones establecidos.
-          </p>
         </div>
       </Container>
 
@@ -137,6 +131,36 @@ export function Sectors() {
               <SectorCard sector={sector} />
             </div>
           ))}
+          {/* CTA card */}
+          <div
+            ref={(el) => { cardRefs.current[3] = el; }}
+            className="flex-none w-[80vw] md:w-[45vw]"
+            style={{ transformOrigin: "left center", willChange: "transform" }}
+          >
+            <a href="/proyectos" className="flex flex-col gap-8 group">
+              <div className="flex flex-col gap-4">
+                <div className="h-[201px] w-full bg-[#c8553d] flex items-end p-6 transition-opacity group-hover:opacity-90">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12H19M13 6l6 6-6 6" stroke="#f9f8f6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <p
+                  className="text-[#c8553d] text-[20px] font-medium tracking-[0.04em]"
+                  style={{ fontFamily: "Satoshi, sans-serif" }}
+                >
+                  Proyectos
+                </p>
+              </div>
+              <div className="bg-[#c8553d] p-8 flex items-center w-fit transition-opacity group-hover:opacity-90">
+                <p
+                  className="text-[#f9f8f6] text-[32px] font-medium leading-tight tracking-[-0.04em] whitespace-nowrap"
+                  style={{ fontFamily: "Satoshi, sans-serif" }}
+                >
+                  Explorar proyectos →
+                </p>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
 

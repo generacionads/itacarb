@@ -10,7 +10,7 @@ export function Intro() {
           className="text-[#36383a] text-4xl sm:text-5xl lg:text-[72px] font-medium leading-tight tracking-[-0.04em]"
           style={{ fontFamily: "Satoshi, sans-serif" }}
         >
-          Estrategia digital global íntegra, dónde analizamos estratégicamente necesidades, y en consecuencia recomendamos una serie de soluciones digitales.
+          Consultora estratégica que conecta marca, creatividad y crecimiento.
         </h1>
 
         {/* Body + imagen */}
@@ -19,11 +19,9 @@ export function Intro() {
             className="text-[#36383a] text-base sm:text-lg leading-relaxed font-light max-w-[660px]"
             style={{ fontFamily: "Satoshi, sans-serif" }}
           >
-            ítaca es una consultora de estrategia digital global.
+            Impulsamos el crecimiento de empresas consolidadas mediante estrategias alineadas con sus objetivos para mejorar el reconocimiento de marca, atraer nuevas oportunidades y aumentar el volumen de negocio.
             <br /><br />
-            Nos relacionamos genuinamente con organizaciones valientes para hacer crecer otro tipo de negocio: más humano, más trascendente.
-            <br /><br />
-            Combinamos creatividad, diseño, tecnología y datos para crear productos, marcas, servicios y empresas que se relacionan con las personas, diseñando historias para el día de mañana.
+            Nuestros proyectos abarcan distintos sectores y desafíos empresariales, pero todos comparten un mismo objetivo: generar crecimiento real. Descubre cómo hemos ayudado a empresas a fortalecer su posicionamiento, captar nuevas oportunidades y aumentar su impacto en el mercado.
           </p>
 
           <div className="shrink-0 self-end sm:w-[45%]">

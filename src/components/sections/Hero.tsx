@@ -11,7 +11,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative w-full bg-[#f9f8f6]">
+    <section className="relative w-full bg-[#f9f8f6] max-h-screen overflow-hidden">
       {/* Desktop */}
       <video
         className="hidden w-full md:block"

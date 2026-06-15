@@ -3,7 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RevealH2 } from "@/components/ui/RevealH2";
 import { cn } from "@/lib/utils";
+
+const HEADER_H = 72;
 
 const data = [
   {
@@ -103,9 +106,22 @@ function AccordionItem({ label }: { label: string }) {
 
 export default function ServicioPage() {
   const [activeId, setActiveId] = useState(allSubsections[0].id);
+  const [h2Height, setH2Height] = useState(0);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const h2Ref = useRef<HTMLDivElement>(null);
 
   const activeSection = allSubsections.find((s) => s.id === activeId) ?? allSubsections[0];
+  const activeH2 = activeSection.h2;
+
+  // Measure sticky H2 height so sidebar top can clear it
+  useEffect(() => {
+    const el = h2Ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setH2Height(el.offsetHeight));
+    ro.observe(el);
+    setH2Height(el.offsetHeight);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const map = sectionRefs.current;
@@ -124,19 +140,42 @@ export default function ServicioPage() {
   const scrollToSection = useCallback((id: string) => {
     const el = sectionRefs.current.get(id);
     if (!el) return;
-    // 72px header + ~150px sticky H2
-    const top = el.getBoundingClientRect().top + window.scrollY - 220;
+    const offset = HEADER_H + (h2Ref.current?.offsetHeight ?? 0) + 16;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: "smooth" });
   }, []);
+
+  const sidebarTop = HEADER_H + h2Height;
 
   return (
     <>
       <Header />
       <main className="pt-[72px] bg-[#f9f8f6] min-h-screen flex flex-col">
+
+        {/* Sticky H2 — full width, above both columns */}
+        <div
+          ref={h2Ref}
+          className="sticky z-20 bg-[#c8553d] px-4 sm:px-16 py-12"
+          style={{ top: HEADER_H }}
+        >
+          <RevealH2
+            key={activeH2}
+            className="text-[#f9f8f6] text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+            style={{ fontFamily: "Satoshi, sans-serif" }}
+          >
+            {activeH2}
+          </RevealH2>
+        </div>
+
+        {/* Two-column body */}
         <div className="flex flex-1">
-          {/* Left sticky nav */}
-          <aside className="hidden md:flex flex-col sticky top-[72px] self-start h-[calc(100vh-72px)] w-[33%] shrink-0 px-4 sm:px-16 py-16">
-            <nav className="flex flex-col gap-12" aria-label="Servicios">
+
+          {/* Sticky sidebar nav — top clears header + H2 */}
+          <aside
+            className="hidden md:flex flex-col sticky self-start w-[33%] shrink-0 px-4 sm:px-16 py-16"
+            style={{ top: sidebarTop }}
+          >
+            <nav className="flex flex-col gap-8" aria-label="Servicios">
               {allSubsections.map((s) => (
                 <button
                   key={s.id}
@@ -155,19 +194,8 @@ export default function ServicioPage() {
             </nav>
           </aside>
 
-          {/* Right column */}
+          {/* Content sections */}
           <div className="flex-1">
-            {/* Sticky H2 */}
-            <div className="sticky top-[72px] z-10 bg-[#f9f8f6] px-4 sm:px-16 py-12">
-              <h2
-                className="text-[#36383a] text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
-                {activeSection.h2}
-              </h2>
-            </div>
-
-            {/* Sections */}
             {allSubsections.map((s) => (
               <section
                 key={s.id}

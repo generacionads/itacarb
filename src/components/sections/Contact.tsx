@@ -1,16 +1,17 @@
 import { Container } from "@/components/ui/Container";
+import { RevealH2 } from "@/components/ui/RevealH2";
 
 export function Contact() {
   return (
     <section id="contacto" className="py-24 bg-[#f9f8f6]">
       <Container>
         {/* H2 */}
-        <h2
+        <RevealH2
           className="text-[#36383a] text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
           style={{ fontFamily: "Satoshi, sans-serif" }}
         >
           Todo viaje comienza con una conversación. Escríbenos.
-        </h2>
+        </RevealH2>
 
         {/* Formulario */}
         <form className="mt-12 flex flex-col gap-6" noValidate>

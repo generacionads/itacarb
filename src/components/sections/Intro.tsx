@@ -1,17 +1,19 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { RevealH2 } from "@/components/ui/RevealH2";
 
 export function Intro() {
   return (
     <section className="py-24 bg-[#f9f8f6]">
       <Container>
         {/* H1 */}
-        <h1
+        <RevealH2
+          as="h1"
           className="text-[#36383a] text-4xl sm:text-5xl lg:text-[72px] font-medium leading-tight tracking-[-0.04em]"
           style={{ fontFamily: "Satoshi, sans-serif" }}
         >
           Consultora estratégica que conecta marca, creatividad y crecimiento.
-        </h1>
+        </RevealH2>
 
         {/* Body + imagen */}
         <div className="mt-12 flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">

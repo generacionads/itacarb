@@ -1,34 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LogoAnimated } from "@/components/ui/LogoAnimated";
 
 export function Hero() {
   const [ended, setEnded] = useState(false);
+  const videoDesktopRef = useRef<HTMLVideoElement>(null);
+  const videoMobileRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Reduced-motion: skip video, show logo immediately
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      videoDesktopRef.current?.pause();
+      videoMobileRef.current?.pause();
+      setEnded(true);
+    }
+  }, []);
 
   const handleEnded = () => {
     setTimeout(() => setEnded(true), 600);
   };
 
   return (
-    <section className="relative w-full bg-[#f9f8f6] max-h-screen overflow-hidden">
+    <section className="relative w-full bg-background max-h-screen overflow-hidden">
       {/* Desktop */}
       <video
+        ref={videoDesktopRef}
         className="hidden w-full md:block"
         src="/hero-itaca.mp4"
         autoPlay
         muted
         playsInline
         onEnded={handleEnded}
+        aria-label="Vídeo introductorio de Ítacarb"
       />
       {/* Mobile */}
       <video
+        ref={videoMobileRef}
         className="block w-full md:hidden"
         src="/hero-itaca-responsive.mp4"
         autoPlay
         muted
         playsInline
         onEnded={handleEnded}
+        aria-label="Vídeo introductorio de Ítacarb"
       />
 
       {ended && (

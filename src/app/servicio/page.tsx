@@ -4,7 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { RevealH2 } from "@/components/ui/RevealH2";
-import { cn } from "@/lib/utils";
+import { SidebarNav } from "@/components/ui/SidebarNav";
+import { AccordionItem } from "@/components/ui/Accordion";
 
 const HEADER_H = 72;
 
@@ -65,45 +66,6 @@ const allSubsections = data.flatMap((cat) =>
   cat.subsections.map((s) => ({ ...s, h2: cat.h2 }))
 );
 
-function AccordionItem({ label }: { label: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-[#eae8e3]">
-      <button
-        className="flex w-full items-center justify-between py-4 px-1 text-left"
-        onClick={() => setOpen(!open)}
-      >
-        <span
-          className="text-[18px] font-light text-[#36383a]"
-          style={{ fontFamily: "Satoshi, sans-serif" }}
-        >
-          {label}
-        </span>
-        <span className="flex items-center justify-center p-3 shrink-0 text-[#c8553d]">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path
-              d={open ? "M5 12H19" : "M12 5V19M5 12H19"}
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        </span>
-      </button>
-      {open && (
-        <div className="pb-6 px-1">
-          <p
-            className="text-[#7a7c7e] text-[16px] font-light leading-relaxed"
-            style={{ fontFamily: "Satoshi, sans-serif" }}
-          >
-            Contenido de {label}.
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 export default function ServicioPage() {
   const [activeId, setActiveId] = useState(allSubsections[0].id);
   const [h2Height, setH2Height] = useState(0);
@@ -113,7 +75,6 @@ export default function ServicioPage() {
   const activeSection = allSubsections.find((s) => s.id === activeId) ?? allSubsections[0];
   const activeH2 = activeSection.h2;
 
-  // Measure sticky H2 height so sidebar top can clear it
   useEffect(() => {
     const el = h2Ref.current;
     if (!el) return;
@@ -150,49 +111,31 @@ export default function ServicioPage() {
   return (
     <>
       <Header />
-      <main className="pt-[72px] bg-[#f9f8f6] min-h-screen flex flex-col">
+      <main className="pt-[72px] bg-background min-h-screen flex flex-col">
 
-        {/* Sticky H2 — full width, above both columns */}
+        {/* Sticky H2 — full width */}
         <div
           ref={h2Ref}
-          className="sticky z-20 bg-[#c8553d] px-4 sm:px-16 py-12"
+          className="sticky z-20 bg-brand-accent px-4 sm:px-16 py-12"
           style={{ top: HEADER_H }}
         >
           <RevealH2
             key={activeH2}
-            className="text-[#f9f8f6] text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
-            style={{ fontFamily: "Satoshi, sans-serif" }}
+            className="text-background text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
           >
             {activeH2}
           </RevealH2>
         </div>
 
-        {/* Two-column body */}
         <div className="flex flex-1">
 
-          {/* Sticky sidebar nav — top clears header + H2 */}
-          <aside
-            className="hidden md:flex flex-col sticky self-start w-[33%] shrink-0 px-4 sm:px-16 py-16"
-            style={{ top: sidebarTop }}
-          >
-            <nav className="flex flex-col gap-8" aria-label="Servicios">
-              {allSubsections.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => scrollToSection(s.id)}
-                  className={cn(
-                    "text-left text-[20px] font-medium tracking-[-0.04em] capitalize transition-colors duration-200",
-                    activeId === s.id
-                      ? "text-[#a3422e]"
-                      : "text-[#7a7c7e] hover:text-[#36383a]"
-                  )}
-                  style={{ fontFamily: "Satoshi, sans-serif" }}
-                >
-                  {s.label}
-                </button>
-              ))}
-            </nav>
-          </aside>
+          <SidebarNav
+            items={allSubsections}
+            activeId={activeId}
+            onSelect={scrollToSection}
+            top={sidebarTop}
+            ariaLabel="Servicios"
+          />
 
           {/* Content sections */}
           <div className="flex-1">
@@ -203,14 +146,11 @@ export default function ServicioPage() {
                 ref={(el) => {
                   if (el) sectionRefs.current.set(s.id, el);
                 }}
-                className="px-4 sm:px-16 py-16 border-b border-[#eae8e3]"
+                className="px-4 sm:px-16 py-16 border-b border-brand-border"
               >
-                <p
-                  className="text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight"
-                  style={{ fontFamily: "Satoshi, sans-serif" }}
-                >
-                  <span className="text-[#c8553d]">{s.verb}</span>{" "}
-                  <span className="text-[#36383a]">{s.body}</span>
+                <p className="text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
+                  <span className="text-brand-accent">{s.verb}</span>{" "}
+                  <span className="text-foreground">{s.body}</span>
                 </p>
 
                 <div className="mt-10 max-w-[300px]">
@@ -219,7 +159,7 @@ export default function ServicioPage() {
                   ))}
                 </div>
 
-                <div className="mt-10 bg-[#eae8e3] h-60 w-full" />
+                <div className="mt-10 bg-brand-border h-60 w-full" />
               </section>
             ))}
           </div>

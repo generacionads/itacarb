@@ -43,8 +43,7 @@ const projects = [
     reviewAvatar: "/projects/paralelo-estudio/avatar.jpg",
     reviewAuthor: "Nombre del cliente",
     reviewRole: "Cargo",
-    reviewQuote:
-      "Reseña del cliente de Paralelo Estudio.",
+    reviewQuote: "Reseña del cliente de Paralelo Estudio.",
   },
   {
     slug: "on-level-quality",
@@ -64,8 +63,7 @@ const projects = [
     reviewAvatar: "/projects/on-level-quality/avatar.jpg",
     reviewAuthor: "Nombre del cliente",
     reviewRole: "Cargo",
-    reviewQuote:
-      "Reseña del cliente de On Level Quality.",
+    reviewQuote: "Reseña del cliente de On Level Quality.",
   },
 ];
 
@@ -85,28 +83,21 @@ export default async function ProyectoPage({
   return (
     <>
       <Header />
-      <main className="pt-[72px] bg-[#f9f8f6] min-h-screen flex flex-col">
+      <main className="pt-[72px] bg-background min-h-screen flex flex-col">
 
-        {/* Header: tagline (izquierda) + nombre proyecto h1 (derecha) */}
+        {/* Header: tagline izq · nombre proyecto h1 der */}
         <div className="px-4 sm:px-16 pt-16 pb-12 flex flex-col gap-8 md:flex-row md:items-start md:gap-0 md:justify-between">
-          <p
-            className="text-[#36383a] text-[32px] font-medium tracking-[-0.04em] leading-tight md:max-w-[420px] shrink-0"
-            style={{ fontFamily: "Satoshi, sans-serif" }}
-          >
+          <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight md:max-w-[420px] shrink-0">
             {project.tagline}
           </p>
-          <h1
-            className="text-[#36383a] text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
-            style={{ fontFamily: "Satoshi, sans-serif" }}
-          >
+          <h1 className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none">
             {project.name}
           </h1>
         </div>
 
         {/* Imagen cuadrada (col izq) + descripción y métrica (col der) */}
         <div className="px-4 sm:px-16 py-16 flex flex-col gap-8 md:flex-row md:items-start md:gap-32">
-          {/* Imagen cuadrada — misma anchura que la columna izquierda del header */}
-          <div className="relative w-full md:w-[420px] shrink-0 aspect-square overflow-hidden bg-[#d9d9d9]">
+          <div className="relative w-full md:w-[420px] shrink-0 aspect-square overflow-hidden bg-placeholder">
             <Image
               src={project.heroImage}
               alt={project.name}
@@ -116,26 +107,16 @@ export default async function ProyectoPage({
             />
           </div>
 
-          {/* Columna derecha: descripción + métrica apiladas */}
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col gap-8 max-w-[560px] mx-auto w-full">
-              <p
-                className="text-[#36383a] text-[16px] font-light leading-relaxed"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
+              <p className="text-foreground text-[16px] font-light leading-relaxed">
                 {project.description}
               </p>
-              <div className="border border-[#36383a] p-8 flex flex-col gap-6">
-                <p
-                  className="text-[#36383a] text-[64px] font-medium leading-[50px] tracking-[-0.04em]"
-                  style={{ fontFamily: "Satoshi, sans-serif" }}
-                >
+              <div className="border border-foreground p-8 flex flex-col gap-6">
+                <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em]">
                   {project.stat.value}
                 </p>
-                <p
-                  className="text-[#c8553d] text-[32px] font-medium tracking-[-0.04em] leading-tight"
-                  style={{ fontFamily: "Satoshi, sans-serif" }}
-                >
+                <p className="text-brand-accent text-[32px] font-medium tracking-[-0.04em] leading-tight">
                   {project.stat.label}
                 </p>
               </div>
@@ -143,10 +124,9 @@ export default async function ProyectoPage({
           </div>
         </div>
 
-        {/* Estrategia: imagen (izq) + título + párrafo (der) */}
+        {/* Estrategia */}
         <div className="px-4 sm:px-16 py-16 flex flex-col gap-8 md:flex-row md:items-start md:gap-32">
-          {/* Imagen izquierda */}
-          <div className="relative w-full md:w-[420px] shrink-0 aspect-[4/3] overflow-hidden bg-[#d9d9d9]">
+          <div className="relative w-full md:w-[420px] shrink-0 aspect-[4/3] overflow-hidden bg-placeholder">
             {project.strategyImage && (
               <Image
                 src={project.strategyImage}
@@ -156,29 +136,21 @@ export default async function ProyectoPage({
               />
             )}
           </div>
-
-          {/* Columna derecha: título + párrafo */}
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col gap-6 max-w-[560px] mx-auto w-full">
-              <p
-                className="text-[#36383a] text-[32px] font-medium tracking-[-0.04em] leading-tight"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
+              <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Estrategia
               </p>
-              <p
-                className="text-[#36383a] text-[16px] font-light leading-relaxed"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
+              <p className="text-foreground text-[16px] font-light leading-relaxed">
                 {project.strategyText}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Solución: imagen (izq) + título + párrafo (der) */}
+        {/* Solución */}
         <div className="px-4 sm:px-16 py-16 flex flex-col gap-8 md:flex-row md:items-start md:gap-32">
-          <div className="relative w-full md:w-[420px] shrink-0 aspect-[4/3] overflow-hidden bg-[#d9d9d9]">
+          <div className="relative w-full md:w-[420px] shrink-0 aspect-[4/3] overflow-hidden bg-placeholder">
             {project.solutionImage && (
               <Image
                 src={project.solutionImage}
@@ -190,16 +162,10 @@ export default async function ProyectoPage({
           </div>
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col gap-6 max-w-[560px] mx-auto w-full">
-              <p
-                className="text-[#36383a] text-[32px] font-medium tracking-[-0.04em] leading-tight"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
+              <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Solución
               </p>
-              <p
-                className="text-[#36383a] text-[16px] font-light leading-relaxed"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
+              <p className="text-foreground text-[16px] font-light leading-relaxed">
                 {project.solutionText}
               </p>
             </div>
@@ -209,48 +175,34 @@ export default async function ProyectoPage({
         {/* Reseña */}
         <div className="px-4 sm:px-16 py-16">
           <div className="flex flex-col gap-16 max-w-[560px] w-full">
-              <p
-                className="text-[#36383a] text-[32px] font-medium tracking-[-0.04em] leading-tight"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
-                Reseña
-              </p>
+            <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
+              Reseña
+            </p>
 
-              {/* Avatar + nombre/rol */}
-              <div className="flex items-center gap-3">
-                <div className="relative size-[80px] shrink-0 overflow-hidden bg-[#d9d9d9]">
-                  {project.reviewAvatar && (
-                    <Image
-                      src={project.reviewAvatar}
-                      alt={project.reviewAuthor}
-                      fill
-                      className="object-cover"
-                    />
-                  )}
-                </div>
-                <div className="flex flex-col gap-2 py-3 px-3">
-                  <p
-                    className="text-[#36383a] text-[16px] font-medium"
-                    style={{ fontFamily: "Satoshi, sans-serif" }}
-                  >
-                    {project.reviewAuthor}
-                  </p>
-                  <p
-                    className="text-[#36383a] text-[16px] font-light"
-                    style={{ fontFamily: "Satoshi, sans-serif" }}
-                  >
-                    {project.reviewRole}
-                  </p>
-                </div>
+            <div className="flex items-center gap-3">
+              <div className="relative size-[80px] shrink-0 overflow-hidden bg-placeholder">
+                {project.reviewAvatar && (
+                  <Image
+                    src={project.reviewAvatar}
+                    alt={project.reviewAuthor}
+                    fill
+                    className="object-cover"
+                  />
+                )}
               </div>
+              <div className="flex flex-col gap-2 py-3 px-3">
+                <p className="text-foreground text-[16px] font-medium">
+                  {project.reviewAuthor}
+                </p>
+                <p className="text-foreground text-[16px] font-light">
+                  {project.reviewRole}
+                </p>
+              </div>
+            </div>
 
-              {/* Cita */}
-              <p
-                className="text-[#36383a] text-[16px] font-light leading-relaxed"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
-              >
-                "{project.reviewQuote}"
-              </p>
+            <p className="text-foreground text-[16px] font-light leading-relaxed">
+              "{project.reviewQuote}"
+            </p>
           </div>
         </div>
 

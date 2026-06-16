@@ -17,7 +17,7 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md" style={{ backgroundColor: "rgba(249,248,246,0.6)" }}>
+    <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-background/60">
       <Container>
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
           <Link href="/" aria-label="Ítacarb — Inicio">
@@ -37,8 +37,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-base font-medium tracking-[0.04em] text-[#36383a] transition-colors hover:text-[#a3422e]"
-                  style={{ fontFamily: "Satoshi, sans-serif" }}
+                  className="text-base font-medium tracking-[0.04em] text-foreground transition-colors hover:text-brand-accent"
                 >
                   {link.label}
                 </Link>
@@ -46,10 +45,7 @@ export function Header() {
             </div>
             <Link
               href="/contacto"
-              className="px-6 py-3 text-base font-medium tracking-[0.04em] text-[#f9f8f6] transition-colors"
-              style={{ fontFamily: "Satoshi, sans-serif", backgroundColor: "#c8553d" }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#a3422e")}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#c8553d")}
+              className="px-6 py-3 text-base font-medium tracking-[0.04em] text-background bg-brand-accent hover:bg-brand-accent-dark transition-colors"
             >
               Contacto
             </Link>
@@ -57,18 +53,18 @@ export function Header() {
 
           {/* Mobile menu button */}
           <button
-            className="inline-flex items-center justify-center rounded-md p-2 text-[#36383a] md:hidden"
+            className="inline-flex min-w-[44px] min-h-[44px] items-center justify-center rounded-md text-foreground md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Abrir menú"
             aria-expanded={menuOpen}
           >
             <span className="sr-only">Menú</span>
             {menuOpen ? (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -78,7 +74,7 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-black/10 backdrop-blur-md md:hidden" style={{ backgroundColor: "rgba(249,248,246,0.85)" }}>
+        <div className="border-t border-black/10 backdrop-blur-md md:hidden bg-background/85">
           <Container>
             <nav className="flex flex-col gap-1 py-4">
               {navLinks.map((link) => (
@@ -86,8 +82,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-md px-3 py-3 text-base font-medium tracking-[0.04em] text-[#36383a] transition-colors hover:text-[#a3422e]"
-                  style={{ fontFamily: "Satoshi, sans-serif" }}
+                  className="rounded-md px-3 py-3 text-base font-medium tracking-[0.04em] text-foreground transition-colors hover:text-brand-accent"
                 >
                   {link.label}
                 </Link>
@@ -95,8 +90,7 @@ export function Header() {
               <Link
                 href="/contacto"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 px-4 py-3 text-center text-base font-medium tracking-[0.04em] text-[#f9f8f6]"
-                style={{ fontFamily: "Satoshi, sans-serif", backgroundColor: "#c8553d" }}
+                className="mt-2 px-4 py-3 text-center text-base font-medium tracking-[0.04em] text-background bg-brand-accent"
               >
                 Contacto
               </Link>

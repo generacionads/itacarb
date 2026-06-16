@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface RevealH2Props {
@@ -19,16 +19,23 @@ export function RevealH2({
   splitBy = "word",
 }: RevealH2Props) {
   const ref = useRef<HTMLHeadingElement>(null);
+  // ready: JS has confirmed element is below fold and motion is OK → apply clip
+  const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
+    // Reduced motion: leave content always visible
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Already in viewport on load: skip animation to prevent visible-→-clipped flash
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) return;
+
+    // Below fold: safe to hide and reveal on scroll
+    setReady(true);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -43,7 +50,6 @@ export function RevealH2({
     return () => observer.disconnect();
   }, []);
 
-  // Block fallback — o children no es string
   if (splitBy === "block" || typeof children !== "string") {
     return (
       <Tag
@@ -51,8 +57,10 @@ export function RevealH2({
         className={cn(className)}
         style={{
           ...style,
-          clipPath: visible ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
-          transition: "clip-path 0.85s cubic-bezier(0.16, 1, 0.3, 1)",
+          ...(ready && {
+            clipPath: visible ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
+            transition: "clip-path 0.85s cubic-bezier(0.16, 1, 0.3, 1)",
+          }),
         }}
       >
         {children}
@@ -66,24 +74,29 @@ export function RevealH2({
     splitBy === "pair"
       ? words.reduce<string[]>((acc, w, i) => {
           if (i % 2 === 0) return [...acc, w];
-          return [...acc.slice(0, -1), acc[acc.length - 1] + " " + w];
+          return [...acc.slice(0, -1), acc[acc.length - 1] + " " + w];
         }, [])
       : words;
 
   return (
     <Tag ref={ref} className={cn(className)} style={style}>
       {units.map((unit, i) => (
-        <span
-          key={i}
-          style={{
-            display: "inline-block",
-            clipPath: visible ? "inset(0 0 0% 0)" : "inset(0 0 110% 0)",
-            transition: `clip-path 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.05}s`,
-          }}
-        >
-          {unit}
-          {i < units.length - 1 && " "}
-        </span>
+        // Space is a sibling text node outside the inline-block span —
+        // trailing whitespace inside inline-block collapses and loses the gap
+        <Fragment key={i}>
+          <span
+            style={{
+              display: "inline-block",
+              ...(ready && {
+                clipPath: visible ? "inset(0 0 0% 0)" : "inset(0 0 110% 0)",
+                transition: `clip-path 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.05}s`,
+              }),
+            }}
+          >
+            {unit}
+          </span>
+          {i < units.length - 1 && " "}
+        </Fragment>
       ))}
     </Tag>
   );

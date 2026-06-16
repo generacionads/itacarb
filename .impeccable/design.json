@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-16T00:00:00Z",
+  "title": "Design System: Ítacarb",
+  "extensions": {
+    "colorMeta": {
+      "fire-controlled": {
+        "role": "primary",
+        "displayName": "Fuego Controlado",
+        "canonical": "#c8553d",
+        "tonalRamp": ["#3d1610", "#5e2215", "#7e2f1b", "#9e3b22", "#c8553d", "#d9795f", "#e8a090", "#f5cfc6"]
+      },
+      "fire-deep": {
+        "role": "primary-hover",
+        "displayName": "Fuego Profundo",
+        "canonical": "#a3422e",
+        "tonalRamp": ["#2e1209", "#4b1e0f", "#672b15", "#843519", "#a3422e", "#b86650", "#ce9075", "#e3bdb0"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#36383a",
+        "tonalRamp": ["#0a0b0c", "#151618", "#1f2122", "#2a2c2e", "#36383a", "#5a5c5e", "#848688", "#b8babb"]
+      },
+      "background": {
+        "role": "neutral-bg",
+        "displayName": "Fondo Mineral",
+        "canonical": "#f9f8f6",
+        "tonalRamp": ["#a8a7a5", "#bbbab8", "#cdcccb", "#dfdede", "#eceae8", "#f3f2f0", "#f9f8f6", "#ffffff"]
+      },
+      "muted": {
+        "role": "neutral-secondary",
+        "displayName": "Voz Secundaria",
+        "canonical": "#6b6b7b",
+        "tonalRamp": ["#1a1a1f", "#2b2b33", "#3c3c46", "#4d4d59", "#6b6b7b", "#888896", "#a6a6b3", "#c3c3cc"]
+      },
+      "placeholder": {
+        "role": "neutral-placeholder",
+        "displayName": "Ceniza Placeholder",
+        "canonical": "#d9d9d9",
+        "tonalRamp": ["#8a8a8a", "#a0a0a0", "#b3b3b3", "#c4c4c4", "#d9d9d9", "#e4e4e4", "#efefef", "#fafafa"]
+      },
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titulares de máxima jerarquía. Footer 'Hablemos', H1 de /sectores. Solo cuando la pantalla necesita una afirmación, no una descripción. Peso: medium (500)."
+      },
+      "heading": {
+        "displayName": "Heading",
+        "purpose": "H2 de secciones interiores, H1 de /nosotros y /servicio. El nivel por defecto para titulares de página."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-headings dentro de sección. Texto de énfasis semántico (frase verbo+cuerpo en /servicio). Títulos de categoría en /proyectos."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prosa de páginas interiores. Cap recomendado: 65–75ch. Usado en /nosotros, /sectores, /proyectos."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "Texto de segunda jerarquía, detalles, cargos del equipo, links legales en footer."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Links de navegación (header y footer), texto de botones CTA, etiquetas de redes sociales. Siempre mayúscula de frase, nunca ALLCAPS."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "transition-colors",
+        "value": "color 200ms ease, background-color 200ms ease, border-color 200ms ease",
+        "purpose": "Cambios de estado de color en botones, links de navegación y SidebarNav. El único tipo de transición activa en el sistema."
+      },
+      {
+        "name": "transition-opacity",
+        "value": "opacity 200ms ease",
+        "purpose": "Hover de links en footer y chips de redes sociales (opacity-70 en hover)."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px", "purpose": "Cambia px-4 a px-16 (padding horizontal de página). Sidebar aparece (hidden md:flex)." },
+      { "name": "md", "value": "768px", "purpose": "Breakpoint principal. Activa la nav de desktop, el sidebar, y los layouts de dos columnas." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "El único estilo de botón del sistema. Sharp corners, terracota sólido, feedback por cambio de tono.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Contacto</a>",
+      "css": ".ds-btn-primary { display: inline-block; background-color: #c8553d; color: #f9f8f6; padding: 12px 24px; font-family: 'Satoshi', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; border: none; border-radius: 0; cursor: pointer; transition: background-color 200ms ease; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background-color: #a3422e; outline: none; }"
+    },
+    {
+      "name": "Header",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Header fijo con vidrio esmerilado. 72px desktop, 64px mobile. Nav links hover en terracota.",
+      "html": "<header class=\"ds-header\"><div class=\"ds-header-inner\"><span class=\"ds-header-logo\">Ítacarb</span><nav class=\"ds-header-nav\"><a href=\"#\" class=\"ds-nav-link\">Nosotros</a><a href=\"#\" class=\"ds-nav-link\">Sectores</a><a href=\"#\" class=\"ds-nav-link\">Proyectos</a><a href=\"#\" class=\"ds-nav-link ds-nav-link--active\">Servicio</a></nav><a href=\"#\" class=\"ds-btn-primary\" style=\"font-size:14px;padding:10px 20px\">Contacto</a></div></header>",
+      "css": ".ds-header { position: sticky; top: 0; left: 0; right: 0; z-index: 50; background-color: rgba(249, 248, 246, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); } .ds-header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 64px; } .ds-header-logo { font-family: 'Satoshi', sans-serif; font-size: 20px; font-weight: 700; color: #36383a; letter-spacing: -0.04em; } .ds-header-nav { display: flex; align-items: center; gap: 32px; } .ds-nav-link { font-family: 'Satoshi', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.04em; color: #36383a; text-decoration: none; transition: color 200ms ease; } .ds-nav-link:hover, .ds-nav-link--active { color: #c8553d; }"
+    },
+    {
+      "name": "SidebarNav",
+      "kind": "nav",
+      "refersTo": "sidebar-nav-active",
+      "description": "Navegación lateral sticky para páginas con IntersectionObserver. Estado activo en Fuego Profundo.",
+      "html": "<aside class=\"ds-sidebar\"><nav><button class=\"ds-sidebar-item\">Nosotros</button><button class=\"ds-sidebar-item ds-sidebar-item--active\">Equipo</button><button class=\"ds-sidebar-item\">Método</button><button class=\"ds-sidebar-item\">Valores</button></nav></aside>",
+      "css": ".ds-sidebar { width: 33%; padding: 64px; } .ds-sidebar-item { display: block; width: 100%; text-align: left; background: none; border: none; cursor: pointer; font-family: 'Satoshi', sans-serif; font-size: 20px; font-weight: 500; letter-spacing: -0.04em; color: #6b6b7b; padding: 0; margin-bottom: 32px; transition: color 200ms ease; } .ds-sidebar-item:last-child { margin-bottom: 0; } .ds-sidebar-item:hover { color: #36383a; } .ds-sidebar-item--active { color: #a3422e; }"
+    },
+    {
+      "name": "Accordion Item",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Ítem de acordeón con borde inferior. Icono +/− en terracota. aria-expanded implementado.",
+      "html": "<div class=\"ds-accordion\"><div class=\"ds-accordion-item\"><button class=\"ds-accordion-trigger\" aria-expanded=\"false\"><span class=\"ds-accordion-label\">Pre-análisis</span><span class=\"ds-accordion-icon\" aria-hidden=\"true\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 5V19M5 12H19\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></span></button></div><div class=\"ds-accordion-item ds-accordion-item--open\"><button class=\"ds-accordion-trigger\" aria-expanded=\"true\"><span class=\"ds-accordion-label\">Benchmarking</span><span class=\"ds-accordion-icon\" aria-hidden=\"true\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M5 12H19\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg></span></button><div class=\"ds-accordion-content\"><p>Análisis comparativo de la competencia y el mercado para identificar oportunidades de diferenciación.</p></div></div></div>",
+      "css": ".ds-accordion { width: 100%; } .ds-accordion-item { border-bottom: 1px solid #eae8e3; } .ds-accordion-trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 16px 4px; background: none; border: none; cursor: pointer; text-align: left; } .ds-accordion-label { font-family: 'Satoshi', sans-serif; font-size: 18px; font-weight: 300; color: #36383a; line-height: 1.6; } .ds-accordion-icon { display: flex; align-items: center; justify-content: center; padding: 12px; flex-shrink: 0; color: #c8553d; } .ds-accordion-content { padding-bottom: 24px; padding-left: 4px; padding-right: 4px; font-family: 'Satoshi', sans-serif; font-size: 16px; font-weight: 300; color: #6b6b7b; line-height: 1.6; }"
+    },
+    {
+      "name": "Footer",
+      "kind": "custom",
+      "refersTo": "footer-surface",
+      "description": "Footer completo en superficie Fuego Controlado. Texto en Tinta. Chips sociales en Tinta con texto Fondo Mineral.",
+      "html": "<footer class=\"ds-footer\"><div class=\"ds-footer-inner\"><div class=\"ds-footer-top\"><div><p class=\"ds-footer-headline\">Hablemos</p><div class=\"ds-footer-contact\"><a href=\"mailto:hola@itacarb.com\" class=\"ds-footer-link\">hola@itacarb.com</a><a href=\"tel:+34611681539\" class=\"ds-footer-link\">+34 611 68 15 39</a></div></div><nav class=\"ds-footer-nav\"><a href=\"#\" class=\"ds-footer-link\">Nosotros</a><a href=\"#\" class=\"ds-footer-link\">Proyectos</a><a href=\"#\" class=\"ds-footer-link\">Servicio</a></nav></div><div class=\"ds-footer-bottom\"><nav><a href=\"#\" class=\"ds-footer-link ds-footer-link--sm\">Aviso Legal</a><a href=\"#\" class=\"ds-footer-link ds-footer-link--sm\">Política de Privacidad</a></nav><div class=\"ds-footer-socials\"><a href=\"#\" class=\"ds-chip\">LinkedIn</a><a href=\"#\" class=\"ds-chip\">Instagram</a></div></div></div></footer>",
+      "css": ".ds-footer { background-color: #c8553d; padding: 40px 0; min-height: 420px; display: flex; flex-direction: column; } .ds-footer-inner { padding: 0 64px; flex: 1; display: flex; flex-direction: column; } .ds-footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: auto; } .ds-footer-headline { font-family: 'Satoshi', sans-serif; font-size: 72px; font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: #36383a; margin: 0 0 24px 0; } .ds-footer-contact { display: flex; gap: 32px; } .ds-footer-link { font-family: 'Satoshi', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.04em; color: #36383a; text-decoration: none; transition: opacity 200ms ease; } .ds-footer-link:hover { opacity: 0.7; } .ds-footer-link--sm { font-size: 14px; letter-spacing: 0.035em; } .ds-footer-nav { display: flex; flex-wrap: wrap; gap: 16px 32px; } .ds-footer-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 64px; } .ds-footer-socials { display: flex; gap: 32px; } .ds-chip { display: inline-block; background-color: #36383a; color: #f9f8f6; font-family: 'Satoshi', sans-serif; font-size: 16px; font-weight: 500; letter-spacing: 0.04em; padding: 12px 24px; text-decoration: none; transition: opacity 200ms ease; } .ds-chip:hover { opacity: 0.8; }"
+    },
+    {
+      "name": "Metric Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Tarjeta de métrica con borde vivo completo (border-foreground). Número grande en Tinta, label en Fuego Controlado. Efecto hover de borde cónico animado via JS.",
+      "html": "<div class=\"ds-metric\"><p class=\"ds-metric-value\">103%</p><p class=\"ds-metric-label\">de aumento en visibilidad cualificada</p></div>",
+      "css": ".ds-metric { border: 1px solid #36383a; padding: 32px; display: flex; flex-direction: column; gap: 24px; background: #f9f8f6; cursor: default; } .ds-metric-value { font-family: 'Satoshi', sans-serif; font-size: 64px; font-weight: 500; line-height: 50px; letter-spacing: -0.04em; color: #36383a; margin: 0; } .ds-metric-label { font-family: 'Satoshi', sans-serif; font-size: 16px; font-weight: 300; letter-spacing: 0.04em; text-transform: uppercase; color: #c8553d; margin: 0; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": null,
+      "description": "Campo de texto con borde inferior únicamente. Sin border-radius. Placeholder en Voz Secundaria (pasa WCAG AA).",
+      "html": "<div class=\"ds-field\"><input type=\"text\" placeholder=\"Tu nombre\" class=\"ds-input\" /><textarea placeholder=\"Tu mensaje\" class=\"ds-textarea\" rows=\"4\"></textarea></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 24px; } .ds-input, .ds-textarea { font-family: 'Satoshi', sans-serif; font-size: 16px; font-weight: 300; color: #36383a; background: transparent; border: none; border-bottom: 1px solid #6b6b7b; border-radius: 0; padding: 12px 0; outline: none; width: 100%; resize: none; } .ds-input::placeholder, .ds-textarea::placeholder { color: #6b6b7b; } .ds-input:focus, .ds-textarea:focus { border-bottom-color: #36383a; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La Claridad con Carácter",
+    "overview": "Ítacarb no diseña para impresionar; diseña para demostrar. Cada decisión visual — la terracota que interrumpe el fondo mineral, las esquinas sin redondeo, el único peso de fuente en juego — es un argumento antes de que el usuario lea una sola palabra. El principio operativo es el diseño es la prueba: si hay que explicar la credibilidad, el diseño ha fallado.\n\nEl sistema rechaza activamente tres reflejos: el formalismo corporativo frío (consultoras con blues navy y tipografía serif conservadora), la creatividad maximalista de agencias (degradados, decoración gratuita, múltiples familias tipográficas), y la ligereza genérica del SaaS (cards idénticas, esquinas exageradamente redondeadas, sombras omnipresentes). Lo que queda es profundidad sin ostentación: un solo color de acento usado con disciplina, una sola familia tipográfica en tres pesos, y una paleta neutra que no pide atención.\n\nLa densidad es intencionadamente baja. El espacio en blanco no es ausencia — es la señal de que el equipo sabe qué dejar fuera.",
+    "keyCharacteristics": [
+      "Un solo acento cromático (Fuego Controlado, #c8553d) sobre una base mineral",
+      "Una sola familia tipográfica (Satoshi) en tres pesos, sin fuente de display separada",
+      "Diseño completamente plano: profundidad por contraste de color, no por sombras ni capas",
+      "Esquinas vivas (0px) en componentes interactivos; mínimamente redondeadas (4px) solo en imágenes y placeholders",
+      "El espacio como argumento: secciones de 64px de padding vertical, páginas sin ruido decorativo"
+    ],
+    "rules": [
+      {
+        "name": "La Regla del Fuego Escaso",
+        "body": "Fuego Controlado ocupa superficie en ≤3 posiciones simultáneas en pantalla. Su escasez es su poder. Si aparece en más de 3 lugares en la misma vista, se elimina el menos importante.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de un Solo Acento",
+        "body": "El sistema tiene exactamente un color de acento activo. No añadir un segundo acento aunque parezca complementario. Si el diseño parece necesitar más color, la solución es más espacio o más jerarquía tipográfica, no más cromática.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del -0.04em",
+        "body": "-0.04em es el tracking mínimo en headings. Valores más negativos (-0.05em o superiores) hacen que las letras de Satoshi se toquen a 48px+. Si un display se lee 'apretado', el tracking es el culpable, no el peso.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de los Dos Pesos",
+        "body": "El sistema usa exactamente dos pesos: medium (500) para display/heading/title/label, y light (300) para body. No hay bold, no hay regular. Si un texto no encaja en ninguno de los dos, el problema es de jerarquía, no de peso.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de Profundidad sin Capas",
+        "body": "Si un componente parece necesitar una sombra para 'destacar', el problema es de contraste o posicionamiento, no de elevación. La solución es más espacio o un cambio de color. Las sombras nunca.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do mantener Fuego Controlado en ≤3 posiciones por vista simultánea. Si aparece en más de 3 lugares, identificar y eliminar el menos importante.",
+      "Do usar esquinas a 0px en todos los componentes interactivos. Solo imágenes y placeholders llevan border-radius (4px).",
+      "Do usar font-light (300) en todo el texto de cuerpo; reservar font-medium (500) para headings, labels y CTAs.",
+      "Do usar border-brand-border (#eae8e3) como el único mecanismo de separación visual dentro de página.",
+      "Do verificar contraste antes de usar Voz Secundaria (#6b6b7b): solo válido sobre Fondo Mineral (#f9f8f6), ratio mínimo 4.5:1.",
+      "Do mantener el footer en Fuego Controlado en todas las páginas — es el cierre cromático del sistema."
+    ],
+    "donts": [
+      "Don't añadir sombras (box-shadow) a ningún componente. Si un elemento necesita 'destacar', la solución es espacio o contraste cromático.",
+      "Don't imitar agencias genéricas SaaS: nada de cards idénticas con icono + título + texto, nada de kickers en mayúsculas sobre cada sección, nada de border-radius de 24px o más.",
+      "Don't imitar agencias creativas maximalistas: sin degradados de texto, sin múltiples familias tipográficas, sin acumulación de texturas o ilustraciones decorativas SVG.",
+      "Don't imitar consultoras corporativas frías: sin blues navy como acento activo, sin tipografía serif en headings, sin layouts densos sin aire.",
+      "Don't imitar marketing local sin diseño: sin fondos de color sólido sin jerarquía, sin ausencia de tracking tipográfico, sin elementos sin alineación intencional.",
+      "Don't usar #7a7c7e ni valores más claros para texto secundario — el ratio de contraste (3.95:1) falla WCAG AA. El umbral mínimo es #6b6b7b (4.99:1) sobre Fondo Mineral.",
+      "Don't añadir un segundo color de acento. Si el diseño necesita más color, la respuesta es más espacio o más jerarquía tipográfica, no más cromática."
+    ]
+  }
+}

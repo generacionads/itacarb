@@ -39,13 +39,18 @@ export function Services() {
     const img3 = img3Ref.current;
     if (!section || !rows || !path || !maskBg || !maskStart || !maskEnd || !img1 || !img2 || !img3) return;
 
-    // Row appear — blur-in
-    [row1Ref.current, row2Ref.current, row3Ref.current].forEach((el) => {
-      if (!el) return;
-      gsap.fromTo(
-        el,
-        { opacity: 0, filter: "blur(16px)" },
-        {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Entrance animations — only for below-fold rows, skipped entirely for reduced-motion
+    if (!prefersReducedMotion) {
+      [row1Ref.current, row2Ref.current, row3Ref.current].forEach((el) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        // Only hide if genuinely below the fold — avoids visible-then-clipped flash
+        if (rect.top >= window.innerHeight) {
+          gsap.set(el, { opacity: 0, filter: "blur(16px)" });
+        }
+        gsap.to(el, {
           opacity: 1,
           filter: "blur(0px)",
           duration: 1.1,
@@ -55,16 +60,17 @@ export function Services() {
             start: "top 85%",
             toggleActions: "play none none none",
           },
-        }
-      );
-    });
+        });
+      });
+    }
+
+    // SVG path scroll animation — skip for reduced-motion (decorative only)
+    if (prefersReducedMotion) return;
 
     const build = () => {
       tlRef.current?.kill();
       stRef.current?.kill();
 
-      // Use offsetTop/offsetLeft (layout positions, unaffected by CSS transforms)
-      // so the path stays aligned even while row appear animations are active.
       const relOffset = (el: HTMLDivElement) => {
         let left = 0, top = 0;
         let node: HTMLElement | null = el;
@@ -141,11 +147,10 @@ export function Services() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="servicio" className="py-24 bg-[#f9f8f6]">
+    <section ref={sectionRef} id="servicio" className="py-24 bg-background">
       <Container>
         <RevealH2
-          className="text-[#36383a] text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
-          style={{ fontFamily: "Satoshi, sans-serif" }}
+          className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
         >
           Cada marca tiene su Ítaca. Nosotros navegamos contigo.
         </RevealH2>
@@ -169,7 +174,7 @@ export function Services() {
             <g mask="url(#svc-mask)">
               <path
                 ref={pathRef}
-                stroke="#c8553d"
+                stroke="var(--color-brand-accent)"
                 strokeWidth="1"
                 strokeLinecap="square"
                 fill="none"
@@ -179,10 +184,7 @@ export function Services() {
 
           {/* Row 1: Imagen izquierda · Texto derecha */}
           <div ref={row1Ref} className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-0">
-            <div
-              ref={img1Ref}
-              className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden"
-            >
+            <div ref={img1Ref} className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1200&q=80&auto=format&fit=crop"
                 alt="Vista aérea del océano"
@@ -191,14 +193,11 @@ export function Services() {
                 sizes="(max-width: 768px) 100vw, 67vw"
               />
             </div>
-            <div
-              className="flex flex-col gap-3 md:w-[30%]"
-              style={{ fontFamily: "Satoshi, sans-serif" }}
-            >
-              <h3 className="text-[#36383a] text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
+            <div className="flex flex-col gap-3 md:w-[30%]">
+              <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Comprendemos
               </h3>
-              <p className="text-[#36383a] text-[16px] font-light tracking-[0.04em]">
+              <p className="text-foreground text-[16px] font-light tracking-[0.04em]">
                 Cada empresa es un punto de partida distinto. Nos adentramos en tu negocio, tu sector y tu entorno competitivo para entender con precisión qué puede impulsar tu crecimiento.
               </p>
             </div>
@@ -206,21 +205,15 @@ export function Services() {
 
           {/* Row 2: Texto izquierda · Imagen derecha */}
           <div ref={row2Ref} className="flex flex-col-reverse md:flex-row md:items-end md:justify-between gap-8 md:gap-0">
-            <div
-              className="flex flex-col gap-3 md:w-[30%]"
-              style={{ fontFamily: "Satoshi, sans-serif" }}
-            >
-              <h3 className="text-[#36383a] text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
+            <div className="flex flex-col gap-3 md:w-[30%]">
+              <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Proyectamos
               </h3>
-              <p className="text-[#36383a] text-[16px] font-light tracking-[0.04em]">
+              <p className="text-foreground text-[16px] font-light tracking-[0.04em]">
                 Transformamos el análisis en decisiones. Desarrollamos una estrategia coherente con tus objetivos, que define con claridad qué hacer, cómo hacerlo y en qué orden.
               </p>
             </div>
-            <div
-              ref={img2Ref}
-              className="relative w-full md:w-[67%] aspect-[914/467] shrink-0 overflow-hidden"
-            >
+            <div ref={img2Ref} className="relative w-full md:w-[67%] aspect-[914/467] shrink-0 overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=1200&q=80&auto=format&fit=crop"
                 alt="Horizonte marino al atardecer"
@@ -233,10 +226,7 @@ export function Services() {
 
           {/* Row 3: Imagen izquierda · Texto derecha */}
           <div ref={row3Ref} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-0">
-            <div
-              ref={img3Ref}
-              className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden"
-            >
+            <div ref={img3Ref} className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80&auto=format&fit=crop"
                 alt="Costa y orilla del mar"
@@ -245,14 +235,11 @@ export function Services() {
                 sizes="(max-width: 768px) 100vw, 67vw"
               />
             </div>
-            <div
-              className="flex flex-col gap-3 md:w-[30%]"
-              style={{ fontFamily: "Satoshi, sans-serif" }}
-            >
-              <h3 className="text-[#36383a] text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
+            <div className="flex flex-col gap-3 md:w-[30%]">
+              <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Materializamos
               </h3>
-              <p className="text-[#36383a] text-[16px] font-light tracking-[0.04em]">
+              <p className="text-foreground text-[16px] font-light tracking-[0.04em]">
                 La estrategia cobra vida. Implementamos, medimos y evolucionamos para garantizar que cada acción contribuye al crecimiento real de tu empresa.
               </p>
             </div>

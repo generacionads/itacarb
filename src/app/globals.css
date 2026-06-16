@@ -2,10 +2,13 @@
 
 @theme inline {
   /* Brand colors */
-  --color-brand-primary: #1a1a2e;
-  --color-brand-accent: #c9a84c;
-  --color-brand-light: #f5f3ef;
-  --color-brand-muted: #6b6b7b;
+  --color-brand-primary:     #1a1a2e; /* azul oscuro corporativo (reserved) */
+  --color-brand-accent:      #c8553d; /* terracota — CTAs, énfasis */
+  --color-brand-accent-dark: #a3422e; /* terracota oscuro — hover */
+  --color-brand-light:       #f5f3ef; /* tono claro (reserved) */
+  --color-brand-muted:       #6b6b7b; /* texto secundario (4.99:1 sobre bg) */
+  --color-brand-border:      #eae8e3; /* bordes y separadores */
+  --color-placeholder:       #d9d9d9; /* placeholders de imagen */
 
   /* Semantic */
   --color-background: #f9f8f6;
@@ -22,11 +25,11 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
 body {
+  font-family: var(--font-sans);
   background: var(--color-background);
   color: var(--color-foreground);
   -webkit-font-smoothing: antialiased;

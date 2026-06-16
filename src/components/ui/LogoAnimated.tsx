@@ -7,13 +7,14 @@ export function LogoAnimated() {
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    if (!svgRef.current) return;
-    const els = svgRef.current.querySelectorAll("[data-el]");
-    gsap.fromTo(
-      els,
-      { opacity: 0, y: 10 },
-      { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" }
-    );
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const els = svg.querySelectorAll("[data-el]");
+    gsap.set(els, { opacity: 0, y: 10 });
+    gsap.to(els, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" });
   }, []);
 
   return (
@@ -23,6 +24,8 @@ export function LogoAnimated() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className="w-56 sm:w-72 md:w-96 lg:w-[480px]"
+      role="img"
+      aria-label="Ítacarb"
     >
       {/* Icon (punto sobre la Í) */}
       <g data-el="icon">

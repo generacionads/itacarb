@@ -44,9 +44,9 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           <div className="absolute inset-0 bg-placeholder" />
         )}
 
-        {/* Overlay terracota — desaparece en hover */}
+        {/* Overlay terracota: hover devices → 65% → 0%; touch devices → 25% (image visible without hover) */}
         <div
-          className="absolute inset-0 opacity-[0.65] transition-opacity duration-500 group-hover:opacity-0 bg-brand-accent"
+          className="absolute inset-0 opacity-[0.65] [@media(hover:none)]:opacity-[0.25] transition-opacity duration-500 group-hover:opacity-0 bg-brand-accent"
           style={{ mixBlendMode: "multiply" }}
         />
 
@@ -84,13 +84,14 @@ export function Projects() {
           </p>
           <a
             href="/proyectos"
-            className="flex items-center gap-3 bg-brand-accent px-3 py-3 transition-opacity hover:opacity-90 text-background"
+            className="group flex items-center gap-3 bg-brand-accent px-3 py-3 text-background"
           >
             <span className="text-[24px] font-medium tracking-[-0.04em] whitespace-nowrap">
               Explora más Proyectos
             </span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0 btn-morph-svg">
+              <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </a>
         </div>

@@ -36,3 +36,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
 }
+
+/* ─── Button hover animations ─────────────────────────────────────────────── */
+
+/* Type A: + icon morphs into → arrowhead on parent hover.
+   The vertical stroke of "+" (morph-stroke) transitions to a V-shape arrowhead;
+   the horizontal stroke stays fixed as the arrow shaft.
+   Both paths have M-L-L structure so CSS d: path() interpolation works. */
+.btn-morph-svg path.morph-stroke {
+  d: path("M12 5 L12 12 L12 19");
+  transition: d 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.group:hover .btn-morph-svg path.morph-stroke {
+  d: path("M13 6 L19 12 L13 18");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-morph-svg path.morph-stroke { transition: none; }
+}

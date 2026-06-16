@@ -45,7 +45,7 @@ export function Header() {
             </div>
             <Link
               href="/contacto"
-              className="px-6 py-3 text-base font-medium tracking-[0.04em] text-background bg-brand-accent hover:bg-brand-accent-dark transition-colors"
+              className="px-6 py-3 text-base font-medium tracking-[0.04em] text-background bg-brand-accent"
             >
               Contacto
             </Link>
@@ -90,7 +90,7 @@ export function Header() {
               <Link
                 href="/contacto"
                 onClick={() => setMenuOpen(false)}
-                className="mt-2 px-4 py-3 text-center text-base font-medium tracking-[0.04em] text-background bg-brand-accent"
+                className="mt-2 px-4 py-3 text-base font-medium tracking-[0.04em] text-background bg-brand-accent text-center"
               >
                 Contacto
               </Link>

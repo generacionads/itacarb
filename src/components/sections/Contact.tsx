@@ -120,7 +120,7 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === "pending"}
-              className="flex items-center gap-6 text-foreground transition-colors hover:text-brand-accent-dark group disabled:opacity-50"
+              className="flex items-center gap-6 text-foreground group disabled:opacity-50"
             >
               <span className="text-[48px] md:text-[64px] font-medium tracking-[-0.04em] leading-none">
                 {status === "pending" ? "Enviando…" : "Enviar"}
@@ -132,10 +132,17 @@ export function Contact() {
                   viewBox="0 0 24 24"
                   fill="none"
                   aria-hidden="true"
-                  className="shrink-0"
+                  className="shrink-0 btn-morph-svg"
                 >
                   <path
-                    d="M12 5V19M5 12H19"
+                    d="M12 5 L12 12 L12 19"
+                    className="morph-stroke"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M5 12 L19 12"
                     stroke="currentColor"
                     strokeWidth="1.5"
                     strokeLinecap="round"

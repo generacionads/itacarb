@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SidebarNav } from "@/components/ui/SidebarNav";
+import { RevealH2 } from "@/components/ui/RevealH2";
 
 const HEADER_H = 72;
 
@@ -13,7 +14,6 @@ const valores = ["Fresca", "Resolutiva", "Transparente", "Exclusiva", "Estratega
 const sections = [
   { id: "itaca", label: "Ítaca" },
   { id: "equipo", label: "Equipo" },
-  { id: "metodo", label: "Método" },
   { id: "valores", label: "Valores" },
 ];
 
@@ -89,16 +89,18 @@ export default function NosotrosPage() {
               className="px-4 sm:px-16 pt-16 pb-8 flex flex-col"
               style={{ minHeight: "calc(100vh - 72px)" }}
             >
-              <h1 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none">
-                Nuestro trabajo nos define. Nos gusta la seriedad
-              </h1>
+              <RevealH2
+                as="h1"
+                alwaysAnimate
+                splitBy="word"
+                className="text-foreground text-[48px] md:text-[72px] font-medium tracking-[-0.04em] leading-none text-balance"
+              >
+                Una consultora estratégica dónde el equipo es la diferencia.
+              </RevealH2>
 
               <div className="flex flex-col gap-2 mt-8">
-                <p className="text-foreground text-[18px] font-light leading-relaxed">
-                  Diseñamos y damos forma a cómo los players más importantes de diferentes sectores dejan una huella positiva más allá de los tendencias y cánones establecidos.
-                </p>
-                <p className="text-foreground text-[18px] font-light leading-relaxed">
-                  Combinamos creatividad, diseño, tecnología y datos para convertir las palabras en acciones y las ideas en resultados tangibles.
+                <p className="text-foreground text-[18px] font-light leading-relaxed max-w-[65ch]">
+                  Un equipo, con experiencia real en los sectores en los que trabajamos y con una forma de hacer las cosas en la que nos implicamos como si el negocio fuera nuestro.
                 </p>
               </div>
 
@@ -112,16 +114,44 @@ export default function NosotrosPage() {
               className="px-4 sm:px-16 py-16 flex flex-col gap-12"
             >
               <div className="flex flex-col gap-6">
-                <h2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none">
-                  El equipo detrás de horas de análisis, trabajo y patata
+                <h2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance">
+                  El equipo
                 </h2>
-                <div className="flex flex-col gap-2">
-                  <p className="text-foreground text-[18px] font-light leading-relaxed">
-                    Diseñamos y damos forma a cómo los players más importantes de diferentes sectores dejan una huella positiva más allá de los tendencias y cánones establecidos.
+                <p className="text-foreground text-[18px] font-light leading-relaxed max-w-[65ch]">
+                  Ítaca somos las personas que hay detrás. Un equipo sin intermediarios, con experiencia en los sectores que trabajamos y con la convicción de que acompañar bien a un cliente empieza por conocerlo de verdad.
+                </p>
+              </div>
+
+              {/* ÍTACA — equipo */}
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-4">
+                  <p className="text-foreground text-[26px]">ÍTACA</p>
+                  <p className="text-foreground text-[16px] font-light leading-relaxed">
+                    Detrás de cada entrega hay personas que se dejan la piel. El equipo que convierte las ideas en resultados y que mantiene el rumbo cuando el mar se complica.
                   </p>
-                  <p className="text-foreground text-[18px] font-light leading-relaxed">
-                    Combinamos creatividad, diseño, tecnología y datos para convertir las palabras en acciones y las ideas en resultados tangibles.
-                  </p>
+                </div>
+                <div className="flex gap-[47px]">
+                  <div className="flex flex-col gap-4 flex-1">
+                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
+                    <div className="flex flex-col gap-1">
+                      <p className="text-foreground text-[20px]">Patricia Orgaz</p>
+                      <p className="text-brand-muted text-[16px]">Estratega de cuentas y medios</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4 flex-1">
+                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
+                    <div className="flex flex-col gap-1">
+                      <p className="text-foreground text-[20px]">Isabel Villoria</p>
+                      <p className="text-brand-muted text-[16px]">Ingeniería y presencia web</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4 flex-1">
+                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
+                    <div className="flex flex-col gap-1">
+                      <p className="text-foreground text-[20px]">Mario Zornoza</p>
+                      <p className="text-brand-muted text-[16px]">Diseño creativo e innovación</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -138,72 +168,17 @@ export default function NosotrosPage() {
                     <div className="h-[344px] w-full bg-placeholder rounded-[4px]" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Antonio González</p>
-                      <p className="text-brand-muted text-[20px]">Fundador y Director de Estrategia</p>
+                      <p className="text-brand-muted text-[16px]">Fundador y Director de Estrategia</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 flex-1">
                     <div className="h-[344px] w-full bg-placeholder rounded-[4px]" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Javier Revuelta</p>
-                      <p className="text-brand-muted text-[20px]">Fundador y CEO</p>
+                      <p className="text-brand-muted text-[16px]">Fundador y CEO</p>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              {/* ÍTACA — equipo */}
-              <div className="flex flex-col gap-6">
-                <div className="flex flex-col gap-4">
-                  <p className="text-foreground text-[26px]">ÍTACA</p>
-                  <p className="text-foreground text-[16px] font-light leading-relaxed">
-                    RB no son dos letras, son dos personas de carne y hueso: Javier Revuelta y Antonio González. Sin ellos no sabríamos poner rumbo a Ítaca.
-                  </p>
-                </div>
-                <div className="flex gap-[47px]">
-                  <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
-                    <div className="flex flex-col gap-1">
-                      <p className="text-foreground text-[20px]">Patricia Orgaz</p>
-                      <p className="text-brand-muted text-[20px]">Gestión de cuentas y PPC</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
-                    <div className="flex flex-col gap-1">
-                      <p className="text-foreground text-[20px]">Isabel Villoria</p>
-                      <p className="text-brand-muted text-[20px]">Desarrollo Web y Posicionamiento</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
-                    <div className="flex flex-col gap-1">
-                      <p className="text-foreground text-[20px]">Mario Zornoza</p>
-                      <p className="text-brand-muted text-[20px]">Diseño UI/UX</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* ── Método ── */}
-            <section
-              id="metodo"
-              ref={(el) => { if (el) sectionRefs.current.set("metodo", el); }}
-              className="px-4 sm:px-16 py-16 flex flex-col gap-6"
-            >
-              <h2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none">
-                Nuestra metodología: Impact-Driven Growth™
-              </h2>
-              <div className="flex flex-col gap-2">
-                <p className="text-foreground text-[18px] font-light leading-relaxed">
-                  No trabajamos con listas de tareas. Trabajamos con arquitecturas de impacto. Impact-Driven Growth™ es el framework propio que conecta cada decisión con el impacto que tu organización necesita generar — desde la métrica estratégica hasta los experimentos que lo validan.
-                </p>
-                <p className="text-foreground text-[18px] font-light leading-relaxed">
-                  Seis capas de disciplina metodológica: CPVM → Métricas de impacto → Outcomes → Iniciativas → Hipótesis → Experimentos.
-                </p>
-                <p className="text-foreground text-[18px] font-light leading-relaxed">
-                  Está documentado en un libro, enseñado en una formación específica y operado con una herramienta de IA propia.
-                </p>
               </div>
             </section>
 

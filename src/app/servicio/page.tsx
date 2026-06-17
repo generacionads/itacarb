@@ -121,6 +121,8 @@ export default function ServicioPage() {
         >
           <RevealH2
             key={activeH2}
+            alwaysAnimate
+            splitBy="word"
             className="text-background text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
           >
             {activeH2}

@@ -19,24 +19,22 @@ export function AccordionItem({ label, children }: AccordionItemProps) {
         <span className="text-[18px] font-light text-foreground">{label}</span>
         <span className="flex items-center justify-center p-3 shrink-0 text-brand-accent" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d={open ? "M5 12H19" : "M12 5V19M5 12H19"}
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
+            <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path className="accordion-v-bar" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </span>
       </button>
-      {open && (
-        <div className="pb-6 px-1">
-          {children ?? (
-            <p className="text-brand-muted text-[16px] font-light leading-relaxed">
-              Contenido de {label}.
-            </p>
-          )}
+      <div className="accordion-panel" data-open={String(open)}>
+        <div className="min-h-0 overflow-hidden">
+          <div className="pb-6 px-1">
+            {children ?? (
+              <p className="text-brand-muted text-[16px] font-light leading-relaxed">
+                Contenido de {label}.
+              </p>
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

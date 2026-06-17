@@ -4,21 +4,22 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
+import { MetricBox } from "@/components/ui/MetricBox";
 import gsap from "gsap";
 
 const sectors = [
   {
     id: "arquitectura",
-    name: "Estudios de Arquitectura",
+    name: "Arquitectura y Diseño",
     image: "/sectors/arquitectura.jpg",
     stat: "17%",
     statLabel: "+ DE CAPTACIÓN DIGITAL",
   },
   {
     id: "sanitario",
-    name: "Servicios Sanitarios",
+    name: "Clínicas y sector salud",
     image: null,
-    stat: "3×",
+    stat: "15x",
     statLabel: "PACIENTES RECURRENTES",
   },
   {
@@ -26,48 +27,20 @@ const sectors = [
     name: "Industrial",
     image: null,
     stat: "40%",
-    statLabel: "+ EFICIENCIA OPERATIVA",
+    statLabel: "CRECIMIENTO MEDIO",
   },
 ];
 
 function MetricsBorder({ stat, statLabel }: { stat: string; statLabel: string }) {
-  const BASE = `1px solid var(--color-foreground)`;
-  const SPREAD = 70;
-
-  function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    const el = e.currentTarget;
-    const r = el.getBoundingClientRect();
-    const dx = e.clientX - (r.left + r.width / 2);
-    const dy = e.clientY - (r.top + r.height / 2);
-    const angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-    el.style.border = "1px solid transparent";
-    el.style.background = [
-      `linear-gradient(var(--color-background),var(--color-background)) padding-box`,
-      `conic-gradient(from calc(${angle}deg - ${SPREAD}deg),` +
-        `var(--color-foreground) 0deg,var(--color-brand-accent) ${SPREAD}deg,var(--color-foreground) ${SPREAD * 2}deg ${360 - SPREAD * 2}deg,` +
-        `var(--color-foreground) ${360 - SPREAD * 2}deg) border-box`,
-    ].join(",");
-  }
-
-  function onLeave(e: React.MouseEvent<HTMLDivElement>) {
-    e.currentTarget.style.border = BASE;
-    e.currentTarget.style.background = "";
-  }
-
   return (
-    <div
-      className="bg-background p-6 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 w-full sm:w-fit cursor-default"
-      style={{ border: BASE }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-    >
+    <MetricBox className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 w-full sm:w-fit">
       <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em]">
         {stat}
       </p>
       <p className="text-foreground text-[16px] font-light tracking-[0.04em] uppercase">
         {statLabel}
       </p>
-    </div>
+    </MetricBox>
   );
 }
 

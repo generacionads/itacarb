@@ -20,7 +20,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-background/60">
       <Container>
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
-          <Link href="/" aria-label="Ítacarb — Inicio">
+          <a href="/" aria-label="Ítacarb — Inicio">
             <Image
               src="/logo.svg"
               alt="Ítacarb"
@@ -28,7 +28,7 @@ export function Header() {
               height={37}
               priority
             />
-          </Link>
+          </a>
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-12 md:flex">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RevealH2 } from "@/components/ui/RevealH2";
 
 const projects = [
   {
@@ -90,9 +91,14 @@ export default async function ProyectoPage({
           <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight md:max-w-[420px] shrink-0">
             {project.tagline}
           </p>
-          <h1 className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none">
+          <RevealH2
+            as="h1"
+            alwaysAnimate
+            splitBy="word"
+            className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+          >
             {project.name}
-          </h1>
+          </RevealH2>
         </div>
 
         {/* Imagen cuadrada (col izq) + descripción y métrica (col der) */}

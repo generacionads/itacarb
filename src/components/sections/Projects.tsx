@@ -50,8 +50,13 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           style={{ mixBlendMode: "multiply" }}
         />
 
-        <div className="absolute bottom-8 left-8">
-          <span className="text-[32px] font-medium leading-8 tracking-[-0.04em] text-background whitespace-nowrap">
+        <div className="absolute bottom-5 left-5">
+          <span
+            className="project-name-text inline-block text-[32px] font-medium leading-8 tracking-[-0.04em] whitespace-nowrap
+              text-background px-3 py-3
+              bg-transparent group-hover:bg-brand-accent
+              group-hover:-translate-y-1.5"
+          >
             {project.name}
           </span>
         </div>

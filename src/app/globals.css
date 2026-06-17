@@ -54,3 +54,40 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .btn-morph-svg path.morph-stroke { transition: none; }
 }
+
+/* Project card name: background fill on hover (link → button feel).
+   Reduced motion: bg-color only. Full motion: bg-color + slide up. */
+.project-name-text {
+  transition: background-color 300ms ease-out;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .project-name-text {
+    transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1), background-color 300ms ease-out;
+  }
+}
+
+/* Accordion panel: height reveal via grid-template-rows.
+   Avoids animating layout height directly; the inner min-h-0 div clips overflow. */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.accordion-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+/* Accordion icon: vertical bar morphs to zero-length when panel is open (+  →  −). */
+.accordion-v-bar {
+  d: path("M12 5 L12 19");
+  transition: d 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+button[aria-expanded="true"] .accordion-v-bar {
+  d: path("M12 12 L12 12");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-panel { transition: none; }
+  .accordion-v-bar { transition: none; }
+}
+

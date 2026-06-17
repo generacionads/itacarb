@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface RevealH2Props {
@@ -9,6 +9,8 @@ interface RevealH2Props {
   style?: React.CSSProperties;
   as?: "h1" | "h2" | "h3";
   splitBy?: "word" | "pair" | "block";
+  /** Animate on mount even when the element is already in the viewport. */
+  alwaysAnimate?: boolean;
 }
 
 export function RevealH2({
@@ -17,13 +19,32 @@ export function RevealH2({
   style,
   as: Tag = "h2",
   splitBy = "word",
+  alwaysAnimate = false,
 }: RevealH2Props) {
   const ref = useRef<HTMLHeadingElement>(null);
   // ready: JS has confirmed element is below fold and motion is OK → apply clip
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  // Above-fold variant: clip before first paint, then animate in after mount.
+  // useLayoutEffect fires synchronously after DOM mutations and before the browser
+  // paints, so `ready=true` (which applies clip-path) is committed before the user
+  // ever sees the element — no flash.
+  useLayoutEffect(() => {
+    if (!alwaysAnimate) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setReady(true);
+  }, [alwaysAnimate]);
+
   useEffect(() => {
+    if (alwaysAnimate) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      // 50ms gap so the clip-path render is committed before we lift the clip,
+      // giving the CSS transition something to animate from.
+      const t = setTimeout(() => setVisible(true), 50);
+      return () => clearTimeout(t);
+    }
+
     const el = ref.current;
     if (!el) return;
 
@@ -48,7 +69,7 @@ export function RevealH2({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [alwaysAnimate]);
 
   if (splitBy === "block" || typeof children !== "string") {
     return (
@@ -58,7 +79,7 @@ export function RevealH2({
         style={{
           ...style,
           ...(ready && {
-            clipPath: visible ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
+            clipPath: visible ? "inset(0 0 -0.2em 0)" : "inset(0 0 100% 0)",
             transition: "clip-path 0.85s cubic-bezier(0.16, 1, 0.3, 1)",
           }),
         }}
@@ -88,7 +109,7 @@ export function RevealH2({
             style={{
               display: "inline-block",
               ...(ready && {
-                clipPath: visible ? "inset(0 0 0% 0)" : "inset(0 0 110% 0)",
+                clipPath: visible ? "inset(0 0 -0.2em 0)" : "inset(0 0 110% 0)",
                 transition: `clip-path 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.05}s`,
               }),
             }}

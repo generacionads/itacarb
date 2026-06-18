@@ -9,12 +9,40 @@ export function LogoAnimated() {
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
-
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const els = svg.querySelectorAll("[data-el]");
-    gsap.set(els, { opacity: 0, y: 10 });
-    gsap.to(els, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power2.out" });
+    const tl = gsap.timeline();
+
+    // Beat 1 — terracota icon crystallizes from its center
+    const icon = svg.querySelector<SVGElement>("[data-el='icon']");
+    if (icon) {
+      gsap.set(icon, { transformOrigin: "50% 50%", scale: 0.3, opacity: 0 });
+      tl.to(icon, { scale: 1, opacity: 1, duration: 0.55, ease: "expo.out" });
+    }
+
+    // Beat 2 — capital letterforms clip-path wipe + rise, left to right
+    const caps = svg.querySelectorAll<SVGElement>(
+      "[data-el='I'], [data-el='T'], [data-el='A1'], [data-el='C'], [data-el='A2']"
+    );
+    gsap.set(caps, { clipPath: "inset(0px 0px 110% 0px)", y: 4 });
+    tl.to(
+      caps,
+      {
+        clipPath: "inset(0px 0px -5% 0px)",
+        y: 0,
+        duration: 0.65,
+        stagger: 0.07,
+        ease: "power3.out",
+      },
+      "-=0.35"
+    );
+
+    // Beat 3 — rb sigil fades in last as a quiet coda
+    const rb = svg.querySelector<SVGElement>("[data-el='rb']");
+    if (rb) {
+      gsap.set(rb, { opacity: 0 });
+      tl.to(rb, { opacity: 1, duration: 0.4, ease: "power2.out" }, "-=0.1");
+    }
   }, []);
 
   return (

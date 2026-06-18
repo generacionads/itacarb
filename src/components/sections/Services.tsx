@@ -26,7 +26,37 @@ export function Services() {
   const stRef = useRef<ScrollTrigger | null>(null);
 
   useEffect(() => {
-    if (window.innerWidth < 768) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Title color scrub — runs on all screen sizes
+    const titleTweens: gsap.core.Tween[] = [];
+    if (!prefersReducedMotion) {
+      [row1Ref, row2Ref, row3Ref].forEach((rowRef) => {
+        const row = rowRef.current;
+        if (!row) return;
+        const title = row.querySelector<HTMLElement>("h3");
+        if (!title) return;
+        const tw = gsap.fromTo(
+          title,
+          { color: "#36383A" },
+          {
+            color: "#C8553D",
+            ease: "none",
+            scrollTrigger: {
+              trigger: row,
+              start: "top 70%",
+              end: "top 30%",
+              scrub: true,
+            },
+          }
+        );
+        titleTweens.push(tw);
+      });
+    }
+
+    if (window.innerWidth < 768) {
+      return () => titleTweens.forEach((tw) => tw.scrollTrigger?.kill());
+    }
 
     const section = sectionRef.current;
     const rows = rowsRef.current;
@@ -38,8 +68,6 @@ export function Services() {
     const img2 = img2Ref.current;
     const img3 = img3Ref.current;
     if (!section || !rows || !path || !maskBg || !maskStart || !maskEnd || !img1 || !img2 || !img3) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Entrance animations — only for below-fold rows, skipped entirely for reduced-motion
     if (!prefersReducedMotion) {
@@ -143,6 +171,7 @@ export function Services() {
       ro.disconnect();
       tlRef.current?.kill();
       stRef.current?.kill();
+      titleTweens.forEach((tw) => tw.scrollTrigger?.kill());
     };
   }, []);
 

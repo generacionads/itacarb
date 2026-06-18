@@ -3,7 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
+import type Lenis from "lenis";
 
 const navLinks = [
   { label: "Nosotros", href: "/nosotros" },
@@ -15,12 +17,21 @@ const navLinks = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  function handleLogoClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (pathname === "/") {
+      e.preventDefault();
+      const lenis = (window as unknown as Record<string, Lenis>).__lenis;
+      lenis?.scrollTo(0, { duration: 1.2 });
+    }
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-background/60">
       <Container>
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
-          <a href="/" aria-label="Ítacarb — Inicio">
+          <a href="/" onClick={handleLogoClick} aria-label="Ítacarb — Inicio">
             <Image
               src="/logo.svg"
               alt="Ítacarb"

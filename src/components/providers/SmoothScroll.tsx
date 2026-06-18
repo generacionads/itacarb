@@ -15,6 +15,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     const lenis = new Lenis();
     lenisRef.current = lenis;
+    (window as unknown as Record<string, unknown>).__lenis = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -28,15 +29,28 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     return () => {
       lenis.destroy();
       lenisRef.current = null;
+      delete (window as unknown as Record<string, unknown>).__lenis;
       gsap.ticker.remove(tick);
     };
   }, []);
 
-  // On route change: reset Lenis virtual scroll to 0 so its internal position
-  // stays in sync with what Next.js renders at the top of the new page.
+  // On route change: reset scroll to 0, or scroll to hash anchor if present.
+  // rAF ensures the new page has rendered before we reposition, avoiding a
+  // visible flash of the previous page scrolling to 0.
   useEffect(() => {
-    lenisRef.current?.scrollTo(0, { immediate: true });
-    ScrollTrigger.refresh();
+    requestAnimationFrame(() => {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const el = document.getElementById(hash);
+        if (el) {
+          lenisRef.current?.scrollTo(el, { offset: -(72 + 16), duration: 1.4, easing: (t: number) => 1 - Math.pow(1 - t, 4) });
+          ScrollTrigger.refresh();
+          return;
+        }
+      }
+      lenisRef.current?.scrollTo(0, { immediate: true });
+      ScrollTrigger.refresh();
+    });
   }, [pathname]);
 
   return <>{children}</>;

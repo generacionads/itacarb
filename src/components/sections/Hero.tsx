@@ -22,7 +22,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative w-full bg-background max-h-screen overflow-hidden">
+    <section className="relative w-full bg-background min-h-screen max-h-screen overflow-hidden">
       {/* Desktop */}
       <video
         ref={videoDesktopRef}

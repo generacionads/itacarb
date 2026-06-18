@@ -43,6 +43,7 @@ export default function SectoresPage() {
     window.scrollTo({ top, behavior: "smooth" });
   }, []);
 
+
   return (
     <>
       <Header />

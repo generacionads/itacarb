@@ -14,6 +14,7 @@ const sectors = [
     image: "/sectors/arquitectura.jpg",
     stat: "17%",
     statLabel: "+ DE CAPTACIÓN DIGITAL",
+    href: "/sectores#arquitectura",
   },
   {
     id: "sanitario",
@@ -21,6 +22,7 @@ const sectors = [
     image: null,
     stat: "15x",
     statLabel: "PACIENTES RECURRENTES",
+    href: "/sectores#sanitarios",
   },
   {
     id: "industrial",
@@ -28,6 +30,7 @@ const sectors = [
     image: null,
     stat: "40%",
     statLabel: "CRECIMIENTO MEDIO",
+    href: "/sectores#industrial",
   },
 ];
 
@@ -46,9 +49,9 @@ function MetricsBorder({ stat, statLabel }: { stat: string; statLabel: string })
 
 function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
   return (
-    <div className="flex flex-col gap-8">
+    <a href={sector.href} className="flex flex-col gap-8 group">
       <div className="flex flex-col gap-4">
-        <p className="text-foreground text-[20px] font-medium tracking-[0.04em]">
+        <p className="text-foreground text-[20px] font-medium tracking-[0.04em] transition-colors group-hover:text-brand-accent">
           {sector.name}
         </p>
         <div className="relative h-[201px] w-full overflow-hidden bg-placeholder">
@@ -58,7 +61,7 @@ function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
         </div>
       </div>
       <MetricsBorder stat={sector.stat} statLabel={sector.statLabel} />
-    </div>
+    </a>
   );
 }
 

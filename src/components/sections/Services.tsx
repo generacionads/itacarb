@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
+import { CrackBox, FallBox, AssembleBox } from "@/components/sections/ServiceAnimations";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -213,14 +213,8 @@ export function Services() {
 
           {/* Row 1: Imagen izquierda · Texto derecha */}
           <div ref={row1Ref} className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-0">
-            <div ref={img1Ref} className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1200&q=80&auto=format&fit=crop"
-                alt="Vista aérea del océano"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 67vw"
-              />
+            <div ref={img1Ref} className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden bg-background">
+              <CrackBox triggerRef={row1Ref} />
             </div>
             <div className="flex flex-col gap-3 md:w-[30%]">
               <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
@@ -242,27 +236,15 @@ export function Services() {
                 Transformamos el análisis en decisiones. Desarrollamos una estrategia coherente con tus objetivos, que define con claridad qué hacer, cómo hacerlo y en qué orden.
               </p>
             </div>
-            <div ref={img2Ref} className="relative w-full md:w-[67%] aspect-[914/467] shrink-0 overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=1200&q=80&auto=format&fit=crop"
-                alt="Horizonte marino al atardecer"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 67vw"
-              />
+            <div ref={img2Ref} className="relative w-full md:w-[67%] aspect-[914/467] shrink-0 overflow-hidden bg-background">
+              <FallBox triggerRef={row2Ref} />
             </div>
           </div>
 
           {/* Row 3: Imagen izquierda · Texto derecha */}
           <div ref={row3Ref} className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-0">
-            <div ref={img3Ref} className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80&auto=format&fit=crop"
-                alt="Costa y orilla del mar"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 67vw"
-              />
+            <div ref={img3Ref} className="relative w-full md:w-[67%] aspect-[912/467] shrink-0 overflow-hidden bg-background">
+              <AssembleBox triggerRef={row3Ref} />
             </div>
             <div className="flex flex-col gap-3 md:w-[30%]">
               <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">

@@ -135,8 +135,8 @@ export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEl
     // Phase 1 (0–55%): draw all cracks progressively
     tl.to(crackEls, {
       strokeDashoffset: 0,
-      duration: 0.5,
-      stagger: 0.04,
+      duration: 0.4,
+      stagger: 0.02,
       ease: "none",
     }, 0);
 
@@ -146,16 +146,16 @@ export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEl
       tl.to(el, {
         x: (frag.dx ?? 0) * 3,
         y: (frag.dy ?? 0) * 3,
-        duration: 0.4,
+        duration: 0.2,
         ease: "power2.out",
-      }, 0.55);
+      }, 0.45);
     });
 
     ScrollTrigger.create({
       trigger,
       start: "top 75%",
       end: "bottom 30%",
-      scrub: 1.5,
+      scrub: 0.6,
       animation: tl,
     });
 
@@ -175,7 +175,7 @@ export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEl
           key={i}
           data-frag={i}
           points={f.points}
-          fill="var(--color-brand-accent)"
+          fill="var(--color-foreground)"
         />
       ))}
 
@@ -213,11 +213,13 @@ export function FallBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEle
 
   useEffect(() => {
     const svg = svgRef.current;
-    if (!svg) return;
+    const trigger = triggerRef.current;
+    if (!svg || !trigger) return;
 
     // Target the outer <g data-piece> wrappers — they live at SVG root level,
     // so GSAP x/y values are in SVG user units (no scale amplification).
     const pieces = svg.querySelectorAll<SVGGElement>("[data-piece]");
+    const paths = svg.querySelectorAll<SVGPathElement>("path");
 
     pieces.forEach((el, i) => {
       const b = BROKEN_START[i] ?? { x: 0, y: 0, r: 0 };
@@ -226,12 +228,27 @@ export function FallBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEle
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Scroll-driven color: foreground → brand-accent
+    const colorTl = gsap.timeline({ paused: true });
+    colorTl.fromTo(paths,
+      { fill: "#36383a" },
+      { fill: "#c8553d", duration: 1, ease: "none" },
+      0
+    );
+    const colorSt = ScrollTrigger.create({
+      trigger,
+      start: "top 70%",
+      end: "top 20%",
+      scrub: 0.4,
+      animation: colorTl,
+    });
+
     const tweens: gsap.core.Tween[] = [];
     pieces.forEach((el, i) => {
       const b = BROKEN_START[i] ?? { x: 0, y: 0, r: 0 };
-      const dy  = 1.0 + (i % 5) * 0.3;   // 1.0–2.2 SVG units vertical drift
-      const dr  = 0.6 + (i % 4) * 0.5;   // 0.6–2.1° rotation wobble
-      const dur = 1.8 + (i % 6) * 0.2;   // 1.8–2.8 s period
+      const dy  = 1.0 + (i % 5) * 0.3;
+      const dr  = 0.6 + (i % 4) * 0.5;
+      const dur = 1.8 + (i % 6) * 0.2;
       const sign = i % 2 === 0 ? 1 : -1;
 
       tweens.push(gsap.to(el, {
@@ -245,8 +262,12 @@ export function FallBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEle
       }));
     });
 
-    return () => tweens.forEach((tw) => tw.kill());
-  }, []);
+    return () => {
+      tweens.forEach((tw) => tw.kill());
+      colorTl.kill();
+      colorSt.kill();
+    };
+  }, [triggerRef]);
 
   return (
     <svg

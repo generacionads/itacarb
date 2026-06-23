@@ -35,7 +35,7 @@ const sectors = [
   {
     id: "sanitario",
     name: "Clínicas y sector salud",
-    image: null,
+    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=75",
     stat: "15x",
     statLabel: "PACIENTES RECURRENTES",
     href: "/sectores#sanitarios",
@@ -44,7 +44,7 @@ const sectors = [
   {
     id: "industrial",
     name: "Industrial",
-    image: null,
+    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=75",
     stat: "40%",
     statLabel: "CRECIMIENTO MEDIO",
     href: "/sectores#industrial",
@@ -82,7 +82,7 @@ function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
         </p>
         <div className="relative h-[201px] w-full overflow-hidden bg-placeholder">
           {sector.image && (
-            <Image src={sector.image} alt={sector.name} fill className="object-cover" />
+            <Image src={sector.image} alt={sector.name} fill className="object-cover grayscale" />
           )}
           {/* Logo loop overlay */}
           <div

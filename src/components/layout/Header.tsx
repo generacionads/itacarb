@@ -48,7 +48,9 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-base font-medium tracking-[0.04em] text-foreground transition-colors hover:text-brand-accent"
+                  className={`text-base font-medium tracking-[0.04em] transition-colors hover:text-brand-accent-dark ${
+                    pathname === link.href ? "text-brand-accent-dark" : "text-foreground"
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -93,7 +95,9 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-md px-3 py-3 text-base font-medium tracking-[0.04em] text-foreground transition-colors hover:text-brand-accent"
+                  className={`rounded-md px-3 py-3 text-base font-medium tracking-[0.04em] transition-colors hover:text-brand-accent-dark ${
+                    pathname === link.href ? "text-brand-accent-dark" : "text-foreground"
+                  }`}
                 >
                   {link.label}
                 </Link>

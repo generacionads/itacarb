@@ -19,7 +19,12 @@ export function SidebarNav({ items, activeId, onSelect, top = 72, ariaLabel }: S
     const footer = document.querySelector("footer");
     if (!footer) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setHidden(entry.isIntersecting),
+      ([entry]) => {
+        // Only hide on genuine scroll-to-bottom. Skip if the footer is
+        // visible simply because the content is short (e.g. after filtering).
+        if (entry.isIntersecting && window.scrollY < 100) return;
+        setHidden(entry.isIntersecting);
+      },
       { threshold: 0 }
     );
     observer.observe(footer);

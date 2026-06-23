@@ -48,7 +48,8 @@ export default function NosotrosPage() {
       const sectionH = section.offsetHeight;
       const viewH = window.innerHeight;
       const progress = Math.max(0, Math.min(1, -rect.top / (sectionH - viewH)));
-      const maxX = Math.max(0, track.offsetWidth - (track.parentElement?.offsetWidth ?? 0));
+      // Full track width so the last card also exits left instead of staying pinned
+      const maxX = track.offsetWidth;
       track.style.transform = `translateX(${-progress * maxX}px)`;
     }
 
@@ -186,7 +187,7 @@ export default function NosotrosPage() {
             <div
               id="valores"
               ref={(el) => { if (el) sectionRefs.current.set("valores", el); }}
-              style={{ height: "200vh" }}
+              style={{ height: "300vh" }}
             >
               <div
                 className="sticky flex flex-col overflow-hidden"

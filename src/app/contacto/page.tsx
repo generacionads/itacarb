@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Contact } from "@/components/sections/Contact";
@@ -22,23 +23,12 @@ export default function ContactoPage() {
             Hablemos.
           </RevealH2>
           <div className="mt-10 flex-1 w-full relative overflow-hidden">
-            <video
-              className="hidden md:block absolute inset-0 w-full h-full object-cover"
-              src="/hero-itaca.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-            />
-            <video
-              className="block md:hidden absolute inset-0 w-full h-full object-cover"
-              src="/hero-itaca-responsive.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
+            <Image
+              src="/about-team.jpg"
+              alt="Equipo Ítacarb"
+              fill
+              className="object-cover"
+              priority
             />
           </div>
         </div>

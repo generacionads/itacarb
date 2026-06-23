@@ -77,35 +77,38 @@ const SCATTER_ASSEMBLE = [
 
 // ─── BOX 1: CRACK ─────────────────────────────────────────────────────────────
 
-// Square: 22×22 centered in 100×51 → from (39,14.5) to (61,36.5), center (50,25.5)
-const SQ = { x: 39, y: 14.5, w: 22, h: 22, cx: 50, cy: 25.5 };
+// Square: 22×22 centered in 100×51 → from (39,14.5) to (61,36.5)
+const SQ = { x: 39, y: 14.5, w: 22, h: 22 };
 
-// Crack lines radiating from center, each as jagged multi-segment paths
-const MAIN_CRACKS = [
-  `M${SQ.cx},${SQ.cy} L${SQ.x + 2},${SQ.y + 3} L${SQ.x},${SQ.y + 1}`,
-  `M${SQ.cx},${SQ.cy} L${SQ.x + 14},${SQ.y} L${SQ.x + 16},${SQ.y - 1}`,
-  `M${SQ.cx},${SQ.cy} L${SQ.x + SQ.w},${SQ.y + 6} L${SQ.x + SQ.w + 1},${SQ.y + 8}`,
-  `M${SQ.cx},${SQ.cy} L${SQ.x + SQ.w - 1},${SQ.y + SQ.h} L${SQ.x + SQ.w},${SQ.y + SQ.h + 2}`,
-  `M${SQ.cx},${SQ.cy} L${SQ.x + 4},${SQ.y + SQ.h} L${SQ.x + 2},${SQ.y + SQ.h + 1}`,
-  `M${SQ.cx},${SQ.cy} L${SQ.x},${SQ.y + SQ.h - 6} L${SQ.x - 1},${SQ.y + SQ.h - 5}`,
+// Crack origin slightly off-centre for a more natural feel
+const CX = 50, CY = 24;
+
+// 8 cracks radiating outward — each a two-segment jagged path (no filler sub-cracks)
+// Crack endpoints on the square boundary (clockwise from top-left):
+//   A(39,14.5)  B(46,14.5)  C(55,14.5)  D(61,20)
+//   E(61,32)    F(56,36.5)  G(44,36.5)  H(39,28)
+const CRACKS = [
+  `M${CX},${CY} L42,17 L${SQ.x},${SQ.y}`,                  // → A top-left corner
+  `M${CX},${CY} L47,16 L46,${SQ.y}`,                        // → B top edge
+  `M${CX},${CY} L53,16 L55,${SQ.y}`,                        // → C top edge
+  `M${CX},${CY} L58,20 L${SQ.x + SQ.w},20`,                 // → D right edge
+  `M${CX},${CY} L59,29 L${SQ.x + SQ.w},32`,                 // → E right edge
+  `M${CX},${CY} L55,33 L56,${SQ.y + SQ.h}`,                 // → F bottom edge
+  `M${CX},${CY} L46,33 L44,${SQ.y + SQ.h}`,                 // → G bottom edge
+  `M${CX},${CY} L41,28 L${SQ.x},28`,                        // → H left edge
 ];
 
-const SUB_CRACKS = [
-  `M${SQ.x + 6},${SQ.y + 6} L${SQ.x + 3},${SQ.y + 3}`,
-  `M${SQ.x + 16},${SQ.y + 4} L${SQ.x + 19},${SQ.y + 2}`,
-  `M${SQ.x + SQ.w - 3},${SQ.y + SQ.h - 5} L${SQ.x + SQ.w},${SQ.y + SQ.h - 3}`,
-  `M${SQ.x + 5},${SQ.y + SQ.h - 4} L${SQ.x + 3},${SQ.y + SQ.h}`,
-];
-
-// Fragment polygons — the square split into 6 irregular pieces
-// Each piece is a polygon and its drift vector (how far it moves on phase 2)
+// 8 fragment polygons that tile the square exactly,
+// each bounded by two adjacent cracks and the square edge between them.
 const FRAGMENTS = [
-  { points: `${SQ.x},${SQ.y} ${SQ.x + 11},${SQ.y} ${SQ.cx},${SQ.cy} ${SQ.x + 3},${SQ.y + 9} ${SQ.x},${SQ.y + 7}`, dx: -1.8, dy: -1.5 },
-  { points: `${SQ.x + 11},${SQ.y} ${SQ.x + SQ.w},${SQ.y} ${SQ.x + SQ.w},${SQ.y + 8} ${SQ.cx},${SQ.cy}`, dx: 1.5, dy: -1.5 },
-  { points: `${SQ.x + SQ.w},${SQ.y + 8} ${SQ.x + SQ.w},${SQ.y + SQ.h} ${SQ.x + SQ.w - 3},${SQ.y + SQ.h} ${SQ.cx},${SQ.cy}`, dx: 2, dy: 0.5 },
-  { points: `${SQ.x + SQ.w - 3},${SQ.y + SQ.h} ${SQ.x + 10},${SQ.y + SQ.h} ${SQ.cx},${SQ.cy}`, dx: 0.5, dy: 2 },
-  { points: `${SQ.x + 10},${SQ.y + SQ.h} ${SQ.x},${SQ.y + SQ.h} ${SQ.x},${SQ.y + SQ.h - 8} ${SQ.cx},${SQ.cy}`, dx: -2, dy: 1.5 },
-  { points: `${SQ.x},${SQ.y + SQ.h - 8} ${SQ.x},${SQ.y + 7} ${SQ.cx},${SQ.cy}`, dx: -1.5, dy: 0 },
+  { points: `${CX},${CY} ${SQ.x},${SQ.y} 46,${SQ.y}`,                                            dx: -1.8, dy: -2.2 },
+  { points: `${CX},${CY} 46,${SQ.y} 55,${SQ.y}`,                                                  dx:  0.0, dy: -2.8 },
+  { points: `${CX},${CY} 55,${SQ.y} ${SQ.x+SQ.w},${SQ.y} ${SQ.x+SQ.w},20`,                      dx:  2.2, dy: -1.8 },
+  { points: `${CX},${CY} ${SQ.x+SQ.w},20 ${SQ.x+SQ.w},32`,                                        dx:  2.8, dy:  0.0 },
+  { points: `${CX},${CY} ${SQ.x+SQ.w},32 ${SQ.x+SQ.w},${SQ.y+SQ.h} 56,${SQ.y+SQ.h}`,           dx:  2.2, dy:  2.2 },
+  { points: `${CX},${CY} 56,${SQ.y+SQ.h} 44,${SQ.y+SQ.h}`,                                        dx:  0.0, dy:  2.8 },
+  { points: `${CX},${CY} 44,${SQ.y+SQ.h} ${SQ.x},${SQ.y+SQ.h} ${SQ.x},28`,                      dx: -2.2, dy:  2.2 },
+  { points: `${CX},${CY} ${SQ.x},28 ${SQ.x},${SQ.y}`,                                             dx: -2.8, dy:  0.0 },
 ];
 
 export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivElement | null> }) {
@@ -118,16 +121,10 @@ export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEl
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const mainCrackEls = svg.querySelectorAll<SVGPathElement>("[data-crack='main']");
-    const subCrackEls = svg.querySelectorAll<SVGPathElement>("[data-crack='sub']");
+    const crackEls = svg.querySelectorAll<SVGPathElement>("[data-crack]");
     const fragEls = svg.querySelectorAll<SVGPolygonElement>("[data-frag]");
 
-    // Measure crack lengths and initialise dashoffset
-    mainCrackEls.forEach((el) => {
-      const len = el.getTotalLength();
-      gsap.set(el, { strokeDasharray: len, strokeDashoffset: len });
-    });
-    subCrackEls.forEach((el) => {
+    crackEls.forEach((el) => {
       const len = el.getTotalLength();
       gsap.set(el, { strokeDasharray: len, strokeDashoffset: len });
     });
@@ -135,21 +132,13 @@ export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEl
 
     const tl = gsap.timeline({ paused: true });
 
-    // Phase 1 (0–50%): draw main cracks
-    tl.to(mainCrackEls, {
+    // Phase 1 (0–55%): draw all cracks progressively
+    tl.to(crackEls, {
       strokeDashoffset: 0,
-      duration: 0.4,
-      stagger: 0.05,
-      ease: "none",
-    }, 0);
-
-    // Phase 1 late (30–55%): draw sub cracks
-    tl.to(subCrackEls, {
-      strokeDashoffset: 0,
-      duration: 0.2,
+      duration: 0.5,
       stagger: 0.04,
       ease: "none",
-    }, 0.3);
+    }, 0);
 
     // Phase 2 (55–100%): fragments drift apart
     fragEls.forEach((el, i) => {
@@ -181,7 +170,6 @@ export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEl
       className="w-full h-full"
       aria-hidden="true"
     >
-      {/* Fragment polygons (filled, drawn beneath cracks) */}
       {FRAGMENTS.map((f, i) => (
         <polygon
           key={i}
@@ -191,29 +179,15 @@ export function CrackBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEl
         />
       ))}
 
-      {/* Main crack lines */}
-      {MAIN_CRACKS.map((d, i) => (
+      {CRACKS.map((d, i) => (
         <path
           key={i}
-          data-crack="main"
+          data-crack
           d={d}
           stroke="var(--color-background)"
-          strokeWidth="0.35"
+          strokeWidth="0.4"
           fill="none"
-          strokeLinecap="square"
-        />
-      ))}
-
-      {/* Secondary cracks */}
-      {SUB_CRACKS.map((d, i) => (
-        <path
-          key={i}
-          data-crack="sub"
-          d={d}
-          stroke="var(--color-background)"
-          strokeWidth="0.25"
-          fill="none"
-          strokeLinecap="square"
+          strokeLinecap="round"
         />
       ))}
     </svg>
@@ -331,9 +305,9 @@ export function AssembleBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDi
 
     ScrollTrigger.create({
       trigger,
-      start: "top 75%",
-      end: "bottom 30%",
-      scrub: 1.5,
+      start: "top 70%",
+      end: "bottom 60%",
+      scrub: 0.6,
       animation: tl,
     });
 

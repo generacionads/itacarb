@@ -55,6 +55,14 @@ const projects: Project[] = [
     objectPosition: "center center",
     href: "/proyectos/on-level-quality",
   },
+  {
+    id: "cbc-collection",
+    sector: "otros",
+    name: "CBC Collection",
+    tagline: "De cero a 50k en facturación: joyería con identidad propia en tres meses.",
+    image: null,
+    href: "/proyectos/cbc-collection",
+  },
 ];
 
 function ProjectCard({ project }: { project: Project }) {
@@ -197,6 +205,23 @@ export default function ProyectosPage() {
               {visibleProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} />
               ))}
+            </div>
+
+            {/* CTA */}
+            <div className="pt-32 pb-24 flex flex-col gap-8">
+              <p className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight">
+                Definamos tu proyecto juntos
+              </p>
+              <a
+                href="/contacto"
+                className="group inline-flex items-center gap-3 bg-brand-accent px-6 py-3 text-background w-fit"
+              >
+                <span className="text-[16px] font-medium tracking-[0.04em]">Contacto</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="btn-morph-svg shrink-0">
+                  <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </a>
             </div>
           </div>
         </div>

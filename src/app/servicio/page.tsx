@@ -11,52 +11,52 @@ const HEADER_H = 72;
 
 const data = [
   {
-    h2: "Comprendemos tu marca y sus desafíos",
+    h2: "Antes de actuar escuchamos y analizamos",
     subsections: [
       {
         id: "descubrir",
         label: "Descubrir",
         verb: "Descubrimos",
-        body: "problemas y formas de hacer las cosas que pueden estar lastrando el crecimiento.",
-        items: ["Pre-análisis", "Benchmarking"],
+        body: "los puntos de fricción, oportunidades ocultas y todo lo que está limitando el potencial real de tu marca.",
+        items: ["Pre-análisis", "Estudio de audiencia"],
       },
       {
         id: "explorar",
         label: "Explorar",
         verb: "Exploramos",
-        body: "el mercado, la competencia y las oportunidades que pueden impulsar tu negocio.",
-        items: ["Análisis de mercado", "Mapa de oportunidades"],
+        body: "tu entorno competitivo para identificar los espacios donde tu marca puede ganar",
+        items: ["Análisis", "Benchmarking"],
       },
     ],
   },
   {
-    h2: "Proyectamos tu estrategia de marca",
+    h2: "Transformamos el análisis en una hoja de ruta clara",
     subsections: [
       {
         id: "proyectar",
         label: "Proyectar",
         verb: "Proyectamos",
-        body: "una estrategia coherente con tus objetivos que define con claridad qué hacer, cómo hacerlo y en qué orden.",
-        items: ["Estrategia de marca", "Plan de acción"],
+        body: "una estrategia coherente con tus objetivos que define qué hacer, cómo hacerlo y en qué orden",
+        items: ["Identidad y estrategia de marca", "Plan de acción por fases", "Planificación de canales"],
       },
     ],
   },
   {
-    h2: "Materializamos tu estrategia",
+    h2: "La estrategia cobra vida en las acciones",
     subsections: [
       {
         id: "construir",
         label: "Construir",
         verb: "Construimos",
-        body: "las piezas y activos de comunicación que hacen crecer tu negocio de forma coherente.",
-        items: ["Identidad visual", "Contenidos y campañas"],
+        body: "la estrategia pieza a pieza, garantizando que cada decisión tenga impacto real en tu negocio",
+        items: ["Ejecución de canales", "Implementación y producción"],
       },
       {
         id: "evolucionar",
         label: "Evolucionar",
         verb: "Evolucionamos",
-        body: "continuamente el posicionamiento para mantener la relevancia y garantizar el crecimiento real.",
-        items: ["Seguimiento y optimización", "Consultoría continua"],
+        body: "con datos reales, construyendo una base escalable que crece con tu negocio",
+        items: ["Análitica y medición", "Seguimiento y control"],
       },
     ],
   },
@@ -113,58 +113,64 @@ export default function ServicioPage() {
       <Header />
       <main className="pt-[72px] bg-background min-h-screen flex flex-col">
 
-        {/* Sticky H2 — full width */}
-        <div
-          ref={h2Ref}
-          className="sticky z-20 bg-brand-accent px-4 sm:px-16 py-12"
-          style={{ top: HEADER_H }}
-        >
-          <RevealH2
-            key={activeH2}
-            alwaysAnimate
-            splitBy="word"
-            className="text-background text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+        {/* Wrapper: sticky h2 + content. Footer is a sibling outside this div
+            so the sticky element's containing block ends before the footer. */}
+        <div className="flex flex-col flex-1">
+
+          {/* Sticky H2 — full width */}
+          <div
+            ref={h2Ref}
+            className="sticky z-20 bg-brand-accent px-4 sm:px-16 py-12"
+            style={{ top: HEADER_H }}
           >
-            {activeH2}
-          </RevealH2>
-        </div>
-
-        <div className="flex flex-1">
-
-          <SidebarNav
-            items={allSubsections}
-            activeId={activeId}
-            onSelect={scrollToSection}
-            top={sidebarTop}
-            ariaLabel="Servicios"
-          />
-
-          {/* Content sections */}
-          <div className="flex-1">
-            {allSubsections.map((s) => (
-              <section
-                key={s.id}
-                id={s.id}
-                ref={(el) => {
-                  if (el) sectionRefs.current.set(s.id, el);
-                }}
-                className="px-4 sm:px-16 py-16 border-b border-brand-border"
-              >
-                <p className="text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
-                  <span className="text-brand-accent">{s.verb}</span>{" "}
-                  <span className="text-foreground">{s.body}</span>
-                </p>
-
-                <div className="mt-10 max-w-[300px]">
-                  {s.items.map((item) => (
-                    <AccordionItem key={item} label={item} />
-                  ))}
-                </div>
-
-                <div className="mt-10 bg-brand-border h-60 w-full" />
-              </section>
-            ))}
+            <RevealH2
+              key={activeH2}
+              alwaysAnimate
+              splitBy="word"
+              className="text-background text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+            >
+              {activeH2}
+            </RevealH2>
           </div>
+
+          <div className="flex flex-1">
+
+            <SidebarNav
+              items={allSubsections}
+              activeId={activeId}
+              onSelect={scrollToSection}
+              top={sidebarTop}
+              ariaLabel="Servicios"
+            />
+
+            {/* Content sections */}
+            <div className="flex-1">
+              {allSubsections.map((s) => (
+                <section
+                  key={s.id}
+                  id={s.id}
+                  ref={(el) => {
+                    if (el) sectionRefs.current.set(s.id, el);
+                  }}
+                  className="px-4 sm:px-16 py-16 border-b border-brand-border"
+                >
+                  <p className="text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
+                    <span className="text-brand-accent">{s.verb}</span>{" "}
+                    <span className="text-foreground">{s.body}</span>
+                  </p>
+
+                  <div className="mt-10 max-w-[300px]">
+                    {s.items.map((item) => (
+                      <AccordionItem key={item} label={item} />
+                    ))}
+                  </div>
+
+                  <div className="mt-10 bg-brand-border h-60 w-full" />
+                </section>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         <Footer />

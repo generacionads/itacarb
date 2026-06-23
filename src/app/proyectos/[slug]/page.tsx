@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { RevealH2 } from "@/components/ui/RevealH2";
+import { AnimatedStatBox } from "@/components/ui/AnimatedStatBox";
 
 const projects = [
   {
@@ -29,22 +30,23 @@ const projects = [
   {
     slug: "paralelo-estudio",
     name: "Paralelo Estudio",
-    tagline: "Construyendo una identidad de marca sólida para un estudio de arquitectura emergente",
+    tagline: "Construimos la marca que los hizo elegir sus proyectos, no aceptarlos.",
     description:
-      "Paralelo Estudio es un estudio de arquitectura enfocado en proyectos residenciales y comerciales de alta exigencia. Contaban con un portfolio de obra excepcional pero carecían de una identidad de marca y presencia digital que reflejara su nivel de trabajo.",
-    stat: { value: "2.4×", label: "más solicitudes de proyecto en los primeros 6 meses" },
+      "Paralelo Estudio es un estudio de interiorismo corporativo con base en Madrid especializado en transformar marcas en experiencias físicas: restaurantes, oficinas y espacios de retail de alto nivel.",
+    stat: { value: "+1.170", label: "Contactos cualificados generados en estos años" },
+    stat2: { value: "49,84€", label: "Coste por oportunidad" },
     heroImage: "/projects/paralelo-estudio.jpg",
     strategyImage: "/projects/paralelo-estudio/estrategia.jpg",
     strategyText:
-      "Desarrollamos una identidad visual coherente con la filosofía del estudio y la aplicamos a todos los puntos de contacto digitales. Construimos una presencia online que comunicaba con claridad su propuesta de valor, atrayendo clientes que buscaban exactamente el tipo de proyecto que Paralelo Estudio sabe ejecutar.",
+      "Llevamos años trabajando como su partner estratégico, con una planificación anual que crece junto al estudio. El foco desde el primer día: construir una marca digital a la altura de sus proyectos físicos, sumando cada año nuevos canales siempre con coherencia y visión de largo plazo.",
     solutionImage: "/projects/paralelo-estudio/solucion.jpg",
     solutionText:
-      "Partiendo de una identidad difusa y sin diferenciación clara, construimos una narrativa de marca sólida que reflejaba la precisión y el rigor de su trabajo. Cada pieza de comunicación se diseñó para conectar con el perfil de cliente que el estudio quería atraer, logrando posicionarlos como referente en su nicho y generando un flujo constante de proyectos de mayor envergadura.",
+      "El resultado es una presencia digital que hoy refleja su nivel real: mejor posicionamiento en Google, más tráfico cualificado, una imagen de marca percibida como genuinamente premium y, sobre todo, más consultas de clientes con proyectos de alto valor. Cinco años después, seguimos escalando.",
     reviewImage: "/projects/paralelo-estudio/resena.jpg",
     reviewAvatar: "/projects/paralelo-estudio/avatar.jpg",
-    reviewAuthor: "Nombre del cliente",
-    reviewRole: "Cargo",
-    reviewQuote: "Reseña del cliente de Paralelo Estudio.",
+    reviewAuthor: "Rafael Ortega",
+    reviewRole: "Socio fundador, Paralelo Estudio",
+    reviewQuote: "Llevamos cinco años trabajando con Ítacarb y la diferencia es clara: antes esperábamos a que los proyectos llegaran, ahora los elegimos. Han entendido nuestro trabajo desde el principio y han sabido trasladarlo a una presencia digital que refleja realmente quiénes somos.",
   },
   {
     slug: "on-level-quality",
@@ -118,14 +120,12 @@ export default async function ProyectoPage({
               <p className="text-foreground text-[16px] font-light leading-relaxed">
                 {project.description}
               </p>
-              <div className="border border-foreground p-8 flex flex-col gap-6">
-                <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em]">
-                  {project.stat.value}
-                </p>
-                <p className="text-brand-accent text-[32px] font-medium tracking-[-0.04em] leading-tight">
-                  {project.stat.label}
-                </p>
-              </div>
+              <AnimatedStatBox
+                stats={[
+                  project.stat,
+                  ...("stat2" in project && project.stat2 ? [project.stat2] : []),
+                ]}
+              />
             </div>
           </div>
         </div>

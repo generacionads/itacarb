@@ -21,7 +21,26 @@ export default function ContactoPage() {
           >
             Hablemos.
           </RevealH2>
-          <div className="mt-10 flex-1 bg-brand-border w-full" />
+          <div className="mt-10 flex-1 w-full relative overflow-hidden">
+            <video
+              className="hidden md:block absolute inset-0 w-full h-full object-cover"
+              src="/hero-itaca.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden="true"
+            />
+            <video
+              className="block md:hidden absolute inset-0 w-full h-full object-cover"
+              src="/hero-itaca-responsive.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
         <Contact />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SidebarNav } from "@/components/ui/SidebarNav";
@@ -84,11 +85,9 @@ export default function SectoresPage() {
               ref={(el) => { if (el) sectionRefs.current.set("sanitarios", el); }}
               className="px-4 sm:px-16 pt-20 pb-20 flex flex-col gap-12"
             >
-              <h2
-                className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance"
-              >
+              <RevealH2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance">
                 Clínicas y negocios relacionados con el mundo de la salud
-              </h2>
+              </RevealH2>
 
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
@@ -160,11 +159,9 @@ export default function SectoresPage() {
               ref={(el) => { if (el) sectionRefs.current.set("arquitectura", el); }}
               className="px-4 sm:px-16 pt-20 pb-20 flex flex-col gap-12"
             >
-              <h2
-                className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance"
-              >
+              <RevealH2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance">
                 Estudios de arquitectura y diseño de interiores
-              </h2>
+              </RevealH2>
 
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
@@ -235,11 +232,9 @@ export default function SectoresPage() {
               ref={(el) => { if (el) sectionRefs.current.set("industrial", el); }}
               className="px-4 sm:px-16 pt-20 pb-20 flex flex-col gap-12"
             >
-              <h2
-                className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance"
-              >
+              <RevealH2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance">
                 Empresas industriales y del sector B2B
-              </h2>
+              </RevealH2>
 
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
@@ -311,11 +306,22 @@ export default function SectoresPage() {
               ref={(el) => { if (el) sectionRefs.current.set("otros", el); }}
               className="px-4 sm:px-16 pt-20 pb-20 flex flex-col gap-12"
             >
-              <h2
-                className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance"
-              >
+              <RevealH2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none text-balance">
                 Otros sectores
-              </h2>
+              </RevealH2>
+
+              <p className="text-foreground text-[18px] font-light leading-relaxed max-w-[65ch] text-pretty">
+                ¿Tu sector no aparece aquí? Trabajamos con empresas de ámbitos muy distintos. Lo que nos importa no es la categoría, sino la ambición de crecer con estrategia. Si tienes un reto de marca o negocio, hay muchas probabilidades de que podamos ayudarte.
+              </p>
+
+              <div>
+                <Link
+                  href="/contacto"
+                  className="inline-flex items-center px-8 py-4 text-base font-medium tracking-[0.04em] text-background bg-brand-accent hover:bg-brand-accent/90 transition-colors duration-200"
+                >
+                  Hablemos de tu proyecto
+                </Link>
+              </div>
             </section>
 
           </div>

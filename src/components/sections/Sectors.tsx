@@ -7,6 +7,21 @@ import { RevealH2 } from "@/components/ui/RevealH2";
 import { MetricBox } from "@/components/ui/MetricBox";
 import gsap from "gsap";
 
+
+function LogoItem({ name }: { name: string }) {
+  return (
+    <span className="inline-flex items-center gap-0 px-5 shrink-0 select-none">
+      <span
+        className="text-[11px] font-medium tracking-[0.14em] uppercase whitespace-nowrap"
+        style={{ color: "var(--color-background)" }}
+      >
+        {name}
+      </span>
+      <span className="ml-5 w-px h-3 shrink-0" style={{ background: "var(--color-background)", opacity: 0.2 }} />
+    </span>
+  );
+}
+
 const sectors = [
   {
     id: "arquitectura",
@@ -15,6 +30,7 @@ const sectors = [
     stat: "17%",
     statLabel: "+ DE CAPTACIÓN DIGITAL",
     href: "/sectores#arquitectura",
+    clients: ["AF Iberia", "Artquitrabe", "Milton Homes", "Paralelo Estudio"],
   },
   {
     id: "sanitario",
@@ -23,6 +39,7 @@ const sectors = [
     stat: "15x",
     statLabel: "PACIENTES RECURRENTES",
     href: "/sectores#sanitarios",
+    clients: ["Clínica Morales Raya", "Dental Care BCN", "Expresa Salud"],
   },
   {
     id: "industrial",
@@ -31,6 +48,7 @@ const sectors = [
     stat: "40%",
     statLabel: "CRECIMIENTO MEDIO",
     href: "/sectores#industrial",
+    clients: ["Haromatics", "On Level Quality", "Telstar"],
   },
 ];
 
@@ -48,8 +66,16 @@ function MetricsBorder({ stat, statLabel }: { stat: string; statLabel: string })
 }
 
 function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
+  const [hovered, setHovered] = useState(false);
+  const doubled = [...sector.clients, ...sector.clients];
+
   return (
-    <a href={sector.href} className="flex flex-col gap-8 group">
+    <a
+      href={sector.href}
+      className="flex flex-col gap-8 group"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
       <div className="flex flex-col gap-4">
         <p className="text-foreground text-[20px] font-medium tracking-[0.04em] transition-colors group-hover:text-brand-accent">
           {sector.name}
@@ -58,6 +84,42 @@ function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
           {sector.image && (
             <Image src={sector.image} alt={sector.name} fill className="object-cover" />
           )}
+          {/* Logo loop overlay */}
+          <div
+            className="absolute inset-0 flex flex-col justify-center gap-6 transition-opacity duration-500"
+            style={{ background: "var(--color-brand-accent)", opacity: hovered ? 1 : 0 }}
+            aria-hidden="true"
+          >
+            {/* Row 1 */}
+            <div className="overflow-hidden">
+              <div
+                className="logo-strip flex"
+                style={{
+                  animation: "marquee 12s linear infinite",
+                  animationPlayState: hovered ? "running" : "paused",
+                }}
+              >
+                {doubled.map((name, i) => (
+                  <LogoItem key={i} name={name} />
+                ))}
+              </div>
+            </div>
+            {/* Row 2 — offset mid-cycle for variety */}
+            <div className="overflow-hidden">
+              <div
+                className="logo-strip flex"
+                style={{
+                  animation: "marquee 18s linear infinite",
+                  animationDelay: "-9s",
+                  animationPlayState: hovered ? "running" : "paused",
+                }}
+              >
+                {doubled.map((name, i) => (
+                  <LogoItem key={i} name={name} />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <MetricsBorder stat={sector.stat} statLabel={sector.statLabel} />

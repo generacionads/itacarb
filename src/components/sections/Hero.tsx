@@ -47,7 +47,7 @@ export function Hero() {
       />
 
       {ended && (
-        <div className="absolute inset-0 flex items-end justify-start p-8 sm:p-12">
+        <div className="absolute inset-0 flex items-end justify-start pl-4 pb-8 sm:pl-16 sm:pb-12">
           <LogoAnimated />
         </div>
       )}

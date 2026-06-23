@@ -91,3 +91,14 @@ button[aria-expanded="true"] .accordion-v-bar {
   .accordion-v-bar { transition: none; }
 }
 
+/* ─── Logo marquee ─────────────────────────────────────────────────────────── */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-strip { animation: none !important; }
+}
+

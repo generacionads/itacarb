@@ -6,7 +6,7 @@ const socialLinks = ["Youtube", "LinkedIn", "Instagram"];
 
 export function Footer() {
   return (
-    <footer className="bg-brand-accent pt-10 pb-10 min-h-[420px] md:min-h-[578px] flex flex-col">
+    <footer className="bg-brand-accent pt-24 pb-10 min-h-screen flex flex-col">
       <Container className="flex flex-col flex-1">
         {/* Top row: hablemos + contacto izq · nav + ES dcha */}
         <div className="flex flex-col md:flex-row md:justify-between gap-10 md:gap-0">

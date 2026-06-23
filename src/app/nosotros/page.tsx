@@ -17,6 +17,56 @@ const sections = [
   { id: "valores", label: "Valores" },
 ];
 
+function TeamPhoto({ height, video, grayscale }: { height: string; video?: string; grayscale?: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function handleEnter() {
+    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+    const v = videoRef.current;
+    if (!v) return;
+    v.style.transition = "opacity 200ms ease";
+    v.style.opacity = "1";
+    v.play();
+  }
+
+  function handleLeave() {
+    const v = videoRef.current;
+    if (!v) return;
+    v.pause();
+    v.style.transition = "opacity 120ms ease";
+    v.style.opacity = "0";
+    timerRef.current = setTimeout(() => {
+      timerRef.current = null;
+      v.currentTime = 0;
+      v.style.transition = "opacity 100ms ease";
+      v.style.opacity = "1";
+    }, 120);
+  }
+
+  return (
+    <div
+      className={`relative ${height} w-full bg-placeholder rounded-[4px] overflow-hidden`}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      {video && (
+        <video
+          ref={videoRef}
+          src={video}
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          className={`absolute inset-0 w-full h-full object-cover${grayscale ? " grayscale" : ""}`}
+          onLoadedMetadata={(e) => { (e.target as HTMLVideoElement).currentTime = 0; }}
+          onEnded={handleLeave}
+        />
+      )}
+    </div>
+  );
+}
+
 export default function NosotrosPage() {
   const [activeId, setActiveId] = useState(sections[0].id);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
@@ -133,21 +183,21 @@ export default function NosotrosPage() {
                 </div>
                 <div className="flex gap-[47px]">
                   <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
+                    <TeamPhoto height="h-[228px]" video="/prueba-equipo.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Patricia Orgaz</p>
                       <p className="text-brand-muted text-[16px]">Estratega de cuentas y medios</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
+                    <TeamPhoto height="h-[228px]" video="/prueba-equipo.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Isabel Villoria</p>
                       <p className="text-brand-muted text-[16px]">Ingeniería y presencia web</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[228px] w-full bg-placeholder rounded-[4px]" />
+                    <TeamPhoto height="h-[228px]" video="/IMG_1940.MOV" grayscale />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Mario Zornoza</p>
                       <p className="text-brand-muted text-[16px]">Diseño creativo e innovación</p>
@@ -166,14 +216,14 @@ export default function NosotrosPage() {
                 </div>
                 <div className="flex gap-[47px]">
                   <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[344px] w-full bg-placeholder rounded-[4px]" />
+                    <TeamPhoto height="h-[344px]" video="/prueba-equipo.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Antonio González</p>
                       <p className="text-brand-muted text-[16px]">Fundador y Director de Estrategia</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 flex-1">
-                    <div className="h-[344px] w-full bg-placeholder rounded-[4px]" />
+                    <TeamPhoto height="h-[344px]" video="/prueba-equipo.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Javier Revuelta</p>
                       <p className="text-brand-muted text-[16px]">Fundador y CEO</p>

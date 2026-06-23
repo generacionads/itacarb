@@ -113,62 +113,81 @@ export default function ServicioPage() {
       <Header />
       <main className="pt-[72px] bg-background min-h-screen flex flex-col">
 
-        {/* Wrapper: sticky h2 + content. Footer is a sibling outside this div
-            so the sticky element's containing block ends before the footer. */}
         <div className="flex flex-col flex-1">
 
-          {/* Sticky H2 — full width */}
-          <div
-            ref={h2Ref}
-            className="sticky z-20 bg-brand-accent px-4 sm:px-16 py-12"
-            style={{ top: HEADER_H }}
-          >
-            <RevealH2
-              key={activeH2}
-              alwaysAnimate
-              splitBy="word"
-              className="text-background text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+          {/* Sticky zone — h2 un-sticks naturally when this wrapper's bottom is reached */}
+          <div className="relative">
+
+            {/* Sticky H2 — full width */}
+            <div
+              ref={h2Ref}
+              className="sticky z-20 bg-brand-accent px-4 sm:px-16 py-12"
+              style={{ top: HEADER_H }}
             >
-              {activeH2}
-            </RevealH2>
+              <RevealH2
+                key={activeH2}
+                alwaysAnimate
+                splitBy="word"
+                className="text-background text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+              >
+                {activeH2}
+              </RevealH2>
+            </div>
+
+            <div className="flex">
+              <SidebarNav
+                items={allSubsections}
+                activeId={activeId}
+                onSelect={scrollToSection}
+                top={sidebarTop}
+                ariaLabel="Servicios"
+              />
+
+              {/* Content sections */}
+              <div className="flex-1">
+                {allSubsections.map((s) => (
+                  <section
+                    key={s.id}
+                    id={s.id}
+                    ref={(el) => {
+                      if (el) sectionRefs.current.set(s.id, el);
+                    }}
+                    className="px-4 sm:px-16 py-16 border-b border-brand-border"
+                  >
+                    <p className="text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
+                      <span className="text-brand-accent">{s.verb}</span>{" "}
+                      <span className="text-foreground">{s.body}</span>
+                    </p>
+
+                    <div className="mt-10 max-w-[300px]">
+                      {s.items.map((item) => (
+                        <AccordionItem key={item} label={item} />
+                      ))}
+                    </div>
+
+                    <div className="mt-10 bg-brand-border h-60 w-full" />
+                  </section>
+                ))}
+              </div>
+            </div>
+
           </div>
 
-          <div className="flex flex-1">
-
-            <SidebarNav
-              items={allSubsections}
-              activeId={activeId}
-              onSelect={scrollToSection}
-              top={sidebarTop}
-              ariaLabel="Servicios"
-            />
-
-            {/* Content sections */}
-            <div className="flex-1">
-              {allSubsections.map((s) => (
-                <section
-                  key={s.id}
-                  id={s.id}
-                  ref={(el) => {
-                    if (el) sectionRefs.current.set(s.id, el);
-                  }}
-                  className="px-4 sm:px-16 py-16 border-b border-brand-border"
-                >
-                  <p className="text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
-                    <span className="text-brand-accent">{s.verb}</span>{" "}
-                    <span className="text-foreground">{s.body}</span>
-                  </p>
-
-                  <div className="mt-10 max-w-[300px]">
-                    {s.items.map((item) => (
-                      <AccordionItem key={item} label={item} />
-                    ))}
-                  </div>
-
-                  <div className="mt-10 bg-brand-border h-60 w-full" />
-                </section>
-              ))}
-            </div>
+          {/* CTA — outside sticky zone, with extra top space */}
+          <div className="px-4 sm:px-16 pt-32 pb-24 flex flex-col gap-8">
+            <p className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight">
+              Definamos tu proyecto juntos
+            </p>
+            <a
+              href="/contacto"
+              className="group inline-flex items-center gap-3 bg-brand-accent px-6 py-3 text-background w-fit"
+            >
+              <span className="text-[16px] font-medium tracking-[0.04em]">Contacto</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="btn-morph-svg shrink-0">
+                <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </a>
           </div>
 
         </div>

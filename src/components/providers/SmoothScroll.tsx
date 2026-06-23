@@ -35,21 +35,28 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   }, []);
 
   // On route change: reset scroll to 0, or scroll to hash anchor if present.
-  // rAF ensures the new page has rendered before we reposition, avoiding a
-  // visible flash of the previous page scrolling to 0.
+  // Double rAF: first frame commits React's new DOM, second ensures the browser
+  // has laid out and measured the new page height. Only then do we call
+  // lenis.resize() (re-reads scrollHeight) and ScrollTrigger.refresh(), so
+  // Lenis's internal limit reflects the new page — not the previous one.
   useEffect(() => {
     requestAnimationFrame(() => {
-      const hash = window.location.hash.slice(1);
-      if (hash) {
-        const el = document.getElementById(hash);
-        if (el) {
-          lenisRef.current?.scrollTo(el, { offset: -(72 + 16), duration: 1.4, easing: (t: number) => 1 - Math.pow(1 - t, 4) });
-          ScrollTrigger.refresh();
-          return;
+      requestAnimationFrame(() => {
+        const lenis = lenisRef.current;
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+          const el = document.getElementById(hash);
+          if (el) {
+            lenis?.resize();
+            ScrollTrigger.refresh();
+            lenis?.scrollTo(el, { offset: -(72 + 16), duration: 1.4, easing: (t: number) => 1 - Math.pow(1 - t, 4) });
+            return;
+          }
         }
-      }
-      lenisRef.current?.scrollTo(0, { immediate: true });
-      ScrollTrigger.refresh();
+        lenis?.scrollTo(0, { immediate: true });
+        lenis?.resize();
+        ScrollTrigger.refresh();
+      });
     });
   }, [pathname]);
 

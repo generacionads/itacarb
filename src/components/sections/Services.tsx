@@ -22,6 +22,7 @@ export function Services() {
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
   const row3Ref = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const stRef = useRef<ScrollTrigger | null>(null);
 
@@ -67,7 +68,8 @@ export function Services() {
     const img1 = img1Ref.current;
     const img2 = img2Ref.current;
     const img3 = img3Ref.current;
-    if (!section || !rows || !path || !maskBg || !maskStart || !maskEnd || !img1 || !img2 || !img3) return;
+    const ctaEl = ctaRef.current;
+    if (!section || !rows || !path || !maskBg || !maskStart || !maskEnd || !img1 || !img2 || !img3 || !ctaEl) return;
 
     // Entrance animations — only for below-fold rows, skipped entirely for reduced-motion
     if (!prefersReducedMotion) {
@@ -114,9 +116,12 @@ export function Services() {
       const i1 = rel(img1);
       const i2 = rel(img2);
       const i3 = rel(img3);
+      const cta = rel(ctaEl);
 
       const edge = i1.r * 0.18;
       const pad = 6;
+      const ctaCenterX = rows.offsetWidth / 2;
+      const ctaCenterY = cta.t + (cta.b - cta.t) / 2;
 
       const d = [
         `M ${i1.r - edge} ${i1.t}`,
@@ -126,7 +131,8 @@ export function Services() {
         `L ${i2.l} ${i3.t}`,
         `L ${i3.r} ${i3.t}`,
         `L ${i3.r} ${i3.b}`,
-        `L ${i3.r - edge} ${i3.b}`,
+        `L ${i3.r} ${ctaCenterY}`,
+        `L ${ctaCenterX} ${ctaCenterY}`,
       ].join(" ");
 
       path.setAttribute("d", d);
@@ -134,17 +140,16 @@ export function Services() {
       maskBg.setAttribute("x", "-10");
       maskBg.setAttribute("y", String(i1.t - pad));
       maskBg.setAttribute("width", String(rows.offsetWidth + 20));
-      maskBg.setAttribute("height", String(i3.b - i1.t + pad * 2));
+      maskBg.setAttribute("height", String(ctaCenterY - i1.t + pad * 2));
 
       maskStart.setAttribute("x", String(i1.r - edge));
       maskStart.setAttribute("y", String(i1.t - pad));
       maskStart.setAttribute("width", String(edge));
       maskStart.setAttribute("height", String(pad * 2));
 
-      maskEnd.setAttribute("x", String(i3.r - edge));
-      maskEnd.setAttribute("y", String(i3.b - pad));
-      maskEnd.setAttribute("width", String(edge));
-      maskEnd.setAttribute("height", String(pad * 2));
+      // No end fade — path terminates cleanly at the CTA
+      maskEnd.setAttribute("width", "0");
+      maskEnd.setAttribute("height", "0");
 
       const len = path.getTotalLength();
       gsap.set(path, { strokeDasharray: len, strokeDashoffset: len });
@@ -254,6 +259,22 @@ export function Services() {
                 La estrategia cobra vida. Implementamos, medimos y evolucionamos para garantizar que cada acción contribuye al crecimiento real de tu empresa.
               </p>
             </div>
+          </div>
+
+          {/* CTA — path stroke terminates here */}
+          <div ref={ctaRef} className="flex justify-center relative z-10">
+            <a
+              href="/servicio"
+              className="group flex items-center gap-3 bg-brand-accent px-4 py-3 text-background"
+            >
+              <span className="text-[18px] font-medium tracking-[-0.04em] whitespace-nowrap">
+                Saber más sobre nuestro servicio
+              </span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="btn-morph-svg shrink-0">
+                <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            </a>
           </div>
         </div>
       </Container>

@@ -6,14 +6,14 @@ const projects = [
   {
     id: "morales-raya",
     name: "Clínica Dr. Morales Raya",
-    image: "/projects/morales-raya.jpeg",
+    image: "/projects/carlos-morales-raya-1654788615.jpg",
     objectPosition: "center center",
     href: "/proyectos/clinica-morales-raya",
   },
   {
     id: "paralelo-estudio",
     name: "Paralelo Estudio",
-    image: "/projects/paralelo-estudio.jpg",
+    image: "/projects/NEW_FL_destacada-1024x646.jpg",
     objectPosition: "center center",
     href: "/proyectos/paralelo-estudio",
   },

@@ -4,6 +4,8 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 // ─── Shared icon data ─────────────────────────────────────────────────────────
 // The 12 isologo paths in their natural coordinate space (icon viewBox ≈ 9.71 × 13.14)
 // Rendered inside a 100×51 SVG; group is centered via a translate+scale wrapper.
@@ -287,6 +289,436 @@ export function FallBox({ triggerRef }: { triggerRef: React.RefObject<HTMLDivEle
           </g>
         </g>
       ))}
+    </svg>
+  );
+}
+
+// ─── SERVICE PAGE BOX 1: WALL COLLISION ───────────────────────────────────────
+// Square slides right → hits wall → squash & stretch via SVG attr → bounces back → loop
+// Animates attr.x / attr.width / attr.y / attr.height directly so direction is unambiguous.
+// Wall at x=80. Square: x=8, w=14, h=14, y=18.5 → right edge contact at x=66 (66+14=80).
+// Squish: x→73, w→7 (right edge stays at 80), h→20, y→15.5 (center stays at 25.5).
+
+export function WallCollisionBox() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const svg = svgRef.current;
+    if (!svg) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const squareEl = svg.querySelector<SVGRectElement>("[data-square]");
+    if (!squareEl) return;
+
+    let tl: gsap.core.Timeline | null = null;
+
+    function loop() {
+      tl = gsap.timeline({ onComplete: loop });
+
+      // Reset to start
+      tl.set(squareEl, { attr: { x: 8, width: 14, y: 18.5, height: 14 } });
+
+      // 1. Slide to wall
+      tl.to(squareEl, { attr: { x: 66 }, duration: 0.75, ease: "power2.in" });
+
+      // 2. Squish — right edge stays at 80, square grows taller
+      tl.to(squareEl, { attr: { x: 73, width: 7, y: 15.5, height: 20 }, duration: 0.07, ease: "power2.out" }, ">");
+
+      // 3. Unsquish — back to original size, still at wall
+      tl.to(squareEl, { attr: { x: 66, width: 14, y: 18.5, height: 14 }, duration: 0.26, ease: "back.out(2.5)" }, ">");
+
+      // 4. Dwell at wall
+      tl.to({}, { duration: 0.3 });
+
+      // 5. Rebound back to start
+      tl.to(squareEl, { attr: { x: 8 }, duration: 0.65, ease: "power3.out" });
+
+      // 6. Rest
+      tl.to({}, { duration: 1.0 });
+    }
+
+    const st = ScrollTrigger.create({
+      trigger: svg,
+      start: "top 90%",
+      once: true,
+      onEnter: loop,
+    });
+
+    return () => {
+      tl?.kill();
+      st.kill();
+    };
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 100 51"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+      aria-hidden="true"
+    >
+      <rect
+        data-square
+        x="8" y="18.5" width="14" height="14"
+        fill="var(--color-brand-accent)"
+      />
+      <line
+        x1="80" y1="8" x2="80" y2="43"
+        stroke="var(--color-foreground)"
+        strokeWidth="0.3"
+        strokeLinecap="square"
+      />
+    </svg>
+  );
+}
+
+// ─── SERVICE PAGE BOX 2: ZIG-ZAG PATH ───────────────────────────────────────
+// Three square obstacles straddle the horizontal center line (y=25.5).
+// A stroke draws itself left-to-right, routing above obs 1, below obs 2, above obs 3.
+// Path uses right-angle turns (miter/square). Loops after each full draw.
+
+const ZIGZAG_OBSTACLES = [
+  { x: 25.5, y: 22, w: 6, h: 6 }, // path detours above  (to y=16)
+  { x: 44.5, y: 22, w: 6, h: 6 }, // path detours below  (to y=35)
+  { x: 63.5, y: 22, w: 6, h: 6 }, // path detours above  (to y=16)
+];
+
+// Turns 2.5 units before/after each obstacle's x-extents for visible clearance.
+const ZIGZAG_D =
+  "M 4 25.5 L 23 25.5 L 23 16 L 34 16 L 34 25.5 " +
+  "L 42 25.5 L 42 35 L 53 35 L 53 25.5 " +
+  "L 61 25.5 L 61 16 L 72 16 L 72 25.5 L 96 25.5";
+
+export function ZigZagPathBox() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const svg = svgRef.current;
+    if (!svg) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const pathEl = svg.querySelector<SVGPathElement>("[data-zigzag]");
+    if (!pathEl) return;
+
+    const totalLength = pathEl.getTotalLength();
+    gsap.set(pathEl, { strokeDasharray: totalLength, strokeDashoffset: totalLength });
+
+    let tl: gsap.core.Timeline | null = null;
+
+    function loop() {
+      tl = gsap.timeline({ onComplete: loop });
+      tl.set(pathEl, { strokeDashoffset: totalLength });
+      tl.to(pathEl, { strokeDashoffset: 0, duration: 2.2, ease: "none" });
+      tl.to({}, { duration: 0.8 });
+    }
+
+    const st = ScrollTrigger.create({
+      trigger: svg,
+      start: "top 90%",
+      once: true,
+      onEnter: loop,
+    });
+
+    return () => {
+      tl?.kill();
+      st.kill();
+    };
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 100 51"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+      aria-hidden="true"
+    >
+      {ZIGZAG_OBSTACLES.map((obs, i) => (
+        <rect
+          key={i}
+          x={obs.x}
+          y={obs.y}
+          width={obs.w}
+          height={obs.h}
+          fill="none"
+          stroke="var(--color-foreground)"
+          strokeWidth="0.8"
+        />
+      ))}
+      <path
+        data-zigzag
+        d={ZIGZAG_D}
+        stroke="var(--color-brand-accent)"
+        strokeWidth="1.2"
+        fill="none"
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+      />
+    </svg>
+  );
+}
+
+// ─── SERVICE PAGE BOX 4: PYRAMID (CONSTRUIR) ────────────────────────────────
+// 10 squares in a staggered pyramid (4-3-2-1). Build from base left→right,
+// each block drops in with a slight bounce. Collapse reverses from top down.
+// Centers within a 100×51 viewBox. Square size=8, gaps: H=2, V=2, bottom margin=5.
+
+const SQ_SIZE = 8;
+const PYRAMID_SQUARES = [
+  // Row 1 (base): y=38, starts at x=31 — each 10 apart (SQ_SIZE + gap)
+  { x: 31, y: 38 }, { x: 41, y: 38 }, { x: 51, y: 38 }, { x: 61, y: 38 },
+  // Row 2: y=28, starts at x=36
+  { x: 36, y: 28 }, { x: 46, y: 28 }, { x: 56, y: 28 },
+  // Row 3: y=18, starts at x=41
+  { x: 41, y: 18 }, { x: 51, y: 18 },
+  // Row 4 (top): y=8, x=46
+  { x: 46, y: 8 },
+];
+
+export function PyramidBox() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const svg = svgRef.current;
+    if (!svg) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const squares = svg.querySelectorAll<SVGRectElement>("[data-block]");
+    gsap.set(squares, { y: -10, opacity: 0 });
+
+    let tl: gsap.core.Timeline | null = null;
+
+    function loop() {
+      tl = gsap.timeline({ onComplete: loop });
+
+      tl.set(squares, { y: -10, opacity: 0 });
+
+      // Each block drops into place with a click
+      tl.to(squares, {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        stagger: 0.12,
+        ease: "back.out(1.8)",
+      });
+
+      // Hold the complete pyramid
+      tl.to({}, { duration: 1.0 });
+
+      // Collapse from top down
+      tl.to(squares, {
+        y: 18,
+        opacity: 0,
+        duration: 0.25,
+        stagger: { each: 0.06, from: "end" },
+        ease: "power2.in",
+      });
+
+      tl.to({}, { duration: 0.5 });
+    }
+
+    const st = ScrollTrigger.create({
+      trigger: svg,
+      start: "top 90%",
+      once: true,
+      onEnter: loop,
+    });
+
+    return () => {
+      tl?.kill();
+      st.kill();
+    };
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 100 51"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+      aria-hidden="true"
+    >
+      {PYRAMID_SQUARES.map((sq, i) => (
+        <rect
+          key={i}
+          data-block={i}
+          x={sq.x}
+          y={sq.y}
+          width={SQ_SIZE}
+          height={SQ_SIZE}
+          fill="var(--color-brand-accent)"
+        />
+      ))}
+    </svg>
+  );
+}
+
+// ─── SERVICE PAGE BOX 5: ELLIPSIS (EVOLUCIONAR) ──────────────────────────────
+// 3 squares arranged like ellipsis dots. Each bounces up-down independently
+// with a stagger offset, creating the classic "..." waiting animation.
+
+const ELLIPSIS_SQUARES = [
+  { x: 25, y: 20.5 },
+  { x: 45, y: 20.5 },
+  { x: 65, y: 20.5 },
+];
+const EL_SIZE = 10;
+
+export function EllipsisBox() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const svg = svgRef.current;
+    if (!svg) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const squares = svg.querySelectorAll<SVGRectElement>("[data-dot]");
+    gsap.set(squares, { opacity: 0.25 });
+
+    const tweens: gsap.core.Tween[] = [];
+
+    function startAnimation() {
+      squares.forEach((sq, i) => {
+        tweens.push(
+          gsap.to(sq, {
+            y: -8,
+            opacity: 1,
+            duration: 0.4,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            repeatDelay: 0.6,
+            delay: i * 0.22,
+          })
+        );
+      });
+    }
+
+    const st = ScrollTrigger.create({
+      trigger: svg,
+      start: "top 90%",
+      once: true,
+      onEnter: startAnimation,
+    });
+
+    return () => {
+      tweens.forEach((t) => t.kill());
+      st.kill();
+    };
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 100 51"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+      aria-hidden="true"
+    >
+      {ELLIPSIS_SQUARES.map((sq, i) => (
+        <rect
+          key={i}
+          data-dot={i}
+          x={sq.x}
+          y={sq.y}
+          width={EL_SIZE}
+          height={EL_SIZE}
+          fill="var(--color-brand-accent)"
+        />
+      ))}
+    </svg>
+  );
+}
+
+// ─── SERVICE PAGE BOX 3: SHADOW (PROYECTAR) ─────────────────────────────────
+// Square at left projects a perspective shadow to the right.
+// Shadow is a trapezoid: full height at the near edge (x=34), narrowing to the far
+// edge (x=80) to simulate convergence. Grows in, holds, retreats. Loops.
+//
+// Composition: 20u left margin | 14u square (x 20–34) | 46u shadow (x 34–80) | 20u right margin
+
+const SHADOW_START = "34,18.5 34,25.5 34,25.5 34,32.5"; // collapsed to right edge of square
+const SHADOW_END   = "34,18.5 80,21.5 80,29.5 34,32.5"; // full perspective trapezoid
+
+export function ShadowBox() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const svg = svgRef.current;
+    if (!svg) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const shadowEl = svg.querySelector<SVGPolygonElement>("[data-shadow]");
+    if (!shadowEl) return;
+
+    gsap.set(shadowEl, { opacity: 0, attr: { points: SHADOW_START } });
+
+    let tl: gsap.core.Timeline | null = null;
+
+    function loop() {
+      tl = gsap.timeline({ onComplete: loop });
+
+      tl.set(shadowEl, { opacity: 0, attr: { points: SHADOW_START } });
+
+      // Shadow extends out
+      tl.to(shadowEl, {
+        opacity: 0.18,
+        attr: { points: SHADOW_END },
+        duration: 0.9,
+        ease: "power2.out",
+      });
+
+      // Hold
+      tl.to({}, { duration: 0.7 });
+
+      // Shadow retreats
+      tl.to(shadowEl, {
+        opacity: 0,
+        attr: { points: SHADOW_START },
+        duration: 0.5,
+        ease: "power2.in",
+      });
+
+      tl.to({}, { duration: 0.4 });
+    }
+
+    const st = ScrollTrigger.create({
+      trigger: svg,
+      start: "top 90%",
+      once: true,
+      onEnter: loop,
+    });
+
+    return () => {
+      tl?.kill();
+      st.kill();
+    };
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 100 51"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full h-full"
+      aria-hidden="true"
+    >
+      {/* Shadow behind square */}
+      <polygon
+        data-shadow
+        points={SHADOW_START}
+        fill="var(--color-foreground)"
+      />
+      <rect
+        x={20} y={18.5} width={14} height={14}
+        fill="var(--color-brand-accent)"
+      />
     </svg>
   );
 }

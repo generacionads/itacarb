@@ -18,31 +18,32 @@ const sections = [
 ];
 
 function TeamPhoto({ height, video, grayscale }: { height: string; video?: string; grayscale?: boolean }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const playRef = useRef<HTMLVideoElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function handleEnter() {
     if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
-    const v = videoRef.current;
+    const v = playRef.current;
     if (!v) return;
-    v.style.transition = "opacity 200ms ease";
+    v.currentTime = 0;
+    v.style.transition = "opacity 250ms ease";
     v.style.opacity = "1";
     v.play();
   }
 
   function handleLeave() {
-    const v = videoRef.current;
+    const v = playRef.current;
     if (!v) return;
     v.pause();
-    v.style.transition = "opacity 120ms ease";
+    v.style.transition = "opacity 280ms ease";
     v.style.opacity = "0";
     timerRef.current = setTimeout(() => {
       timerRef.current = null;
-      v.currentTime = 0;
-      v.style.transition = "opacity 100ms ease";
-      v.style.opacity = "1";
-    }, 120);
+      if (v) v.currentTime = 0;
+    }, 280);
   }
+
+  const videoClass = `absolute inset-0 w-full h-full object-cover${grayscale ? " grayscale" : ""}`;
 
   return (
     <div
@@ -51,17 +52,31 @@ function TeamPhoto({ height, video, grayscale }: { height: string; video?: strin
       onMouseLeave={handleLeave}
     >
       {video && (
-        <video
-          ref={videoRef}
-          src={video}
-          muted
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-          className={`absolute inset-0 w-full h-full object-cover${grayscale ? " grayscale" : ""}`}
-          onLoadedMetadata={(e) => { (e.target as HTMLVideoElement).currentTime = 0; }}
-          onEnded={handleLeave}
-        />
+        <>
+          {/* Poster layer — always visible at first frame, acts as crossfade base */}
+          <video
+            src={video}
+            muted
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            className={videoClass}
+            onLoadedMetadata={(e) => { (e.target as HTMLVideoElement).currentTime = 0; }}
+          />
+          {/* Play layer — fades in on hover, fades out on leave revealing poster below */}
+          <video
+            ref={playRef}
+            src={video}
+            muted
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            className={videoClass}
+            style={{ opacity: 0 }}
+            onLoadedMetadata={(e) => { (e.target as HTMLVideoElement).currentTime = 0; }}
+            onEnded={handleLeave}
+          />
+        </>
       )}
     </div>
   );

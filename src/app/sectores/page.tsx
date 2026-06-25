@@ -2,12 +2,17 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SidebarNav } from "@/components/ui/SidebarNav";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { MetricBox } from "@/components/ui/MetricBox";
 import { RevealH2 } from "@/components/ui/RevealH2";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HEADER_H = 72;
 
@@ -21,6 +26,37 @@ const sectors = [
 export default function SectoresPage() {
   const [activeId, setActiveId] = useState(sectors[0].id);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
+  const saniParallaxRef = useRef<HTMLDivElement>(null);
+  const arquiParallaxRef = useRef<HTMLDivElement>(null);
+  const induParallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const parallaxItems = [saniParallaxRef, arquiParallaxRef, induParallaxRef];
+    const tweens = parallaxItems.map((ref) => {
+      const inner = ref.current;
+      if (!inner) return null;
+      return gsap.fromTo(
+        inner,
+        { y: 40 },
+        {
+          y: -40,
+          ease: "none",
+          scrollTrigger: {
+            trigger: inner.parentElement!,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    return () => {
+      tweens.forEach((t) => t?.scrollTrigger?.kill());
+    };
+  }, []);
 
   useEffect(() => {
     const map = sectionRefs.current;
@@ -76,7 +112,15 @@ export default function SectoresPage() {
               >
                 Conocemos tu sector. Eso lo cambia todo.
               </RevealH2>
-              <div className="mt-10 flex-1 bg-brand-border w-full" />
+              <div className="relative mt-10 flex-1 w-full overflow-hidden bg-brand-border">
+                <Image
+                  src="/projects/sectores/hero.jpg"
+                  alt="Sectores"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             {/* ── Clínicas y sector salud ── */}
@@ -108,7 +152,16 @@ export default function SectoresPage() {
                     </p>
                   </MetricBox>
                 </div>
-                <div className="h-[201px] w-full bg-brand-border" />
+                <div className="relative h-[201px] w-full overflow-hidden bg-brand-border">
+                  <div ref={saniParallaxRef} className="absolute inset-x-0 -top-10 -bottom-10 will-change-transform">
+                    <Image
+                      src="/projects/sectores/sanitarios.jpg"
+                      alt="Clínicas y sector salud"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
               </div>
 
               <p className="text-foreground text-[18px] font-light leading-relaxed max-w-[65ch] text-pretty">
@@ -182,7 +235,16 @@ export default function SectoresPage() {
                     </p>
                   </MetricBox>
                 </div>
-                <div className="h-[201px] w-full bg-brand-border" />
+                <div className="relative h-[201px] w-full overflow-hidden bg-brand-border">
+                  <div ref={arquiParallaxRef} className="absolute inset-x-0 -top-10 -bottom-10 will-change-transform">
+                    <Image
+                      src="/projects/sectores/arquitectura.jpg"
+                      alt="Arquitectura y Diseño"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
               </div>
 
               <p className="text-foreground text-[18px] font-light leading-relaxed max-w-[65ch] text-pretty">
@@ -255,7 +317,16 @@ export default function SectoresPage() {
                     </p>
                   </MetricBox>
                 </div>
-                <div className="h-[201px] w-full bg-brand-border" />
+                <div className="relative h-[201px] w-full overflow-hidden bg-brand-border">
+                  <div ref={induParallaxRef} className="absolute inset-x-0 -top-10 -bottom-10 will-change-transform">
+                    <Image
+                      src="/projects/sectores/industrial.jpg"
+                      alt="Industrial"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
               </div>
 
               <p className="text-foreground text-[18px] font-light leading-relaxed max-w-[65ch] text-pretty">

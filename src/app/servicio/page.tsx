@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { RevealH2 } from "@/components/ui/RevealH2";
 import { SidebarNav } from "@/components/ui/SidebarNav";
 import { AccordionItem } from "@/components/ui/Accordion";
+import { WallCollisionBox, ZigZagPathBox, ShadowBox, PyramidBox, EllipsisBox } from "@/components/sections/ServiceAnimations";
 
 const HEADER_H = 72;
 
@@ -165,7 +166,13 @@ export default function ServicioPage() {
                       ))}
                     </div>
 
-                    <div className="mt-10 bg-brand-border h-60 w-full" />
+                    <div className="mt-10 h-60 w-full">
+                      {s.id === "descubrir" && <WallCollisionBox />}
+                      {s.id === "explorar" && <ZigZagPathBox />}
+                      {s.id === "proyectar" && <ShadowBox />}
+                      {s.id === "construir" && <PyramidBox />}
+                      {s.id === "evolucionar" && <EllipsisBox />}
+                    </div>
                   </section>
                 ))}
               </div>

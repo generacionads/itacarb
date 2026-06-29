@@ -52,7 +52,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 
         <div className="absolute bottom-5 left-5">
           <span
-            className="project-name-text inline-block text-[32px] font-medium leading-8 tracking-[-0.04em] whitespace-nowrap
+            className="project-name-text inline-block text-[32px] font-medium leading-8 tracking-[-0.04em] sm:whitespace-nowrap
               text-background px-3 py-3
               bg-transparent group-hover:bg-brand-accent
               group-hover:-translate-y-1.5"

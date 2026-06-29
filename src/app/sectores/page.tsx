@@ -97,7 +97,7 @@ export default function SectoresPage() {
           />
 
           {/* Right column */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 min-w-0 flex flex-col">
 
             {/* H1 + imagen placeholder — above the fold */}
             <div
@@ -135,7 +135,7 @@ export default function SectoresPage() {
 
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
-                  <MetricBox className="p-8 flex items-end gap-6 flex-1">
+                  <MetricBox className="p-4 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 flex-1">
                     <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em] whitespace-nowrap">
                       40%
                     </p>
@@ -143,7 +143,7 @@ export default function SectoresPage() {
                       + Incremento de Pacientes
                     </p>
                   </MetricBox>
-                  <MetricBox className="p-8 flex items-end gap-6 flex-1">
+                  <MetricBox className="p-4 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 flex-1">
                     <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em] whitespace-nowrap">
                       164%
                     </p>
@@ -218,7 +218,7 @@ export default function SectoresPage() {
 
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
-                  <MetricBox className="p-8 flex items-end gap-6 flex-1">
+                  <MetricBox className="p-4 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 flex-1">
                     <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em] whitespace-nowrap">
                       15%
                     </p>
@@ -226,7 +226,7 @@ export default function SectoresPage() {
                       + Volumen de Negocio
                     </p>
                   </MetricBox>
-                  <MetricBox className="p-8 flex items-end gap-6 flex-1">
+                  <MetricBox className="p-4 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 flex-1">
                     <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em] whitespace-nowrap">
                       73%
                     </p>
@@ -300,7 +300,7 @@ export default function SectoresPage() {
 
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
-                  <MetricBox className="p-8 flex items-end gap-6 flex-1">
+                  <MetricBox className="p-4 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 flex-1">
                     <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em] whitespace-nowrap">
                       40%
                     </p>
@@ -308,7 +308,7 @@ export default function SectoresPage() {
                       Crecimiento Medio
                     </p>
                   </MetricBox>
-                  <MetricBox className="p-8 flex items-end gap-6 flex-1">
+                  <MetricBox className="p-4 sm:p-8 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-6 flex-1">
                     <p className="text-foreground text-[64px] font-medium leading-[50px] tracking-[-0.04em] whitespace-nowrap">
                       26€
                     </p>

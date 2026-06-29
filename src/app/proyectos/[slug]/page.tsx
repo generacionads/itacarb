@@ -117,7 +117,7 @@ export default async function ProyectoPage({
             as="h1"
             alwaysAnimate
             splitBy="word"
-            className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+            className="text-[#c8553d] md:text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
           >
             {project.name}
           </RevealH2>

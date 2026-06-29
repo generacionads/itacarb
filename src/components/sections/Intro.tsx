@@ -4,7 +4,7 @@ import { RevealH2 } from "@/components/ui/RevealH2";
 
 export function Intro() {
   return (
-    <section className="py-24 bg-background">
+    <section id="intro" className="py-24 bg-background">
       <Container>
         <RevealH2
           as="h1"

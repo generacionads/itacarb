@@ -35,6 +35,11 @@ export function Header() {
     }
   }
 
+  // Close menu on navigation
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
   // Scroll lock — stops Lenis + body overflow
   useEffect(() => {
     const lenis = (window as unknown as Record<string, unknown>).__lenis as Lenis | undefined;
@@ -156,7 +161,6 @@ export function Header() {
               key={link.href}
               href={link.href}
               data-menu-link=""
-              onClick={() => setMenuOpen(false)}
               className={`block w-full py-3 text-[36px] font-medium tracking-[-0.03em] leading-none text-right transition-opacity hover:opacity-60 ${
                 pathname === link.href ? "opacity-40 text-background" : "text-background"
               }`}
@@ -166,17 +170,15 @@ export function Header() {
           ))}
         </div>
 
-        {/* Logo watermark — bottom-left */}
-        <div className="absolute bottom-8 left-8">
+        {/* Logo — bottom-left, links to home */}
+        <Link href="/" className="absolute bottom-8 left-8 opacity-25 hover:opacity-50 transition-opacity duration-200 brightness-0 invert">
           <Image
             src="/logo.svg"
-            alt=""
+            alt="Ítacarb — Inicio"
             width={120}
             height={32}
-            aria-hidden="true"
-            className="opacity-25 brightness-0 invert"
           />
-        </div>
+        </Link>
       </nav>
     </>
   );

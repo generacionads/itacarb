@@ -74,12 +74,12 @@ const projects = [
     tagline: "De cero a 50k en facturación: joyería con identidad propia en tres meses",
     description:
       "Carmen Ballesta Collection es una tienda de joyería que ofrece piezas únicas con identidad propia. Sus colecciones temáticas se basan en historias y valores eternos que buscan acompañar a las clientas en lo cotidiano, diferenciándose mediante el significado de cada pieza.",
-    stat: { value: "50k€", label: "en facturación en los primeros 3 meses" },
-    heroImage: null,
-    strategyImage: null,
+    stat: { value: "50K", label: "en facturación en los primeros 3 meses" },
+    heroImage: "/projects/otros sectores/carmen ballesta collection/cbc_2.webp",
+    strategyImage: "/projects/otros sectores/carmen ballesta collection/cbc_1.webp",
     strategyText:
       "La estrategia fue construir una marca desde cero con identidad visual fuerte y coherente. Nos propusimos diferenciarnos en un mercado saturado de joyería online mediante colecciones temáticas conectadas con mitología y simbolismo. Se definió un posicionamiento basado en piezas con historia, no solo como accesorios sino como símbolos de valores eternos. Se priorizó la presencia en redes sociales como canal clave para conectar con una audiencia que buscaba significado en lo que compra.",
-    solutionImage: null,
+    solutionImage: "/projects/otros sectores/carmen ballesta collection/cbc_3.webp",
     solutionText:
       "Desarrollamos una tienda e-commerce en Shopify con diseño personalizado que reflejara la esencia de marca. Creamos identidad visual distintiva: logo, paleta cromática y fotografía de producto coherente. Implementamos arquitectura web intuitiva con colecciones temáticas, newsletter para retención y estrategia de contenido en Instagram. Cada elemento fue diseñado para transmitir los valores de marca y facilitar el customer journey hacia la conversión.",
     reviewImage: null,
@@ -117,7 +117,7 @@ export default async function ProyectoPage({
             as="h1"
             alwaysAnimate
             splitBy="word"
-            className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
+            className="text-[#c8553d] md:text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-none"
           >
             {project.name}
           </RevealH2>

@@ -107,6 +107,7 @@ export default function NosotrosPage() {
     if (!track) return;
 
     function update() {
+      if (!track) return;
       const section = sectionRefs.current.get("valores");
       if (!section || !track) return;
       const rect = section.getBoundingClientRect();

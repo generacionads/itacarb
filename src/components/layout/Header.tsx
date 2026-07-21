@@ -108,15 +108,15 @@ export function Header() {
               </Link>
             </nav>
 
-            {/* Mobile toggle — solid square, opens panel */}
+            {/* Mobile toggle — "Menú" label, opens panel */}
             <button
-              className="inline-flex min-w-[44px] min-h-[44px] items-center justify-center md:hidden"
+              className="inline-flex min-h-[44px] items-center justify-center md:hidden text-base font-medium tracking-[0.04em] text-foreground"
               onClick={() => setMenuOpen(true)}
               aria-label="Abrir menú"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
             >
-              <span className="block w-4 h-4 bg-brand-accent" aria-hidden="true" />
+              Menú
             </button>
           </div>
         </Container>

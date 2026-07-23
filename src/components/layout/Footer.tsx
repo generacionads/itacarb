@@ -79,7 +79,7 @@ export function Footer() {
               </a>
             ))}
           </nav>
-          <div className="flex gap-8">
+          <div className="flex flex-wrap gap-3 sm:gap-8">
             {socialLinks.map((social) => (
               <a
                 key={social}

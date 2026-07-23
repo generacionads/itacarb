@@ -112,7 +112,7 @@ export default function ServicioPage() {
   return (
     <>
       <Header />
-      <main className="pt-[72px] bg-background min-h-screen flex flex-col">
+      <main className="pt-16 sm:pt-[72px] bg-background min-h-screen flex flex-col">
 
         <div className="flex flex-col flex-1">
 
@@ -122,8 +122,7 @@ export default function ServicioPage() {
             {/* Sticky H2 — full width */}
             <div
               ref={h2Ref}
-              className="sticky z-20 bg-brand-accent px-4 sm:px-16 py-12"
-              style={{ top: HEADER_H }}
+              className="sticky top-16 sm:top-[72px] z-20 bg-brand-accent px-4 sm:px-16 py-12"
             >
               <RevealH2
                 key={activeH2}

@@ -129,9 +129,16 @@ function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
 
 export function Sectors() {
   const [current, setCurrent] = useState(0);
-  const maxIndex = 2;
+  const [maxIndex, setMaxIndex] = useState(2);
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const update = () => setMaxIndex(window.innerWidth < 768 ? 3 : 2);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     if (cardRefs.current[2]) {

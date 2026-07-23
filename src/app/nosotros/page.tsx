@@ -109,7 +109,7 @@ export default function NosotrosPage() {
     function update() {
       if (!track) return;
       const section = sectionRefs.current.get("valores");
-      if (!section) return;
+      if (!section || !track) return;
       const rect = section.getBoundingClientRect();
       const sectionH = section.offsetHeight;
       const viewH = window.innerHeight;
@@ -197,7 +197,7 @@ export default function NosotrosPage() {
                     Detrás de cada entrega hay personas que se dejan la piel. El equipo que convierte las ideas en resultados y que mantiene el rumbo cuando el mar se complica.
                   </p>
                 </div>
-                <div className="flex gap-[47px]">
+                <div className="flex flex-col sm:flex-row gap-8 sm:gap-[47px]">
                   <div className="flex flex-col gap-4 flex-1">
                     <TeamPhoto height="h-[228px]" video="/prueba-equipo.mp4" />
                     <div className="flex flex-col gap-1">
@@ -230,7 +230,7 @@ export default function NosotrosPage() {
                     RB no son dos letras, son dos personas de carne y hueso: Javier Revuelta y Antonio González. Sin ellos no sabríamos poner rumbo a Ítaca.
                   </p>
                 </div>
-                <div className="flex gap-[47px]">
+                <div className="flex flex-col sm:flex-row gap-8 sm:gap-[47px]">
                   <div className="flex flex-col gap-4 flex-1">
                     <TeamPhoto height="h-[344px]" video="/prueba-equipo.mp4" />
                     <div className="flex flex-col gap-1">

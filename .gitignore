@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# strapi cms
+/cms/node_modules
+/cms/.tmp
+/cms/.cache
+/cms/dist
+/cms/build
+/cms/.strapi
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

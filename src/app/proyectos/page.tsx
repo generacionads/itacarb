@@ -25,6 +25,7 @@ interface Project {
   image: string | null;
   objectPosition?: string;
   href: string;
+  featured?: boolean;
 }
 
 const projects: Project[] = [
@@ -36,6 +37,7 @@ const projects: Project[] = [
     image: "/projects/clinicas y sector salud/clinica-morales-raya/clinica-morales-raya.webp",
     objectPosition: "center center",
     href: "/proyectos/clinica-morales-raya",
+    featured: true,
   },
   {
     id: "paralelo-estudio",
@@ -45,6 +47,7 @@ const projects: Project[] = [
     image: "/projects/arquitectura y diseño/paralelo-estudio/Img_01_Grupo-PARALELO.webp",
     objectPosition: "center center",
     href: "/proyectos/paralelo-estudio",
+    featured: true,
   },
   {
     id: "on-level-quality",
@@ -54,6 +57,7 @@ const projects: Project[] = [
     image: "/projects/industrial/on-level-quality/toma_3_1_1-copia-1.webp",
     objectPosition: "center center",
     href: "/proyectos/on-level-quality",
+    featured: true,
   },
   {
     id: "cbc-collection",
@@ -62,6 +66,102 @@ const projects: Project[] = [
     tagline: "De cero a 50k en facturación: joyería con identidad propia en tres meses.",
     image: "/projects/otros sectores/carmen ballesta collection/cbc_2.webp",
     href: "/proyectos/cbc-collection",
+    featured: true,
+  },
+  // ── Clínicas (nuevos) ───────────────────────────────────────────────────
+  {
+    id: "cm-cosmetica",
+    sector: "sanitarios",
+    name: "CM Cosmética Dermatológica",
+    tagline: "De marca invisible a referente de dermocosmética online en menos de un año.",
+    image: null,
+    href: "/proyectos/cm-cosmetica",
+    featured: true,
+  },
+  {
+    id: "expresa-salud",
+    sector: "sanitarios",
+    name: "Expresa Salud Emocional",
+    tagline: "103% de aumento de visibilidad cualificada en salud mental en solo 4 meses.",
+    image: null,
+    href: "/proyectos/expresa-salud",
+  },
+  // ── Arquitectura (nuevos) ───────────────────────────────────────────────
+  {
+    id: "af-iberia",
+    sector: "arquitectura",
+    name: "AF Iberia",
+    tagline: "Del prestigio latinoamericano a una identidad digital adaptada al mercado español.",
+    image: null,
+    href: "/proyectos/af-iberia",
+  },
+  {
+    id: "artquitrabe",
+    sector: "arquitectura",
+    name: "Artquitrabe",
+    tagline: "+100 clientes en menos de 6 meses para una nueva marca de reformas en Madrid.",
+    image: null,
+    href: "/proyectos/artquitrabe",
+  },
+  {
+    id: "milton-home",
+    sector: "arquitectura",
+    name: "Milton Home",
+    tagline: "109 leads inmobiliarios en 30 días a 3€ el lead. El mes de prueba que lo cambió todo.",
+    image: null,
+    href: "/proyectos/milton-home",
+    featured: true,
+  },
+  // ── Industrial (nuevos) ─────────────────────────────────────────────────
+  {
+    id: "haromatics",
+    sector: "industrial",
+    name: "Haromatics",
+    tagline: "29% más leads cualificados y 82% menos coste por lead para un fabricante de esencias.",
+    image: null,
+    href: "/proyectos/haromatics",
+  },
+  {
+    id: "tecnivalles",
+    sector: "industrial",
+    name: "Tecnivalles",
+    tagline: "25€ de ROAS por euro invertido para el referente en ascensores y accesibilidad.",
+    image: null,
+    href: "/proyectos/tecnivalles",
+  },
+  {
+    id: "telstar",
+    sector: "industrial",
+    name: "Telstar",
+    tagline: "56% más leads cualificados para una empresa de ingeniería GMP con presencia en 29 países.",
+    image: null,
+    href: "/proyectos/telstar",
+    featured: true,
+  },
+  // ── Otros (nuevos) ──────────────────────────────────────────────────────
+  {
+    id: "polspa",
+    sector: "otros",
+    name: "Polspa",
+    tagline: "Plataforma digital bilingüe para impulsar el crecimiento internacional de viajes deportivos.",
+    image: null,
+    href: "/proyectos/polspa",
+  },
+  {
+    id: "prominsol",
+    sector: "otros",
+    name: "Prominsol",
+    tagline: "Presencia digital renovada para una empresa de climatización y soluciones térmicas en Madrid.",
+    image: null,
+    href: "/proyectos/prominsol",
+  },
+  {
+    id: "solvify",
+    sector: "otros",
+    name: "Solvify",
+    tagline: "Presencia digital que consolidó el liderazgo de una legaltech en el mercado español.",
+    image: null,
+    href: "/proyectos/solvify",
   },
 ];
 
@@ -123,7 +223,7 @@ export default function ProyectosPage() {
 
   const visibleProjects = activeFilter
     ? projects.filter((p) => p.sector === activeFilter)
-    : projects;
+    : projects.filter((p) => p.featured);
 
   function handleFilter(id: string) {
     const next = activeFilter === id ? null : id;

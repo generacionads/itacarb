@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Artículo",
+    "description": "Entradas del blog de Ítacarb"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text",
+      "required": true,
+      "maxLength": 300
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "marketing",
+        "estrategia",
+        "casos-de-exito",
+        "tendencias",
+        "herramientas"
+      ]
+    },
+    "readTime": {
+      "type": "integer",
+      "min": 1
+    },
+    "contentHtml": {
+      "type": "text"
+    }
+  }
+}

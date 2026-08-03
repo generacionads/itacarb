@@ -108,7 +108,7 @@ const projects: Project[] = [
     sector: "arquitectura",
     name: "Milton Home",
     tagline: "109 leads inmobiliarios en 30 días a 3€ el lead. El mes de prueba que lo cambió todo.",
-    image: null,
+    image: "/projects/arquitectura y diseño/milton-homes/MiltonHomes-Promotora-Cantabria-26-2-scaled.jpg",
     href: "/proyectos/milton-home",
     featured: true,
   },

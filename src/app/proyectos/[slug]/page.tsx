@@ -164,11 +164,11 @@ const projects: Project[] = [
       "Milton Homes es una promotora inmobiliaria de obra nueva en Cantabria especializada en viviendas exclusivas frente al mar: apartamentos, unifamiliares y garajes en enclaves únicos como Suances y Somo. Llegaron con una propuesta clara: probar un único mes antes de comprometerse con una estrategia de largo plazo.",
     stat: { value: "+109", label: "leads en 30 días" },
     stat2: { value: "~3€", label: "coste por conversión" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/arquitectura y diseño/milton-homes/MiltonHomes-Promotora-Cantabria-26-2-scaled.jpg",
+    strategyImage: "/projects/arquitectura y diseño/milton-homes/Somo-Plata-Residencial.jpg",
     strategyText:
       "Activamos campañas en Meta Ads y Google Ads en paralelo, con segmentación y creatividades diferenciadas para cada producto. Las viviendas requerían un perfil de comprador con capacidad de inversión real y un proceso de decisión largo. Los garajes, un volumen mayor y un ciclo más corto. Dos lógicas distintas, una misma estructura de captación.",
-    solutionImage: null,
+    solutionImage: "/projects/arquitectura y diseño/milton-homes/Somo01.jpeg",
     solutionText:
       "El resultado habló por sí solo: 45 leads para viviendas y 67 para garajes en el primer mes, a un coste medio de 3€ por conversión en ambos canales. Una cifra que en el sector inmobiliario no tiene precedente. El mes de prueba terminó. La relación, no.",
     reviewImage: null,

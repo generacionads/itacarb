@@ -9,6 +9,45 @@ import { RevealH2 } from "@/components/ui/RevealH2";
 
 const HEADER_H = 72;
 
+const HERO_IMAGES = [
+  "/fotos - nosotros/Fotos_GeneraciónAds (2 de 51).jpg",
+  "/fotos - nosotros/Fotos_GeneraciónAds (5 de 51).jpg",
+  "/fotos - nosotros/Fotos_GeneraciónAds (9 de 51).jpg",
+  "/fotos - nosotros/Fotos_GeneraciónAds (12 de 51).jpg",
+  "/fotos - nosotros/Fotos_GeneraciónAds (18 de 51).jpg",
+  "/fotos - nosotros/Fotos_GeneraciónAds (20 de 51).jpg",
+  "/fotos - nosotros/Fotos_GeneraciónAds (22 de 51).jpg",
+];
+
+function HeroTimelapse() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % HERO_IMAGES.length), 1400);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="mt-10 flex-1 relative rounded-[4px] overflow-hidden min-h-[200px]">
+      {HERO_IMAGES.map((src, i) => (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          key={src}
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            opacity: i === index ? 1 : 0,
+            transition: "opacity 600ms ease",
+            zIndex: i === index ? 1 : 0,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 const valores = ["Fresca", "Resolutiva", "Transparente", "Exclusiva", "Estratega"];
 
 const sections = [
@@ -17,7 +56,7 @@ const sections = [
   { id: "valores", label: "Valores" },
 ];
 
-function TeamPhoto({ height, video, grayscale }: { height: string; video?: string; grayscale?: boolean }) {
+function TeamPhoto({ height, video }: { height: string; video?: string }) {
   const playRef = useRef<HTMLVideoElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -43,7 +82,9 @@ function TeamPhoto({ height, video, grayscale }: { height: string; video?: strin
     }, 280);
   }
 
-  const videoClass = `absolute inset-0 w-full h-full object-cover${grayscale ? " grayscale" : ""}`;
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+
+  const videoClass = "absolute inset-0 w-full h-full object-cover";
 
   return (
     <div
@@ -53,7 +94,6 @@ function TeamPhoto({ height, video, grayscale }: { height: string; video?: strin
     >
       {video && (
         <>
-          {/* Poster layer — always visible at first frame, acts as crossfade base */}
           <video
             src={video}
             muted
@@ -63,7 +103,6 @@ function TeamPhoto({ height, video, grayscale }: { height: string; video?: strin
             className={videoClass}
             onLoadedMetadata={(e) => { (e.target as HTMLVideoElement).currentTime = 0; }}
           />
-          {/* Play layer — fades in on hover, fades out on leave revealing poster below */}
           <video
             ref={playRef}
             src={video}
@@ -171,7 +210,7 @@ export default function NosotrosPage() {
                 </p>
               </div>
 
-              <div className="mt-10 flex-1 bg-brand-border w-full rounded-[4px]" />
+              <HeroTimelapse />
             </section>
 
             {/* ── Equipo ── */}
@@ -199,21 +238,21 @@ export default function NosotrosPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-8 sm:gap-[47px]">
                   <div className="flex flex-col gap-4 flex-1">
-                    <TeamPhoto height="h-[228px]" video="/prueba-equipo.mp4" />
+                    <TeamPhoto height="h-[228px]" video="/Vídeos - nosotros/Presentación_Patri.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Patricia Orgaz</p>
                       <p className="text-brand-muted text-[16px]">Estratega de cuentas y medios</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 flex-1">
-                    <TeamPhoto height="h-[228px]" video="/prueba-equipo.mp4" />
+                    <TeamPhoto height="h-[228px]" video="/Vídeos - nosotros/Presentación Isa.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Isabel Villoria</p>
                       <p className="text-brand-muted text-[16px]">Ingeniería y presencia web</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 flex-1">
-                    <TeamPhoto height="h-[228px]" video="/IMG_1940.MOV" grayscale />
+                    <TeamPhoto height="h-[228px]" video="/Vídeos - nosotros/Presentación_Mario.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Mario Zornoza</p>
                       <p className="text-brand-muted text-[16px]">Diseño creativo e innovación</p>
@@ -232,14 +271,14 @@ export default function NosotrosPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row gap-8 sm:gap-[47px]">
                   <div className="flex flex-col gap-4 flex-1">
-                    <TeamPhoto height="h-[344px]" video="/prueba-equipo.mp4" />
+                    <TeamPhoto height="h-[344px]" video="/Vídeos - nosotros/Presentación_Antonio.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Antonio González</p>
                       <p className="text-brand-muted text-[16px]">Fundador y Director de Estrategia</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 flex-1">
-                    <TeamPhoto height="h-[344px]" video="/prueba-equipo.mp4" />
+                    <TeamPhoto height="h-[344px]" video="/Vídeos - nosotros/Presentación_Javi.mp4" />
                     <div className="flex flex-col gap-1">
                       <p className="text-foreground text-[20px]">Javier Revuelta</p>
                       <p className="text-brand-muted text-[16px]">Fundador y CEO</p>

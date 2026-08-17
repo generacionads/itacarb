@@ -1,4 +1,4 @@
-import { getArticles } from "@/lib/strapi";
+import { getArticles } from "@/lib/wordpress";
 import { BlogClient } from "./BlogClient";
 
 export const metadata = {

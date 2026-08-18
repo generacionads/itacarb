@@ -7,7 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SidebarNav } from "@/components/ui/SidebarNav";
 import { RevealH2 } from "@/components/ui/RevealH2";
-import { getStrapiImageUrl, type StrapiArticle } from "@/lib/strapi";
+import type { WpArticle } from "@/lib/wordpress";
 
 const HEADER_H = 72;
 
@@ -35,7 +35,7 @@ function formatDate(iso: string): string {
   });
 }
 
-function ArticleCard({ article }: { article: StrapiArticle }) {
+function ArticleCard({ article }: { article: WpArticle }) {
   const date = article.publishedAt ?? article.createdAt;
   const categoryLabel = article.category ? CATEGORY_LABELS[article.category] : null;
 
@@ -47,7 +47,7 @@ function ArticleCard({ article }: { article: StrapiArticle }) {
       <div className="relative aspect-[3/2] w-full overflow-hidden">
         {article.cover ? (
           <Image
-            src={getStrapiImageUrl(article.cover.url)}
+            src={article.cover.url}
             alt={article.cover.alternativeText ?? article.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
@@ -101,7 +101,7 @@ function ArticleCard({ article }: { article: StrapiArticle }) {
   );
 }
 
-export function BlogClient({ articles }: { articles: StrapiArticle[] }) {
+export function BlogClient({ articles }: { articles: WpArticle[] }) {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const exitTween = useRef<gsap.core.Tween | null>(null);

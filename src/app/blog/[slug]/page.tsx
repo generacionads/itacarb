@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getArticleBySlug, getStrapiImageUrl } from "@/lib/strapi";
-import { StrapiBlocks } from "@/components/ui/StrapiBlocks";
+import { getArticleBySlug } from "@/lib/wordpress";
 import { WpHtml } from "@/components/ui/WpHtml";
 import { ReadingProgress } from "@/components/ui/ReadingProgress";
 import { Header } from "@/components/layout/Header";
@@ -38,7 +37,7 @@ export async function generateMetadata({
     description: article.excerpt,
     openGraph: article.cover
       ? {
-          images: [{ url: getStrapiImageUrl(article.cover.url) }],
+          images: [{ url: article.cover.url }],
         }
       : undefined,
   };
@@ -95,7 +94,7 @@ export default async function ArticlePage({
           {article.cover && (
             <div className="relative w-full max-w-[900px] aspect-[16/9] overflow-hidden">
               <Image
-                src={getStrapiImageUrl(article.cover.url)}
+                src={article.cover.url}
                 alt={article.cover.alternativeText ?? article.title}
                 fill
                 priority
@@ -104,16 +103,12 @@ export default async function ArticlePage({
             </div>
           )}
 
-          {/* Article content — WP-migrated HTML or native Strapi Blocks */}
-          {article.contentHtml ? (
+          {/* Article content */}
+          {article.contentHtml && (
             <div className="max-w-[700px]">
               <WpHtml html={article.contentHtml} />
             </div>
-          ) : article.content && article.content.length > 0 ? (
-            <div className="max-w-[700px]">
-              <StrapiBlocks blocks={article.content} />
-            </div>
-          ) : null}
+          )}
 
           {/* Back link */}
           <div className="pt-12 border-t border-brand-border max-w-[700px]">

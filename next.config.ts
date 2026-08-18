@@ -18,10 +18,15 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "*.strapiapp.com",
       },
-      // WordPress local (Local by Flywheel)
+      // WordPress local dev
       {
         protocol: "http",
-        hostname: "itacarbes.local",
+        hostname: "cmsitacarb.local",
+      },
+      // WordPress (production)
+      {
+        protocol: "https",
+        hostname: "cms.itacarb.es",
       },
     ],
   },

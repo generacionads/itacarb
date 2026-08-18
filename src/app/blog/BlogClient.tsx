@@ -36,7 +36,7 @@ function formatDate(iso: string): string {
 }
 
 function ArticleCard({ article }: { article: WpArticle }) {
-  const date = article.publishedAt;
+  const date = article.publishedAt ?? article.createdAt;
   const categoryLabel = article.category ? CATEGORY_LABELS[article.category] : null;
 
   return (

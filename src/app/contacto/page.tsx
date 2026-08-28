@@ -27,7 +27,7 @@ export default function ContactoPage() {
               src="/foto grupal.jpg"
               alt="Equipo Ítacarb"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               priority
             />
           </div>

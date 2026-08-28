@@ -24,7 +24,7 @@ export default function ContactoPage() {
           </RevealH2>
           <div className="mt-10 flex-1 w-full relative overflow-hidden">
             <Image
-              src="/about-team.jpg"
+              src="/foto grupal.jpg"
               alt="Equipo Ítacarb"
               fill
               className="object-cover"

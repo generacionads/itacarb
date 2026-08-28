@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     }
 
     await resend.emails.send({
-      from: "Formulario Ítacarb <onboarding@resend.dev>",
+      from: "Formulario Ítacarb <formulario@itacarb.es>",
       to: "hola@itacarb.es",
       cc: "mzornoza@itacarb.es",
       replyTo: mail,

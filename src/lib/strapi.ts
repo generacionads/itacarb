@@ -9,7 +9,7 @@ export interface StrapiArticle {
   excerpt: string;
   content: StrapiBlock[] | null;
   cover: StrapiMedia | null;
-  category: "marketing" | "estrategia" | "casos-de-exito" | "tendencias" | "herramientas" | null;
+  category: "marketing" | "estrategia" | "tendencias" | "herramientas" | null;
   readTime: number | null;
   contentHtml: string | null;
   publishedAt: string | null;

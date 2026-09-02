@@ -14,7 +14,6 @@ const HEADER_H = 72;
 const CATEGORIES = [
   { id: "marketing", label: "Marketing" },
   { id: "estrategia", label: "Estrategia" },
-  { id: "casos-de-exito", label: "Casos de éxito" },
   { id: "tendencias", label: "Tendencias" },
   { id: "herramientas", label: "Herramientas" },
 ];
@@ -22,7 +21,6 @@ const CATEGORIES = [
 const CATEGORY_LABELS: Record<string, string> = {
   "marketing": "Marketing",
   "estrategia": "Estrategia",
-  "casos-de-exito": "Casos de éxito",
   "tendencias": "Tendencias",
   "herramientas": "Herramientas",
 };

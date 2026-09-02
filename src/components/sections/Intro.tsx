@@ -37,7 +37,7 @@ export function Intro() {
 
           <div className="shrink-0 self-end sm:w-[45%]">
             <Image
-              src="/about-team.jpg"
+              src="/foto-home.jpg"
               alt="Equipo Ítacarb"
               width={660}
               height={660}

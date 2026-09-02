@@ -10,7 +10,6 @@ import { Footer } from "@/components/layout/Footer";
 const CATEGORY_LABELS: Record<string, string> = {
   "marketing": "Marketing",
   "estrategia": "Estrategia",
-  "casos-de-exito": "Casos de éxito",
   "tendencias": "Tendencias",
   "herramientas": "Herramientas",
 };

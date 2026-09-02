@@ -54,7 +54,71 @@ const sections = [
   { id: "itaca", label: "Ítaca" },
   { id: "equipo", label: "Equipo" },
   { id: "valores", label: "Valores" },
+  { id: "newsletter", label: "Newsletter" },
 ];
+
+function NewsletterForm() {
+  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
+  const [email, setEmail] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("pending");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
+        Apuntado. Nos vemos pronto.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-[600px]">
+      <div className="border-b-2 border-brand-muted pb-6 px-1">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="tu@email.com"
+          required
+          className="w-full bg-transparent text-[28px] md:text-[40px] font-medium tracking-[-0.04em] text-foreground placeholder:text-brand-muted outline-none"
+        />
+      </div>
+      {status === "error" && (
+        <p role="alert" className="text-brand-accent text-[16px] font-medium px-1">
+          Algo ha salido mal. Inténtalo de nuevo.
+        </p>
+      )}
+      <button
+        type="submit"
+        disabled={status === "pending"}
+        className="self-start flex items-center gap-4 text-foreground group disabled:opacity-50"
+      >
+        <span className="text-[32px] md:text-[40px] font-medium tracking-[-0.04em] leading-none">
+          {status === "pending" ? "Enviando…" : "Suscribirme"}
+        </span>
+        {status !== "pending" && (
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="btn-morph-svg shrink-0">
+            <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        )}
+      </button>
+    </form>
+  );
+}
 
 function TeamPhoto({ height, video }: { height: string; video?: string }) {
   const playRef = useRef<HTMLVideoElement>(null);
@@ -125,6 +189,7 @@ export default function NosotrosPage() {
   const [activeId, setActiveId] = useState(sections[0].id);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
   const valoresTrackRef = useRef<HTMLDivElement>(null);
+  const valoresItemsRef = useRef<HTMLParagraphElement[]>([]);
 
   useEffect(() => {
     const map = sectionRefs.current;
@@ -160,6 +225,35 @@ export default function NosotrosPage() {
 
     gsap.ticker.add(update);
     return () => gsap.ticker.remove(update);
+  }, []);
+
+  // Reveal each valor word with a clip-path wipe when the section enters view
+  useEffect(() => {
+    const items = valoresItemsRef.current;
+    if (!items.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    gsap.set(items, { clipPath: "inset(0px 0px 110% 0px)", y: 10 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          gsap.to(items, {
+            clipPath: "inset(0px 0px -25% 0px)",
+            y: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power3.out",
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    const section = sectionRefs.current.get("valores");
+    if (section) observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
   const scrollToSection = useCallback((id: string) => {
@@ -292,10 +386,10 @@ export default function NosotrosPage() {
             <div
               id="valores"
               ref={(el) => { if (el) sectionRefs.current.set("valores", el); }}
-              style={{ height: "300vh" }}
+              style={{ height: "200vh" }}
             >
               <div
-                className="sticky flex flex-col overflow-hidden"
+                className="sticky flex flex-col overflow-x-clip"
                 style={{ top: HEADER_H }}
               >
                 <h2 className="px-4 sm:px-16 pt-16 pb-4 text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none shrink-0">
@@ -307,17 +401,35 @@ export default function NosotrosPage() {
                   className="flex items-center gap-16 pl-4 sm:pl-16 shrink-0 mt-4"
                   style={{ width: "max-content", willChange: "transform" }}
                 >
-                  {valores.map((v) => (
-                    <div key={v} className="flex items-center gap-8 shrink-0">
-                      <p className="text-foreground text-[120px] font-light leading-none whitespace-nowrap">
-                        {v}
-                      </p>
-                      <div className="bg-placeholder h-[162px] w-[276px] shrink-0 rounded-[4px]" />
-                    </div>
+                  {valores.map((v, i) => (
+                    <p
+                      key={v}
+                      ref={(el) => { if (el) valoresItemsRef.current[i] = el; }}
+                      className="text-foreground text-[120px] font-light leading-none whitespace-nowrap shrink-0"
+                    >
+                      {v}
+                    </p>
                   ))}
                 </div>
               </div>
             </div>
+
+            {/* ── Newsletter ── */}
+            <section
+              id="newsletter"
+              ref={(el) => { if (el) sectionRefs.current.set("newsletter", el); }}
+              className="px-4 sm:px-16 pt-24 pb-48 flex flex-col gap-12"
+            >
+              <div className="flex flex-col gap-6">
+                <h2 className="text-foreground text-[48px] font-medium tracking-[-0.04em] leading-none">
+                  La newsletter de Ítaca
+                </h2>
+                <p className="text-foreground text-[18px] font-light leading-relaxed max-w-[55ch]">
+                  Estrategia de marketing, tendencias de mercado y casos reales. Sin ruido, una vez al mes.
+                </p>
+              </div>
+              <NewsletterForm />
+            </section>
 
           </div>
         </div>

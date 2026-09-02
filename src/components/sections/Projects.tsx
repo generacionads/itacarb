@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
+import { RevealWrap } from "@/components/ui/RevealWrap";
 
 const projects = [
   {
@@ -78,8 +79,10 @@ export function Projects() {
         </div>
 
         <div className="flex flex-col gap-6">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {projects.map((project, i) => (
+            <RevealWrap key={project.id} delay={i * 0.08}>
+              <ProjectCard project={project} />
+            </RevealWrap>
           ))}
         </div>
 

@@ -7,6 +7,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SidebarNav } from "@/components/ui/SidebarNav";
 import { RevealH2 } from "@/components/ui/RevealH2";
+import { RevealWrap } from "@/components/ui/RevealWrap";
 
 const HEADER_H = 72;
 
@@ -216,8 +217,10 @@ export default function ProyectosPage() {
             </RevealH2>
 
             <div ref={listRef} className="flex flex-col gap-12">
-              {visibleProjects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+              {visibleProjects.map((project, i) => (
+                <RevealWrap key={project.id} delay={i * 0.07}>
+                  <ProjectCard project={project} />
+                </RevealWrap>
               ))}
             </div>
 

@@ -3,6 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Contact } from "@/components/sections/Contact";
 import { RevealH2 } from "@/components/ui/RevealH2";
+import { RevealWrap } from "@/components/ui/RevealWrap";
 
 export default function ContactoPage() {
   return (
@@ -22,7 +23,7 @@ export default function ContactoPage() {
           >
             Hablemos.
           </RevealH2>
-          <div className="mt-10 flex-1 w-full relative overflow-hidden">
+          <RevealWrap className="mt-10 flex-1 w-full relative overflow-hidden">
             <Image
               src="/foto grupal.jpg"
               alt="Equipo Ítacarb"
@@ -30,7 +31,7 @@ export default function ContactoPage() {
               className="object-cover object-top"
               priority
             />
-          </div>
+          </RevealWrap>
         </div>
 
         <Contact />

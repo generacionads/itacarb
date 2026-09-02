@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
+import { RevealWrap } from "@/components/ui/RevealWrap";
 
 export function Intro() {
   return (
@@ -35,7 +36,7 @@ export function Intro() {
             </a>
           </div>
 
-          <div className="shrink-0 self-end sm:w-[45%]">
+          <RevealWrap className="shrink-0 self-end sm:w-[45%]" delay={0.1}>
             <Image
               src="/foto-home.jpg"
               alt="Equipo Ítacarb"
@@ -43,7 +44,7 @@ export function Intro() {
               height={660}
               className="w-full object-cover"
             />
-          </div>
+          </RevealWrap>
         </div>
       </Container>
     </section>

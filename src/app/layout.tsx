@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
   description:
     "Consultoría estratégica de marketing. Ayudamos a las marcas a crecer con estrategia, creatividad y datos.",
-  metadataBase: new URL("https://itacarb.com"),
+  metadataBase: new URL("https://itacarb.es"),
 };
 
 export default function RootLayout({

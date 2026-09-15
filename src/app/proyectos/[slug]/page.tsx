@@ -38,19 +38,19 @@ const projects: Project[] = [
     description:
       "Clínica Dr. Morales Raya es un centro médico especializado en medicina estética y tratamientos avanzados. Su principal desafío radicaba en que su excelencia clínica no se reflejaba en su presencia digital, lo que limitaba severamente su capacidad para llegar a nuevos pacientes.",
     stat: { value: "103%", label: "de aumento en visibilidad cualificada tras 4 meses" },
-    heroImage: "/projects/morales-raya.jpeg",
-    strategyImage: "/projects/clinica-morales-raya/estrategia.jpg",
+    heroImage: "/projects/morales-raya.webp",
+    strategyImage: "/projects/clinicas y sector salud/clinica-morales-raya/dr-carlos-morales-raya.webp",
     strategyText:
       "Establecimos una medición precisa del ecosistema digital, garantizando la trazabilidad de cada acción para optimizar las campañas. Sobre esta sólida base analítica, impulsamos la generación de alcance para aumentar exponencialmente la visibilidad de los servicios. Finalmente, todo este esfuerzo de difusión se canalizó hacia una captación cualificada, logrando atraer usuarios con una intención real de iniciar terapia y asegurando pacientes.",
-    solutionImage: "/projects/clinica-morales-raya/solucion.jpg",
+    solutionImage: "/projects/clinicas y sector salud/clinica-morales-raya/hero.webp",
     solutionText:
       "Partiendo de un escenario inicial marcado por procesos ineficientes y un nulo posicionamiento digital, reestructuramos por completo su ecosistema. Nuestro enfoque permitió proyectar el verdadero valor de su marca directamente hacia el público adecuado. Como resultado, logramos convertir una infraestructura operativa estancada en un motor de captación optimizado, impulsando un crecimiento comercial sostenido y consolidando su autoridad en el sector de la salud mental.",
-    reviewImage: "/projects/clinica-morales-raya/resena.jpg",
-    reviewAvatar: "/projects/clinica-morales-raya/avatar.jpg",
-    reviewAuthor: "Carlos Novion",
-    reviewRole: "CEO",
+    reviewImage: null,
+    reviewAvatar: null,
+    reviewAuthor: "Higinio B.A",
+    reviewRole: "Reseña de Google · 5/5",
     reviewQuote:
-      "Quiero destacar el excelente servicio que recibí de Generación Ads durante todo un año. Su equipo no solo brindó un soporte impecable para mi sitio web, sino que también manejaron mis redes sociales de manera profesional y estratégica. Siempre estuvieron disponibles para resolver dudas, proponer mejoras y adaptar estrategias a las necesidades de mi negocio.",
+      "Empresa sería, comprometida y responsable. Pendientes de lo que necesita el cliente en todo momento. Muy contento con sus servicios. Recomendables 100%",
   },
   {
     slug: "cm-cosmetica",
@@ -59,11 +59,11 @@ const projects: Project[] = [
     description:
       "CM Cosmética Dermatológica es una marca especializada en productos de cuidado de la piel con base dermatológica, orientada al canal online. Con un catálogo centrado en la eficacia clínica y la confianza del consumidor, la marca buscaba escalar su presencia digital y convertir su inversión publicitaria en un motor de crecimiento real y medible, tanto en captación de nuevos clientes como en fidelización de su base existente.",
     stat: { value: "x12", label: "de retorno sobre el gasto en inversión en marketing digital" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/otros sectores/cm-cosmetica/hero.webp",
+    strategyImage: "/projects/otros sectores/cm-cosmetica/serum.webp",
     strategyText:
       "Abordamos el proyecto como un lanzamiento de marca integral. Antes de activar cualquier canal de captación, definimos el posicionamiento, el tono de comunicación y la narrativa visual de CM Cosmética. A partir de ahí, construimos una estrategia de contenidos que combinaba producción creativa propia con acciones de SEO para generar visibilidad orgánica sostenible. Solo cuando la marca tenía solidez y coherencia activamos la publicidad de pago, asegurándonos de que cada euro invertido comunicaba algo creíble y diferencial.",
-    solutionImage: null,
+    solutionImage: "/projects/otros sectores/cm-cosmetica/banner.webp",
     solutionText:
       "Construimos la presencia digital de CM Cosmética de forma escalonada y coherente: primero la base de contenidos y posicionamiento orgánico para ganar visibilidad en buscadores, después la activación publicitaria en Google y Meta como palanca de aceleración. Cada acción estuvo orientada a reforzar la percepción de marca tanto como a generar ventas, tratando ambos objetivos como inseparables. El resultado fue una marca que, desde su lanzamiento, compitió de tú a tú con referencias consolidadas del sector y multiplicó por 12 su inversión publicitaria.",
     reviewImage: null,
@@ -79,11 +79,11 @@ const projects: Project[] = [
     description:
       "Expresa Salud Emocional es un centro de psicología enfocado en brindar terapia y apoyo emocional de alta calidad. Sin embargo, su principal desafío radicaba en que su excelencia médica no se reflejaba en su ecosistema digital, lo que limitaba severamente su capacidad para llegar a nuevos pacientes.",
     stat: { value: "103%", label: "de aumento de visibilidad cualificada en 4 meses" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/clinicas y sector salud/expresa-salud/hero.webp",
+    strategyImage: "/projects/clinicas y sector salud/expresa-salud/terapias.webp",
     strategyText:
       "Establecimos una medición precisa del ecosistema digital, garantizando la trazabilidad de cada acción para optimizar las campañas. Sobre esta sólida base analítica, impulsamos la generación de alcance para aumentar exponencialmente la visibilidad de los servicios. Finalmente, todo este esfuerzo de difusión se canalizó hacia una captación cualificada, logrando atraer usuarios con una intención real de iniciar terapia y asegurando pacientes.",
-    solutionImage: null,
+    solutionImage: "/projects/clinicas y sector salud/expresa-salud/evaluaciones.webp",
     solutionText:
       "Partiendo de un escenario inicial marcado por procesos ineficientes y un nulo posicionamiento digital, reestructuramos por completo su ecosistema. Nuestro enfoque permitió proyectar el verdadero valor de su marca directamente hacia el público adecuado. Como resultado, logramos convertir una infraestructura operativa estancada en un motor de captación optimizado, impulsando un crecimiento comercial sostenido y consolidando su autoridad en el sector de la salud mental.",
     reviewImage: null,
@@ -102,17 +102,17 @@ const projects: Project[] = [
       "Paralelo Estudio es un estudio de interiorismo corporativo con base en Madrid especializado en transformar marcas en experiencias físicas: restaurantes, oficinas y espacios de retail de alto nivel.",
     stat: { value: "+1.170", label: "Contactos cualificados generados en estos años" },
     stat2: { value: "49,84€", label: "Coste por oportunidad" },
-    heroImage: "/projects/paralelo-estudio.jpg",
-    strategyImage: "/projects/paralelo-estudio/estrategia.jpg",
+    heroImage: "/projects/paralelo-estudio.webp",
+    strategyImage: "/projects/arquitectura y diseño/paralelo-estudio/equipo.webp",
     strategyText:
       "Llevamos años trabajando como su partner estratégico, con una planificación anual que crece junto al estudio. El foco desde el primer día: construir una marca digital a la altura de sus proyectos físicos, sumando cada año nuevos canales siempre con coherencia y visión de largo plazo.",
-    solutionImage: "/projects/paralelo-estudio/solucion.jpg",
+    solutionImage: "/projects/arquitectura y diseño/paralelo-estudio/oficinas.webp",
     solutionText:
       "El resultado es una presencia digital que hoy refleja su nivel real: mejor posicionamiento en Google, más tráfico cualificado, una imagen de marca percibida como genuinamente premium y, sobre todo, más consultas de clientes con proyectos de alto valor. Cinco años después, seguimos escalando.",
-    reviewImage: "/projects/paralelo-estudio/resena.jpg",
-    reviewAvatar: "/projects/paralelo-estudio/avatar.jpg",
-    reviewAuthor: "Rafael Ortega",
-    reviewRole: "Socio fundador, Paralelo Estudio",
+    reviewImage: null,
+    reviewAvatar: null,
+    reviewAuthor: "Laura Andreu",
+    reviewRole: "Socia fundadora, Paralelo Estudio",
     reviewQuote: "Llevamos cinco años trabajando con Ítacarb y la diferencia es clara: antes esperábamos a que los proyectos llegaran, ahora los elegimos. Han entendido nuestro trabajo desde el principio y han sabido trasladarlo a una presencia digital que refleja realmente quiénes somos.",
   },
   {
@@ -122,11 +122,11 @@ const projects: Project[] = [
     description:
       "AF Iberia es la marca con la que Ayassa Fombella —firma argentina de arquitectura con más de 40 años de trayectoria— aterrizó en España en 2025. A pesar de su sólido bagaje internacional, su entrada al mercado local carecía de la presencia digital necesaria para generar confianza y captar clientes en un entorno completamente nuevo.",
     stat: { value: "1ª", label: "identidad digital adaptada al mercado español" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/arquitectura y diseño/af-iberia/hero.webp",
+    strategyImage: "/projects/arquitectura y diseño/af-iberia/oficina.webp",
     strategyText:
       "El reto era trasladar la autoridad y credencial de una firma consolidada en Latinoamérica a un mercado que no la conocía. Diseñamos una estrategia de digitalización orientada a validar su propuesta de valor ante el público español, diferenciando con claridad sus dos perfiles de cliente y poniendo en valor su portfolio internacional como aval de confianza.",
-    solutionImage: null,
+    solutionImage: "/projects/arquitectura y diseño/af-iberia/pano.webp",
     solutionText:
       "Desarrollamos un onepage estratégico que actúa como carta de presentación digital para el mercado español. La web comunica con precisión los servicios dirigidos a particulares y empresas por un lado, y a promotoras y estudios por otro, y respalda la credibilidad de la marca con un portfolio de proyectos de referencia para clientes como Meta, BBVA o PwC. Una presencia digital sencilla, profesional y alineada con los objetivos comerciales de su expansión en España.",
     reviewImage: null,
@@ -143,11 +143,11 @@ const projects: Project[] = [
       "Artquitrabe nace con una visión clara: diseñar, crear e inspirar a través de reformas integrales de viviendas y locales comerciales en Madrid. Como muchas empresas en sus primeras etapas, el reto no estaba únicamente en ofrecer un gran servicio, sino en conseguir visibilidad, generar confianza y competir frente a compañías ya consolidadas dentro del sector.",
     stat: { value: "+100", label: "clientes generados en menos de 6 meses" },
     stat2: { value: "+50K", label: "visitas en los primeros 3 meses" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/arquitectura y diseño/artquitrabe/hero.webp",
+    strategyImage: "/projects/arquitectura y diseño/artquitrabe/cocina1.webp",
     strategyText:
       "Artquitrabe llegó en una fase inicial, sin una base digital sólida y con una inversión muy ajustada. El principal objetivo a corto plazo era claro: conseguir clientes potenciales de calidad en el menor tiempo posible dentro de un sector con un ticket medio elevado y una competencia muy agresiva. Desarrollamos una estrategia progresiva centrada en dos pilares: captación inmediata y construcción de marca a largo plazo.",
-    solutionImage: null,
+    solutionImage: "/projects/arquitectura y diseño/artquitrabe/cocina2.webp",
     solutionText:
       "Construimos una presencia digital pensada para generar confianza y convertir tráfico en oportunidades reales de negocio. Desde la estructura de comunicación hasta la estrategia de captación, cada acción fue diseñada para maximizar el rendimiento de la inversión y acelerar el crecimiento de la marca desde sus primeras etapas. La estrategia permitió posicionar a Artquitrabe frente a clientes que buscaban proyectos de reforma integral de mayor valor.",
     reviewImage: null,
@@ -186,18 +186,18 @@ const projects: Project[] = [
     description:
       "On Level Quality es una empresa especializada en control de calidad y metrología industrial. A pesar de su alta capacidad técnica, su comunicación no transmitía la solidez y precisión que caracteriza a sus servicios, dificultando la captación de grandes cuentas.",
     stat: { value: "40%", label: "de incremento en solicitudes de presupuesto cualificadas" },
-    heroImage: "/projects/on-level-quality.jpg",
-    strategyImage: "/projects/on-level-quality/estrategia.jpg",
+    heroImage: "/projects/on-level-quality.webp",
+    strategyImage: "/projects/industrial/on-level-quality/cabina-espejo.webp",
     strategyText:
       "Redefinimos el posicionamiento de marca para reflejar la excelencia técnica de sus servicios y construimos una comunicación que generaba confianza en perfiles de compra B2B. La estrategia de contenidos y la presencia digital reforzada permitieron llegar a decisores de compra en grandes empresas industriales.",
-    solutionImage: "/projects/on-level-quality/solucion.jpg",
+    solutionImage: "/projects/industrial/on-level-quality/cabina-negro.webp",
     solutionText:
       "Partiendo de una comunicación técnica pero poco persuasiva, transformamos su presencia digital en un activo comercial. Alineamos el mensaje de marca con las necesidades reales de sus clientes objetivo y desarrollamos canales de captación que conectaban directamente con decisores industriales, consolidando su reputación como proveedor de referencia en el sector.",
-    reviewImage: "/projects/on-level-quality/resena.jpg",
-    reviewAvatar: "/projects/on-level-quality/avatar.jpg",
-    reviewAuthor: "Nombre del cliente",
-    reviewRole: "Cargo",
-    reviewQuote: "Reseña del cliente de On Level Quality.",
+    reviewImage: null,
+    reviewAvatar: null,
+    reviewAuthor: "",
+    reviewRole: "",
+    reviewQuote: "",
   },
   {
     slug: "haromatics",
@@ -207,11 +207,11 @@ const projects: Project[] = [
       "Haromatics es un fabricante líder en esencias y aceites esenciales, referente por su capacidad de innovación y la pureza de sus materias primas. Su principal desafío radicaba en que esa excelencia técnica y capacidad de producción a gran escala no se reflejaban en su ecosistema digital, lo que limitaba severamente su visibilidad para atraer a nuevos distribuidores, marcas y clientes industriales.",
     stat: { value: "29%", label: "de aumento de leads cualificados en 3 meses" },
     stat2: { value: "81,82%", label: "de reducción de Coste por Lead" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/industrial/haromatics/hero.webp",
+    strategyImage: "/projects/industrial/haromatics/aceites.webp",
     strategyText:
       "Establecimos una medición precisa de su ecosistema digital, garantizando la trazabilidad de cada acción para optimizar las campañas de Google Ads. Sobre esta sólida base analítica, impulsamos la generación de alcance para aumentar exponencialmente la visibilidad de su catálogo de esencias y aceites esenciales. Finalmente, todo este esfuerzo de difusión se canalizó hacia una captación cualificada, logrando atraer a marcas y distribuidores con una intención real de compra y asegurando nuevos clientes comerciales para la fábrica.",
-    solutionImage: null,
+    solutionImage: "/projects/industrial/haromatics/equipo.webp",
     solutionText:
       "Partiendo de un escenario inicial marcado por procesos ineficientes y un nulo posicionamiento digital, reestructuramos por completo su ecosistema. Nuestro enfoque permitió proyectar el verdadero valor de su marca y la calidad de sus productos directamente hacia el público adecuado. Como resultado, logramos convertir una infraestructura digital estancada en un motor de captación optimizado para la fábrica, impulsando un crecimiento comercial sostenido y consolidando su autoridad en el sector de la fabricación de esencias y aceites esenciales.",
     reviewImage: null,
@@ -247,11 +247,11 @@ const projects: Project[] = [
     description:
       "Telstar es una empresa referente en ingeniería GMP, construcción y equipos de proceso integrados para las industrias de las ciencias de la vida, con presencia activa en más de 29 países. Su principal desafío radicaba en que esa autoridad técnica consolidada a nivel global no se traducía en una captación digital eficiente de leads cualificados, lo que limitaba el rendimiento de su equipo comercial en mercados clave.",
     stat: { value: "56%", label: "más de leads cualificados" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/industrial/telstar/hero.webp",
+    strategyImage: "/projects/industrial/telstar/lab.webp",
     strategyText:
       "Partimos de una cuenta publicitaria con un gasto elevado y un retorno prácticamente nulo, sin estructura analítica ni trazabilidad real de los resultados. Lo primero fue sanear y reconfigurar desde cero el ecosistema de campañas en LinkedIn Ads y Google Ads, estableciendo una medición precisa. Sobre esta base sólida, diseñamos una estrategia de captación adaptada a la complejidad y al ciclo de venta largo propio del sector de la ingeniería GMP, activando campañas segmentadas por mercado y perfil de cliente en múltiples países.",
-    solutionImage: null,
+    solutionImage: "/projects/industrial/telstar/autoclave.webp",
     solutionText:
       "Partiendo de una cuenta publicitaria mal estructurada y con un gasto ineficiente, reestructuramos por completo las campañas de LinkedIn Ads y Google Ads de Telstar en múltiples mercados internacionales. Nuestro enfoque permitió alinear cada campaña con el perfil real del decisor en el sector de las ciencias de la vida, segmentando por país, industria y rol profesional. Como resultado, transformamos una inversión publicitaria sin retorno en un motor de captación cualificada que genera de forma sostenida oportunidades comerciales reales para los equipos de ventas de Telstar a escala global.",
     reviewImage: null,
@@ -280,7 +280,7 @@ const projects: Project[] = [
     reviewAvatar: null,
     reviewAuthor: "Carmen Ballesta",
     reviewRole: "Fundadora, CBC Collection",
-    reviewQuote: "",
+    reviewQuote: "Grandes profesionales, muy atentos a tus necesidades, se hace todo muy fácil.",
   },
   {
     slug: "polspa",
@@ -289,11 +289,11 @@ const projects: Project[] = [
     description:
       "Polspa es una empresa especializada en la organización de viajes deportivos entre Polonia y España, centrada en torneos internacionales para jóvenes deportistas. Su reto era ofrecer una experiencia digital a la altura de la calidad de sus eventos, simplificando tanto la captación de participantes como la gestión de cada viaje.",
     stat: { value: "+2", label: "idiomas en una única plataforma" },
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/otros sectores/polspa/hero.webp",
+    strategyImage: "/projects/otros sectores/polspa/accion.webp",
     strategyText:
       "Diseñamos un ecosistema digital pensado para acompañar a las familias y a los organizadores durante todo el proceso. La nueva web se convirtió en el centro de una estrategia que unifica la captación, la comunicación y la gestión de participantes, ofreciendo una experiencia fluida en ambos idiomas.",
-    solutionImage: null,
+    solutionImage: "/projects/otros sectores/polspa/campo.webp",
     solutionText:
       "Desarrollamos una plataforma completa en Webflow, disponible en polaco y español, optimizada para presentar todos los torneos y facilitar la inscripción de los participantes. Además, implementamos un sistema de automatizaciones que centraliza el email marketing y simplifica el envío y la gestión de la documentación de los menores, reduciendo la carga administrativa y mejorando la experiencia tanto para las familias como para el equipo de Polspa.",
     reviewImage: null,
@@ -308,11 +308,11 @@ const projects: Project[] = [
     tagline: "Modernizamos su presencia digital para generar más oportunidades de negocio",
     description:
       "Prominsol es una empresa especializada en climatización, mantenimiento y soluciones térmicas en Madrid. Con una amplia experiencia en el sector, necesitaba una presencia digital capaz de transmitir la calidad de sus servicios y facilitar la captación de nuevos clientes.",
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/otros sectores/prominsol/hero.webp",
+    strategyImage: "/projects/otros sectores/prominsol/clima1.webp",
     strategyText:
       "Planteamos una estrategia digital integral para alinear la presencia online de Prominsol con la calidad de sus servicios. El objetivo era convertir su ecosistema digital en una herramienta de captación, con una web preparada para liderar una estrategia multicanal orientada al crecimiento.",
-    solutionImage: null,
+    solutionImage: "/projects/otros sectores/prominsol/clima2.webp",
     solutionText:
       "Creamos una web moderna, clara y optimizada para la conversión, capaz de reflejar la experiencia y profesionalidad de Prominsol. Junto al trabajo continuo en SEO y campañas digitales, conseguimos aumentar su visibilidad, atraer tráfico cualificado y convertir la web en un canal constante de generación de oportunidades.",
     reviewImage: null,
@@ -327,11 +327,11 @@ const projects: Project[] = [
     tagline: "Construimos la presencia digital que consolidó su liderazgo en el sector legaltech",
     description:
       "Solvify es una legaltech líder en España dedicada a transformar la forma en que las personas afrontan sus desafíos legales y financieros. A través de soluciones innovadoras, ayuda a personas y familias a superar situaciones de sobreendeudamiento y recuperar el control de su futuro financiero.",
-    heroImage: null,
-    strategyImage: null,
+    heroImage: "/projects/otros sectores/solvify/hero.webp",
+    strategyImage: "/projects/otros sectores/solvify/equipo1.webp",
     strategyText:
       "Diseñamos una estrategia digital integral con un objetivo claro: convertir la presencia online de Solvify en un reflejo de su liderazgo en el mercado. La nueva web se convirtió en el centro de la estrategia, apoyada por acciones de posicionamiento, captación y optimización continua.",
-    solutionImage: null,
+    solutionImage: "/projects/otros sectores/solvify/equipo2.webp",
     solutionText:
       "Desarrollamos una nueva plataforma digital enfocada en la conversión, capaz de transmitir confianza, simplificar procesos complejos y acompañar al usuario en cada paso. El resultado es una marca más sólida, una mejor experiencia digital y una mayor capacidad para generar oportunidades de negocio de calidad.",
     reviewImage: null,
@@ -464,13 +464,19 @@ export default async function ProyectoPage({
 
               <div className="flex items-center gap-3">
                 <div className="relative size-[80px] shrink-0 overflow-hidden bg-placeholder">
-                  {project.reviewAvatar && (
+                  {project.reviewAvatar ? (
                     <Image
                       src={project.reviewAvatar}
                       alt={project.reviewAuthor}
                       fill
                       className="object-cover"
                     />
+                  ) : (
+                    <div className="flex size-full items-center justify-center bg-[var(--color-brand-primary)]">
+                      <span className="text-background text-[32px] font-medium leading-none">
+                        {project.reviewAuthor.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
                   )}
                 </div>
                 <div className="flex flex-col gap-2 py-3 px-3">

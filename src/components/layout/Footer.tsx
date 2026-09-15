@@ -3,8 +3,16 @@
 import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 
-const legalLinks = ["Aviso Legal", "Política de Privacidad", "Política de Cookies", "Código De Conducta"];
-const socialLinks = ["Youtube", "LinkedIn", "Instagram"];
+const legalLinks = [
+  { label: "Aviso Legal", href: "/aviso-legal" },
+  { label: "Política de Privacidad", href: "/politica-de-privacidad" },
+  { label: "Política de Cookies", href: "/politica-de-cookies" },
+];
+const socialLinks = [
+  { label: "Youtube", href: "https://www.youtube.com/@itacarb" },
+  { label: "LinkedIn", href: "https://es.linkedin.com/company/itacarb" },
+  { label: "Instagram", href: "https://www.instagram.com/itaca.rb/" },
+];
 
 function FooterNewsletterForm() {
   const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
@@ -89,10 +97,10 @@ export function Footer() {
                 Consultas generales
               </p>
               <a
-                href="mailto:hola@itacarb.com"
+                href="mailto:hola@itacarb.es"
                 className="text-background text-[16px] font-medium tracking-[0.04em] hover:opacity-70 transition-opacity"
               >
-                hola@itacarb.com
+                hola@itacarb.es
               </a>
               <a
                 href="tel:+34611681539"
@@ -121,19 +129,21 @@ export function Footer() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-0 mt-16 md:mt-0">
           <nav className="flex flex-wrap gap-x-8 gap-y-3 text-foreground text-[14px] font-medium tracking-[0.035em]">
             {legalLinks.map((link) => (
-              <a key={link} href="#" className="hover:opacity-70 transition-opacity whitespace-nowrap">
-                {link}
+              <a key={link.href} href={link.href} className="hover:opacity-70 transition-opacity whitespace-nowrap">
+                {link.label}
               </a>
             ))}
           </nav>
           <div className="flex flex-wrap gap-3 sm:gap-8">
             {socialLinks.map((social) => (
               <a
-                key={social}
-                href="#"
+                key={social.href}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-foreground text-background text-[16px] font-medium tracking-[0.04em] px-6 py-3 hover:opacity-80 transition-opacity whitespace-nowrap"
               >
-                {social}
+                {social.label}
               </a>
             ))}
           </div>

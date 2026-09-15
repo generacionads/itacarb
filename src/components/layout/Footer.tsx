@@ -1,7 +1,70 @@
+"use client";
+
+import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 
 const legalLinks = ["Aviso Legal", "Política de Privacidad", "Política de Cookies", "Código De Conducta"];
 const socialLinks = ["Youtube", "LinkedIn", "Instagram"];
+
+function FooterNewsletterForm() {
+  const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
+  const [email, setEmail] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("pending");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <p className="text-foreground text-[16px] font-medium tracking-[0.04em]">
+        Apuntado. Nos vemos pronto.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 max-w-[320px] w-full">
+      <div className="flex items-end gap-0 w-full">
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email"
+          required
+          className="flex-1 bg-transparent border-b border-foreground/40 text-foreground placeholder:text-foreground/50 text-[16px] font-medium tracking-[0.04em] pb-2 outline-none focus:border-foreground transition-colors duration-200 disabled:opacity-50"
+          disabled={status === "pending"}
+        />
+        <button
+          type="submit"
+          aria-label="Suscribirse"
+          disabled={status === "pending"}
+          className="group bg-foreground text-background p-3 shrink-0 hover:opacity-80 transition-opacity disabled:opacity-50"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="btn-morph-svg">
+            <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
+      {status === "error" && (
+        <p role="alert" className="text-background text-[14px] font-medium">
+          Algo ha salido mal. Inténtalo de nuevo.
+        </p>
+      )}
+    </form>
+  );
+}
 
 export function Footer() {
   return (
@@ -16,23 +79,7 @@ export function Footer() {
             <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-none">
               Suscríbete a nuestra newsletter
             </p>
-            <div className="flex items-end gap-0 max-w-[320px] w-full">
-              <input
-                type="email"
-                placeholder="email"
-                className="flex-1 bg-transparent border-b border-foreground/40 text-foreground placeholder:text-foreground/50 text-[16px] font-medium tracking-[0.04em] pb-2 outline-none focus:border-foreground transition-colors duration-200"
-              />
-              <button
-                type="submit"
-                aria-label="Suscribirse"
-                className="group bg-foreground text-background p-3 shrink-0 hover:opacity-80 transition-opacity"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="btn-morph-svg">
-                  <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-              </button>
-            </div>
+            <FooterNewsletterForm />
           </div>
 
           {/* Derecha: consultas + dirección */}

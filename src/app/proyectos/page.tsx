@@ -189,9 +189,9 @@ function ProjectCard({ project }: { project: Project }) {
 
       <div className="flex flex-col gap-4 px-4 py-6 border-t border-brand-border">
         <div className="flex items-center gap-4">
-          <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-none transition-colors duration-200 group-hover:text-brand-accent">
+          <h2 className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-none transition-colors duration-200 group-hover:text-brand-accent">
             {project.name}
-          </p>
+          </h2>
           <div className="bg-brand-accent p-3 shrink-0 text-background">
             <svg
               width="24"

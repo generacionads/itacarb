@@ -405,6 +405,7 @@ export default async function ProyectoPage({
                 alt={project.name}
                 fill
                 priority
+                sizes="(min-width: 768px) 420px, 100vw"
                 className="object-cover"
               />
             )}
@@ -430,15 +431,16 @@ export default async function ProyectoPage({
                 src={project.strategyImage}
                 alt={`${project.name} — estrategia`}
                 fill
+                sizes="(min-width: 768px) 420px, 100vw"
                 className="object-cover"
               />
             )}
           </div>
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col gap-6 max-w-[560px] mx-auto w-full">
-              <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
+              <h2 className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Estrategia
-              </p>
+              </h2>
               <p className="text-foreground text-[16px] font-light leading-relaxed">
                 {project.strategyText}
               </p>
@@ -454,15 +456,16 @@ export default async function ProyectoPage({
                 src={project.solutionImage}
                 alt={`${project.name} — solución`}
                 fill
+                sizes="(min-width: 768px) 420px, 100vw"
                 className="object-cover"
               />
             )}
           </div>
           <div className="flex-1 flex flex-col">
             <div className="flex flex-col gap-6 max-w-[560px] mx-auto w-full">
-              <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
+              <h2 className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Solución
-              </p>
+              </h2>
               <p className="text-foreground text-[16px] font-light leading-relaxed">
                 {project.solutionText}
               </p>
@@ -474,9 +477,9 @@ export default async function ProyectoPage({
         {project.reviewQuote && (
           <div className="px-4 sm:px-16 py-16">
             <div className="flex flex-col gap-16 max-w-[560px] w-full">
-              <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
+              <h2 className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight">
                 Reseña
-              </p>
+              </h2>
 
               <div className="flex items-center gap-3">
                 <div className="relative size-[80px] shrink-0 overflow-hidden bg-placeholder">
@@ -485,6 +488,7 @@ export default async function ProyectoPage({
                       src={project.reviewAvatar}
                       alt={project.reviewAuthor}
                       fill
+                      sizes="80px"
                       className="object-cover"
                     />
                   ) : (

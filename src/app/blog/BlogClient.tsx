@@ -72,9 +72,9 @@ function ArticleCard({ article }: { article: WpArticle }) {
           </div>
         )}
 
-        <p className="text-foreground text-[22px] font-medium tracking-[-0.02em] leading-snug group-hover:text-brand-accent transition-colors duration-200 text-balance">
+        <h2 className="text-foreground text-[22px] font-medium tracking-[-0.02em] leading-snug group-hover:text-brand-accent transition-colors duration-200 text-balance">
           {article.title}
-        </p>
+        </h2>
 
         <p className="text-brand-muted text-[15px] font-light leading-relaxed line-clamp-3">
           {article.excerpt}

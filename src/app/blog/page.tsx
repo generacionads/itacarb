@@ -4,6 +4,7 @@ import { BlogClient } from "./BlogClient";
 export const metadata = {
   title: "Blog",
   description: "Estrategia de marketing, casos de éxito y tendencias del sector para empresas que quieren crecer.",
+  alternates: { canonical: "/blog" },
 };
 
 export default async function BlogPage() {

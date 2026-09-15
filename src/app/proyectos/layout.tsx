@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   },
   description:
     "Descubre los casos de éxito de Ítacarb: estrategias de marketing que han impulsado la captación, la facturación y el crecimiento de nuestros clientes.",
+  alternates: { canonical: "/proyectos" },
 };
 
 export default function ProyectosLayout({ children }: { children: React.ReactNode }) {

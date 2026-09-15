@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Contacto",
   description:
     "Habla con Ítacarb. Cuéntanos tu proyecto y te ayudamos a diseñar una estrategia de marketing con datos, creatividad y resultados medibles.",
+  alternates: { canonical: "/contacto" },
 };
 
 export default function ContactoPage() {

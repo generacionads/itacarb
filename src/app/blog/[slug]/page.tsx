@@ -29,10 +29,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticleBySlug(slug).catch(() => null);
-  if (!article) return { title: "Artículo no encontrado | Ítacarb" };
+  if (!article) return { title: "Artículo no encontrado" };
 
   return {
-    title: `${article.title} | Ítacarb Blog`,
+    title: article.title,
     description: article.excerpt,
     openGraph: article.cover
       ? {

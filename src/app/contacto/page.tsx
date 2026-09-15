@@ -1,9 +1,16 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Contact } from "@/components/sections/Contact";
 import { RevealH2 } from "@/components/ui/RevealH2";
 import { RevealWrap } from "@/components/ui/RevealWrap";
+
+export const metadata: Metadata = {
+  title: "Contacto",
+  description:
+    "Habla con Ítacarb. Cuéntanos tu proyecto y te ayudamos a diseñar una estrategia de marketing con datos, creatividad y resultados medibles.",
+};
 
 export default function ContactoPage() {
   return (

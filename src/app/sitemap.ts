@@ -25,7 +25,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   { url: BASE_URL, priority: 1, changeFrequency: "monthly" },
   { url: `${BASE_URL}/nosotros`, priority: 0.8, changeFrequency: "monthly" },
   { url: `${BASE_URL}/sectores`, priority: 0.8, changeFrequency: "monthly" },
-  { url: `${BASE_URL}/servicio`, priority: 0.8, changeFrequency: "monthly" },
+  { url: `${BASE_URL}/servicio/consultor%C3%ADa`, priority: 0.8, changeFrequency: "monthly" },
   { url: `${BASE_URL}/proyectos`, priority: 0.8, changeFrequency: "monthly" },
   ...PROJECT_SLUGS.map((slug) => ({
     url: `${BASE_URL}/proyectos/${slug}`,

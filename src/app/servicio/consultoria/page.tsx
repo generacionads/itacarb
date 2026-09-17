@@ -175,7 +175,7 @@ export default function ServicioPage() {
                       <span className="text-foreground">{s.body}</span>
                     </p>
 
-                    <div className="mt-10 max-w-[300px]">
+                    <div className="mt-10 max-w-[560px]">
                       {s.items.map((item) => (
                         <AccordionItem key={item.label} label={item.label}>
                           <p className="text-brand-muted text-[16px] font-light leading-relaxed">{item.body}</p>

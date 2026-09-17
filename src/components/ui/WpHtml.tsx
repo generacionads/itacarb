@@ -8,11 +8,11 @@ export function WpHtml({ html }: { html: string }) {
   return (
     <div
       className={cn(
-        "text-foreground text-[17px] font-light leading-[1.75]",
+        "text-foreground text-[20px] font-light leading-[1.75]",
         "[&_p]:mb-5 [&_p:last-child]:mb-0",
-        "[&_h2]:text-[26px] [&_h2]:font-medium [&_h2]:tracking-[-0.03em] [&_h2]:leading-tight [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-foreground",
-        "[&_h3]:text-[20px] [&_h3]:font-medium [&_h3]:tracking-[-0.02em] [&_h3]:leading-snug [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-foreground",
-        "[&_h4]:text-[17px] [&_h4]:font-medium [&_h4]:mt-6 [&_h4]:mb-2",
+        "[&_h2]:text-[34px] [&_h2]:font-medium [&_h2]:tracking-[-0.03em] [&_h2]:leading-tight [&_h2]:mt-12 [&_h2]:mb-5 [&_h2]:text-foreground",
+        "[&_h3]:text-[26px] [&_h3]:font-medium [&_h3]:tracking-[-0.02em] [&_h3]:leading-snug [&_h3]:mt-10 [&_h3]:mb-4 [&_h3]:text-foreground",
+        "[&_h4]:text-[22px] [&_h4]:font-medium [&_h4]:tracking-[-0.01em] [&_h4]:mt-8 [&_h4]:mb-3 [&_h4]:text-foreground",
         "[&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-5 [&_ol]:space-y-2",
         "[&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-5 [&_ul]:space-y-2",
         "[&_li]:text-foreground [&_li]:leading-relaxed",

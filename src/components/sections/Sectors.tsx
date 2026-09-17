@@ -39,7 +39,7 @@ const sectors = [
     stat: "15x",
     statLabel: "PACIENTES RECURRENTES",
     href: "/sectores#sanitarios",
-    clients: ["Clínica Morales Raya", "Dental Care BCN", "Expresa Salud"],
+    clients: ["Clínica Morales Raya", "CM Cosmética", "Dental Care BCN", "Expresa Salud"],
   },
   {
     id: "industrial",

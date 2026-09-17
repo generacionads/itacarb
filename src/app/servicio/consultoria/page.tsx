@@ -19,14 +19,20 @@ const data = [
         label: "Descubrir",
         verb: "Descubrimos",
         body: "los puntos de fricción, oportunidades ocultas y todo lo que está limitando el potencial real de tu marca.",
-        items: ["Pre-análisis", "Estudio de audiencia"],
+        items: [
+          { label: "Pre-análisis", body: "Antes de proponer nada, necesitamos entender dónde estás. Para ello, revisamos lo que has probado y los resultados que has obtenido, para partir de datos fiables. Aquí conseguiremos la foto de salida sobre la que construir todo." },
+          { label: "Estudio de audiencia", body: "Tu marca no va dirigida a todo el mundo, busca alguien concreto. Por eso definimos quién es tu cliente ideal, qué necesita, cómo decide y dónde busca. Cuanto más nítida es la persona, el mensaje va a ser mucho más preciso." },
+        ],
       },
       {
         id: "explorar",
         label: "Explorar",
         verb: "Exploramos",
-        body: "tu entorno competitivo para identificar los espacios donde tu marca puede ganar",
-        items: ["Análisis", "Benchmarking"],
+        body: "tu entorno competitivo para identificar los espacios donde tu marca puede ganar.",
+        items: [
+          { label: "Análisis", body: "Aquí vemos el terreno de juego: cuál es tu mercado, tus competidores directos, dinámicas del sector, etc. Con ello, detectamos lo que hacen los demás y los posibles errores o espacios libres para que tu marca ocupe ese lugar." },
+          { label: "Benchmarking", body: "En este punto comparamos tu presencia y la de los referentes de tu sector a nivel visibilidad, mensaje, experiencia y conversión. El resultado es un mapa con las fortalezas reales de tu marca y posibles brechas que podamos convertir en ventajas competitivas." },
+        ],
       },
     ],
   },
@@ -37,8 +43,12 @@ const data = [
         id: "proyectar",
         label: "Proyectar",
         verb: "Proyectamos",
-        body: "una estrategia coherente con tus objetivos que define qué hacer, cómo hacerlo y en qué orden",
-        items: ["Identidad y estrategia de marca", "Plan de acción por fases", "Planificación de canales"],
+        body: "una estrategia coherente con tus objetivos que define qué hacer, cómo hacerlo y en qué orden.",
+        items: [
+          { label: "Identidad y estrategia de marca", body: "Definimos lo que representa tu marca, lo que la hace distinta y la razón por la que deberían elegirte a ti en vez de a otros. Ese posicionamiento hay que traducirlo en un mensaje coherente, reconocible y que sostiene todas las decisiones de comunicación, separándonos del ruido de la competencia." },
+          { label: "Plan de acción por fases", body: "Convertimos la estrategia en una hoja de ruta. Priorizamos lo más importante, vemos las acciones que pueden esperar y el impacto esperado de cada movimiento, para avanzar con foco y sin dispersar recursos." },
+          { label: "Planificación de canales", body: "Vamos a los canales que le interesan a tu negocio. Elegimos dónde tiene sentido estar (Google, Meta, SEO, tu web...) y definimos el papel de cada canal en el recorrido del cliente, asignando objetivos y presupuesto." },
+        ],
       },
     ],
   },
@@ -49,15 +59,21 @@ const data = [
         id: "construir",
         label: "Construir",
         verb: "Construimos",
-        body: "la estrategia pieza a pieza, garantizando que cada decisión tenga impacto real en tu negocio",
-        items: ["Ejecución de canales", "Implementación y producción"],
+        body: "la estrategia pieza a pieza, garantizando que cada decisión tenga impacto real en tu negocio.",
+        items: [
+          { label: "Ejecución de canales", body: "La estrategia se pone a funcionar. Configuramos tus campañas y trabajamos en las acciones en cada canal en base a un criterio de rendimiento, cuidando que todo trabaje en la misma dirección: los objetivos de tu negocio, no métricas de vanidad." },
+          { label: "Implementación y producción", body: "Se crea todo lo que necesitamos para que la estrategia arranque: piezas creativas, landing pages y desarrollo web. Con producción propia de diseño y vídeo, garantizamos calidad, coherencia y tiempos sin depender de terceros." },
+        ],
       },
       {
         id: "evolucionar",
         label: "Evolucionar",
         verb: "Evolucionamos",
-        body: "con datos reales, construyendo una base escalable que crece con tu negocio",
-        items: ["Análitica y medición", "Seguimiento y control"],
+        body: "con datos reales, construyendo una base escalable que crece con tu negocio.",
+        items: [
+          { label: "Analítica y medición", body: "Sin medir, no se puede mejorar. Instalamos y configuramos la medición de tu negocio para convertir la actividad en conocimiento. Definimos los indicadores que de verdad importan y montamos el seguimiento para saber qué funciona, qué no y por qué." },
+          { label: "Seguimiento y control", body: "De forma continua, vamos ajustando y mejorando la estrategia. Potenciamos lo que rinde mejor y corregimos lo que no, tomando cada decisión con datos reales, buscando un crecimiento sostenible mes a mes." },
+        ],
       },
     ],
   },
@@ -161,7 +177,9 @@ export default function ServicioPage() {
 
                     <div className="mt-10 max-w-[300px]">
                       {s.items.map((item) => (
-                        <AccordionItem key={item} label={item} />
+                        <AccordionItem key={item.label} label={item.label}>
+                          <p className="text-brand-muted text-[16px] font-light leading-relaxed">{item.body}</p>
+                        </AccordionItem>
                       ))}
                     </div>
 

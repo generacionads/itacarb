@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
 import { MetricBox } from "@/components/ui/MetricBox";
+import { Link } from "@/i18n/navigation";
 import gsap from "gsap";
 
 
@@ -22,35 +24,39 @@ function LogoItem({ name }: { name: string }) {
   );
 }
 
-const sectors = [
+const sectorsMeta = [
   {
     id: "arquitectura",
-    name: "Arquitectura y Diseño",
     image: "/sectors/arquitectura.jpg",
     stat: "17%",
-    statLabel: "+ DE CAPTACIÓN DIGITAL",
     href: "/sectores#arquitectura",
     clients: ["AF Iberia", "Artquitrabe", "Milton Homes", "Paralelo Estudio"],
   },
   {
     id: "sanitario",
-    name: "Clínicas y sector salud",
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=75",
     stat: "15x",
-    statLabel: "PACIENTES RECURRENTES",
     href: "/sectores#sanitarios",
     clients: ["Clínica Morales Raya", "CM Cosmética", "Dental Care BCN", "Expresa Salud"],
   },
   {
     id: "industrial",
-    name: "Industrial",
     image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=75",
     stat: "40%",
-    statLabel: "CRECIMIENTO MEDIO",
     href: "/sectores#industrial",
     clients: ["Haromatics", "On Level Quality", "Telstar"],
   },
-];
+] as const;
+
+type Sector = {
+  id: string;
+  name: string;
+  image: string;
+  stat: string;
+  statLabel: string;
+  href: string;
+  clients: readonly string[];
+};
 
 function MetricsBorder({ stat, statLabel }: { stat: string; statLabel: string }) {
   return (
@@ -65,12 +71,12 @@ function MetricsBorder({ stat, statLabel }: { stat: string; statLabel: string })
   );
 }
 
-function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
+function SectorCard({ sector }: { sector: Sector }) {
   const [hovered, setHovered] = useState(false);
   const doubled = [...sector.clients, ...sector.clients];
 
   return (
-    <a
+    <Link
       href={sector.href}
       className="flex flex-col gap-8 group"
       onMouseEnter={() => setHovered(true)}
@@ -123,15 +129,22 @@ function SectorCard({ sector }: { sector: (typeof sectors)[0] }) {
         </div>
       </div>
       <MetricsBorder stat={sector.stat} statLabel={sector.statLabel} />
-    </a>
+    </Link>
   );
 }
 
 export function Sectors() {
+  const t = useTranslations("sectors");
   const [current, setCurrent] = useState(0);
   const [maxIndex, setMaxIndex] = useState(2);
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const sectors: Sector[] = sectorsMeta.map((meta) => ({
+    ...meta,
+    name: t(`${meta.id}.name`),
+    statLabel: t(`${meta.id}.statLabel`),
+  }));
 
   useEffect(() => {
     const update = () => setMaxIndex(window.innerWidth < 768 ? 3 : 2);
@@ -182,7 +195,7 @@ export function Sectors() {
           <RevealH2
             className="text-foreground text-4xl md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
           >
-            Sectores que conocemos bien
+            {t("heading")}
           </RevealH2>
         </div>
       </Container>
@@ -205,7 +218,7 @@ export function Sectors() {
             className="flex-none w-[80vw] md:w-[45vw]"
             style={{ transformOrigin: "left center", willChange: "transform" }}
           >
-            <a href="/sectores" className="flex flex-col gap-8 group">
+            <Link href="/sectores" className="flex flex-col gap-8 group">
               <div className="flex flex-col gap-4">
                 <p className="text-[20px] font-medium tracking-[0.04em] invisible" aria-hidden="true">
                   &nbsp;
@@ -218,10 +231,10 @@ export function Sectors() {
               </div>
               <div className="bg-brand-accent p-8 flex items-center w-fit transition-opacity group-hover:opacity-90">
                 <p className="text-background text-[32px] font-medium leading-tight tracking-[-0.04em] whitespace-nowrap">
-                  Explorar sectores →
+                  {t("exploreCta")}
                 </p>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -231,7 +244,7 @@ export function Sectors() {
           <button
             onClick={() => navigate(-1)}
             disabled={current === 0}
-            aria-label="Anterior"
+            aria-label={t("prevAria")}
             className="flex items-center justify-center w-12 h-12 border border-foreground text-foreground transition-colors disabled:opacity-30 hover:text-brand-accent-dark hover:border-brand-accent-dark"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -241,7 +254,7 @@ export function Sectors() {
           <button
             onClick={() => navigate(1)}
             disabled={current === maxIndex}
-            aria-label="Siguiente"
+            aria-label={t("nextAria")}
             className="flex items-center justify-center w-12 h-12 border border-foreground text-foreground transition-colors disabled:opacity-30 hover:text-brand-accent-dark hover:border-brand-accent-dark"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">

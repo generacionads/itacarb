@@ -1,0 +1,693 @@
+{
+  "metadata": {
+    "title": "Ítacarb — Strategic Marketing Consultancy",
+    "description": "Strategic marketing consultancy. We help brands grow through strategy, creativity and data."
+  },
+  "nav": {
+    "nosotros": "About",
+    "sectores": "Sectors",
+    "proyectos": "Projects",
+    "servicio": "Service",
+    "blog": "Blog",
+    "contacto": "Contact",
+    "homeAria": "Ítacarb — Home",
+    "openMenuAria": "Open menu",
+    "closeMenuAria": "Close menu",
+    "mobileNavAria": "Mobile navigation",
+    "menuLabel": "Menu"
+  },
+  "languageSwitcher": {
+    "label": "Change language"
+  },
+  "footer": {
+    "newsletterHeading": "Subscribe to our newsletter",
+    "newsletterSuccess": "You're in. See you soon.",
+    "newsletterError": "Something went wrong. Please try again.",
+    "emailPlaceholder": "email",
+    "subscribeAria": "Subscribe",
+    "generalInquiries": "General inquiries",
+    "whereWeAre": "Where we are",
+    "legal": {
+      "avisoLegal": "Legal Notice",
+      "privacidad": "Privacy Policy",
+      "cookies": "Cookie Policy"
+    }
+  },
+  "cookieConsent": {
+    "aria": "Cookie notice",
+    "message": "We use our own and third-party cookies to analyze website usage and improve your experience. You can accept them, reject them, or learn more in our <link>cookie policy</link>.",
+    "reject": "Reject",
+    "accept": "Accept"
+  },
+  "hero": {
+    "videoAria": "Ítacarb introductory video",
+    "scrollAria": "Go to content"
+  },
+  "intro": {
+    "heading": "A strategic consultancy connecting brand, creativity and growth.",
+    "paragraph1": "We drive growth for established companies through strategies aligned with their goals — building brand awareness, attracting new opportunities and increasing revenue.",
+    "paragraph2": "Our projects span different sectors and business challenges, but they all share the same goal: real growth. Discover how we've helped companies strengthen their positioning, capture new opportunities and increase their market impact.",
+    "cta": "Get in touch"
+  },
+  "sectors": {
+    "heading": "Sectors we know well",
+    "exploreCta": "Explore sectors →",
+    "prevAria": "Previous",
+    "nextAria": "Next",
+    "arquitectura": {
+      "name": "Architecture & Design",
+      "statLabel": "MORE DIGITAL LEAD GEN"
+    },
+    "sanitario": {
+      "name": "Clinics & Healthcare",
+      "statLabel": "RETURNING PATIENTS"
+    },
+    "industrial": {
+      "name": "Industrial",
+      "statLabel": "AVERAGE GROWTH"
+    }
+  },
+  "services": {
+    "heading": "Every brand has its own Ithaca. We navigate it with you.",
+    "row1": {
+      "title": "We understand",
+      "body": "Every company starts from a different place. We dive into your business, your sector and your competitive landscape to pinpoint exactly what can drive your growth."
+    },
+    "row2": {
+      "title": "We plan",
+      "body": "We turn analysis into decisions. We develop a strategy aligned with your goals that clearly defines what to do, how to do it and in what order."
+    },
+    "row3": {
+      "title": "We deliver",
+      "body": "The strategy comes to life. We implement, measure and evolve to make sure every action contributes to your company's real growth."
+    },
+    "cta": "Learn more about our service"
+  },
+  "projects": {
+    "heading": "Projects that leave a mark",
+    "paragraph": "Every company has its own challenges and goals. If you're looking for a project to relate to, explore other success stories and see how we've helped companies across different sectors drive growth.",
+    "cta": "Explore more Projects"
+  },
+  "contact": {
+    "heading": "Every journey starts with a conversation. Write to us.",
+    "namePlaceholder": "Name",
+    "nameAria": "Name",
+    "mailPlaceholder": "Mail",
+    "mailAria": "Email address",
+    "phonePlaceholder": "Phone",
+    "phoneAria": "Phone",
+    "companyPlaceholder": "Company",
+    "companyAria": "Company",
+    "messagePlaceholder": "Write your message here",
+    "messageAria": "Message",
+    "errorMessage": "Something went wrong. Please try again.",
+    "sendLabel": "Send",
+    "sendingLabel": "Sending…",
+    "successLine1": "Thank you. We'll be in touch",
+    "successLine2": "with you shortly."
+  },
+  "contactoPage": {
+    "title": "Contact",
+    "metaTitle": "Contact",
+    "metaDescription": "Talk to Ítacarb. Tell us about your project and we'll help you design a marketing strategy with data, creativity and measurable results.",
+    "heading": "Let's talk.",
+    "imageAlt": "The Ítacarb team"
+  },
+  "accordion": {
+    "placeholderContent": "Content for {label}."
+  },
+  "sectoresPage": {
+    "metaTitle": "Sectors",
+    "metaDescription": "We know your sector. Ítacarb designs specialized marketing strategies for clinics and healthcare, architecture and design, industry, and other sectors.",
+    "sidebarAria": "Sectors",
+    "nav": {
+      "sanitarios": "Clinics & Healthcare",
+      "arquitectura": "Architecture & Design",
+      "industrial": "Industrial",
+      "otros": "Other sectors"
+    },
+    "hero": {
+      "heading": "We know your sector. That changes everything.",
+      "imageAlt": "Sectors"
+    },
+    "sanitarios": {
+      "heading": "Clinics and businesses in the healthcare world",
+      "imageAlt": "Clinics & Healthcare",
+      "metric1Label": "+ Increase in Patients",
+      "metric2Label": "In Cost Reduction",
+      "paragraph": "The private healthcare sector is going through a period of strong expansion and, with it, growing competition. Clinics, specialized centers and healthcare providers need to stand out without losing the trust patients place in them.",
+      "opportunitiesHeading": "What opportunities have we identified in the healthcare sector?",
+      "opportunities": [
+        "More volume isn't always better business. We help you attract the type of patient and the services that truly matter to you.",
+        "Automating customer management systems to cut costs and speed up processes.",
+        "It's not about doing more. It's about making sure every piece has a purpose and fits with the rest."
+      ],
+      "faqHeading": "Frequently asked questions we've received from healthcare sector brands",
+      "faqs": [
+        "How do you differentiate your clinic if you offer the same services as the competition?",
+        "Which channels actually work in healthcare?",
+        "How do we attract new patients without relying solely on word of mouth?",
+        "Do you only work with large groups, or also with independent clinics?",
+        "How do we carry the trust we build in the consultation room over to our digital presence?"
+      ]
+    },
+    "arquitectura": {
+      "heading": "Architecture firms and interior design studios",
+      "imageAlt": "Architecture & Design",
+      "metric1Label": "+ Business Volume",
+      "metric2Label": "In Cost Reduction",
+      "paragraph": "Architecture and design are disciplines where quality of work is a necessary, but not sufficient, condition. Growing demands visibility, positioning and a brand narrative that reaches beyond the usual circle of contacts.",
+      "opportunitiesHeading": "What opportunities have we identified in the construction sector?",
+      "opportunities": [
+        "Not accepting just any project. Choosing which typologies to work with, which locations to operate in and what minimum budgets to set. Strategy turns dependency into criteria.",
+        "When a studio is recognized for what it does and how it does it, price stops being the central argument. Reputation displaces rate as the deciding factor.",
+        "A well-executed brand strategy lets you go beyond the local market and attract projects from other cities or markets without opening a new office."
+      ],
+      "faqHeading": "Frequently asked questions we've received from construction sector brands",
+      "faqs": [
+        "How do we reach higher-profile developers or private clients?",
+        "How do we filter out from the start the clients who aren't a fit for us?",
+        "Does it make sense to open new service lines, or focus on what we do best?",
+        "How do we manage the brand when the studio depends too heavily on the founding partner?"
+      ]
+    },
+    "industrial": {
+      "heading": "Industrial and B2B companies",
+      "imageAlt": "Industrial",
+      "metric1Label": "Average Growth",
+      "metric2Label": "Return per € Invested",
+      "paragraph": "In the industrial and B2B world, the value proposition exists but is rarely communicated well. Solid companies, with years behind them, that still rely on the same old channels to win new business.",
+      "opportunitiesHeading": "What opportunities have we identified in the industrial sector?",
+      "opportunities": [
+        "New business and geographic expansion opportunities through digital actions at a lower cost.",
+        "Not relying on referrals.",
+        "Automation systems to manage contacts."
+      ],
+      "faqHeading": "Frequently asked questions we've received from industrial sector brands",
+      "faqs": [
+        "Does it make sense to invest in brand when our clients choose us based on price or relationships?",
+        "How do we communicate complex technical proposals clearly and compellingly?",
+        "How do we open new markets without relying on the contact network we already have?",
+        "How do we reach decision-makers inside large companies when we don't know anyone there?",
+        "What's the point of having a digital presence if our clients don't look for us online?"
+      ]
+    },
+    "otros": {
+      "heading": "Other sectors",
+      "paragraph": "Don't see your sector here? We work with companies across very different fields. What matters to us isn't the category, but the ambition to grow with strategy. If you have a brand or business challenge, chances are we can help.",
+      "cta": "Let's talk about your project"
+    }
+  },
+  "servicioConsultoriaPage": {
+    "metaTitle": "Strategic Digital Marketing Consultancy | Ítaca RB",
+    "metaDescription": "Digital marketing consultancy that turns your strategy into real results. Diagnosis, plan and execution tailored to your business. Write to us.",
+    "sidebarAria": "Services",
+    "ctaHeading": "Let's define your project together",
+    "ctaLink": "Contact",
+    "categories": {
+      "listen": "Before we act, we listen and analyze",
+      "plan": "We turn analysis into a clear roadmap",
+      "build": "The strategy comes to life in action"
+    },
+    "subsections": {
+      "descubrir": {
+        "label": "Discover",
+        "verb": "We discover",
+        "body": "the friction points, hidden opportunities and everything limiting your brand's real potential.",
+        "items": [
+          { "label": "Pre-analysis", "body": "Before proposing anything, we need to understand where you stand. So we review what you've already tried and the results you've gotten, to start from reliable data. This gives us the baseline snapshot to build everything on." },
+          { "label": "Audience research", "body": "Your brand isn't for everyone — it's looking for someone specific. That's why we define who your ideal customer is, what they need, how they decide and where they look. The sharper the persona, the more precise the message." }
+        ]
+      },
+      "explorar": {
+        "label": "Explore",
+        "verb": "We explore",
+        "body": "your competitive landscape to identify the spaces where your brand can win.",
+        "items": [
+          { "label": "Analysis", "body": "Here we look at the playing field: your market, your direct competitors, sector dynamics, and more. This lets us spot what others are doing and the gaps or mistakes your brand can step into." },
+          { "label": "Benchmarking", "body": "At this point we compare your presence against your sector's leading references in visibility, messaging, experience and conversion. The result is a map of your brand's real strengths and the gaps we can turn into competitive advantages." }
+        ]
+      },
+      "proyectar": {
+        "label": "Plan",
+        "verb": "We plan",
+        "body": "a strategy aligned with your goals that defines what to do, how to do it and in what order.",
+        "items": [
+          { "label": "Brand identity & strategy", "body": "We define what your brand stands for, what sets it apart, and why people should choose you over others. That positioning has to translate into a coherent, recognizable message that underpins every communication decision, setting you apart from the competitive noise." },
+          { "label": "Phased action plan", "body": "We turn the strategy into a roadmap. We prioritize what matters most, identify what can wait, and estimate the expected impact of each move — so we move forward with focus and without spreading resources thin." },
+          { "label": "Channel planning", "body": "We go to the channels that matter for your business. We choose where it makes sense to be (Google, Meta, SEO, your website...) and define each channel's role across the customer journey, assigning goals and budget." }
+        ]
+      },
+      "construir": {
+        "label": "Build",
+        "verb": "We build",
+        "body": "the strategy piece by piece, making sure every decision has a real impact on your business.",
+        "items": [
+          { "label": "Channel execution", "body": "The strategy gets to work. We set up your campaigns and run the actions on each channel based on performance criteria, making sure everything pulls in the same direction: your business goals, not vanity metrics." },
+          { "label": "Implementation & production", "body": "We create everything the strategy needs to launch: creative assets, landing pages and web development. With our own in-house design and video production, we guarantee quality, consistency and timing without relying on third parties." }
+        ]
+      },
+      "evolucionar": {
+        "label": "Evolve",
+        "verb": "We evolve",
+        "body": "with real data, building a scalable foundation that grows with your business.",
+        "items": [
+          { "label": "Analytics & measurement", "body": "Without measurement, there's no improvement. We set up and configure your business's measurement to turn activity into knowledge. We define the metrics that truly matter and set up tracking to know what's working, what isn't, and why." },
+          { "label": "Monitoring & control", "body": "We continuously adjust and improve the strategy. We double down on what performs best and fix what doesn't, making every decision with real data, aiming for sustainable growth month after month." }
+        ]
+      }
+    }
+  },
+  "servicioPpcPage": {
+    "metaTitle": "White-Label PPC for Agencies | Ítacarb",
+    "metaDescription": "We plan, launch and optimize Google, Meta, TikTok and LinkedIn Ads for your agency's clients — under your brand, without hiring a media buyer.",
+    "sidebarAria": "PPC Service",
+    "hero": {
+      "heading": "Scale your agency's paid advertising without hiring a media buyer",
+      "body": "We plan, launch and optimize Google, Meta, TikTok and LinkedIn Ads campaigns for your agency's clients — under your brand, in your dashboards, in reports that never mention our name.",
+      "ctaPartner": "Become a partner agency",
+      "ctaHow": "How it works",
+      "platformsRunLabel": "Campaigns run on"
+    },
+    "platforms": [
+      { "name": "Google Ads", "desc": "Search, Shopping, Performance Max, Display" },
+      { "name": "Meta Ads", "desc": "Facebook and Instagram, full-funnel" },
+      { "name": "TikTok Ads", "desc": "Spark Ads, conversion and app campaigns" },
+      { "name": "LinkedIn Ads", "desc": "B2B lead gen and ABM campaigns" }
+    ],
+    "steps": [
+      { "n": "01", "title": "You bring us the client", "body": "Send us the brief, budget and goals. You don't need to hand over your whole roster — just the accounts you'd rather hand off." },
+      { "n": "02", "title": "We set everything up under your brand", "body": "Every account, dashboard and report is configured with your agency's name and colors. Your client never sees ours." },
+      { "n": "03", "title": "We manage and optimize", "body": "A dedicated strategist manages campaigns daily across Google, Meta, TikTok and LinkedIn — with the same cadence as an in-house hire." },
+      { "n": "04", "title": "You stay the point of contact", "body": "We send you the reporting and the key talking points. You deliver the update. We stay invisible." }
+    ],
+    "features": [
+      { "title": "Your focus, on your business", "body": "You hand off media execution to a partner who already knows the terrain, so your team spends its time growing the agency while you rest easy knowing this part is handled." },
+      { "title": "White label, always", "body": "Dashboards, reports and emails carry your agency's name and brand, not ours." },
+      { "title": "One dedicated strategist", "body": "Your accounts get a strategist with a name and a face, not a rotating pod shared across dozens of agencies." },
+      { "title": "Transparent partner pricing", "body": "A flat rate per managed account. No revenue share, no surprise line items on the invoice." },
+      { "title": "Live in under two weeks", "body": "A structured onboarding gets most accounts up and running in 5–10 business days." },
+      { "title": "Confidentiality by default", "body": "An NDA on every collaboration. Your client roster and our agreement stay between us." }
+    ],
+    "stats": [
+      { "value": "+164%", "label": "increase in qualified leads", "meta": "E-commerce client · Google Ads · 90 days" },
+      { "value": "3.8x", "label": "return on ad spend", "meta": "DTC beauty brand · Meta Ads · 60 days" },
+      { "value": "11 days", "label": "to the first qualified lead", "meta": "B2B SaaS client · LinkedIn Ads · Since launch" }
+    ],
+    "pricingPlans": [
+      {
+        "title": "Monthly management, no client communication or reporting",
+        "tiers": [
+          { "range": "Spend under €1,000", "price": "€150/month" },
+          { "range": "Spend between €1,000 and €3,000", "price": "€250/month" }
+        ]
+      },
+      {
+        "title": "Monthly management with communication and reporting",
+        "tiers": [
+          { "range": "Spend under €1,000", "price": "€200/month" },
+          { "range": "Spend between €1,000 and €3,000", "price": "€300/month" }
+        ]
+      }
+    ],
+    "faqs": [
+      { "q": "Will my client ever find out you're involved?", "a": "No. Every ad account, dashboard, report and email is set up under your agency's name. We never contact your client directly, and nothing we send carries our brand." },
+      { "q": "How does pricing work?", "a": "You keep your own pricing and margin with the client. We charge a flat partner rate per managed account, based on the ad spend tier — no revenue share, no surprise line items." },
+      { "q": "Which platforms do you manage?", "a": "Google Ads (Search, Shopping, Performance Max, Display), Meta Ads (Facebook and Instagram), TikTok Ads and LinkedIn Ads. If a client needs several, a single strategist coordinates all of them." },
+      { "q": "What's the minimum commitment?", "a": "No long-term lock-in. We ask for a 60-day minimum per account so campaigns can move past the learning phase before we evaluate results." },
+      { "q": "How fast can you onboard a new account?", "a": "Most accounts launch within 5–10 business days of receiving access, brand assets and a brief. Expedited onboarding is available for time-sensitive launches." },
+      { "q": "Who owns the ad accounts and the data?", "a": "You and your client do. Accounts are created under your client's business, we're added as a partner user, and you always keep full access and export rights." }
+    ],
+    "categories": {
+      "clientSeesYou": "Your client only ever sees you",
+      "builtToStayBehind": "Built to stay behind the curtain",
+      "startScaling": "Start scaling without risking your client relationship"
+    },
+    "subsections": {
+      "comoFunciona": { "label": "How it works", "verb": "We plug in", "body": "as the media buying team behind the curtain — four steps from brief to launch." },
+      "queGestionamos": { "label": "What we manage", "verb": "We coordinate", "body": "a single strategist across every relevant platform — hand us one channel or the full media mix." },
+      "porQue": { "label": "Why partner with us", "verb": "We design", "body": "the collaboration so the relationship with your client stays exactly where it is: with you." },
+      "precios": { "label": "Pricing", "verb": "We bill", "body": "a fixed monthly rate per managed account, based on spend level and whether you need direct communication and reporting." },
+      "resultados": { "label": "Results", "verb": "We measure", "body": "every collaboration with real numbers from partner accounts." },
+      "partners": { "label": "Partner agencies", "verb": "Already trusted", "body": "by these agencies, who run white-label PPC with our team." },
+      "faq": { "label": "FAQ", "verb": "We answer", "body": "the questions agencies actually ask before getting started." }
+    }
+  },
+  "contactPpc": {
+    "heading": "Every journey starts with a conversation. Write to us.",
+    "namePlaceholder": "Name",
+    "nameAria": "Name",
+    "mailPlaceholder": "Mail",
+    "mailAria": "Email address",
+    "phonePlaceholder": "Phone",
+    "phoneAria": "Phone",
+    "agencyPlaceholder": "Your agency",
+    "agencyAria": "Your agency",
+    "modalidadPlaceholder": "Pricing plan",
+    "modalidadOptions": ["No communication or reporting", "With communication and reporting"],
+    "messagePlaceholder": "Write your message here",
+    "messageAria": "Message",
+    "errorMessage": "Something went wrong. Please try again.",
+    "sendLabel": "Send",
+    "sendingLabel": "Sending…",
+    "successLine1": "Thank you. We'll be in touch",
+    "successLine2": "with you shortly."
+  },
+  "proyectosPage": {
+    "metaTitle": "Projects",
+    "metaDescription": "Discover Ítacarb's success stories: marketing strategies that have driven lead generation, revenue and growth for our clients.",
+    "filterAria": "Filter by sector",
+    "sectorsNav": {
+      "sanitarios": "Clinics & Healthcare",
+      "arquitectura": "Architecture & Design",
+      "industrial": "Industrial",
+      "otros": "Other sectors"
+    },
+    "heading": "Our success stories",
+    "ctaHeading": "Let's define your project together",
+    "ctaLink": "Contact",
+    "taglines": {
+      "morales-raya": "Building a leading dental clinic through strategy and digital presence.",
+      "paralelo-estudio": "Positioning an architecture studio with its own identity and national reach.",
+      "on-level-quality": "Opening new B2B markets for an industrial company through digital presence.",
+      "expresa-salud": "From digital invisibility to scaling qualified lead generation in mental health.",
+      "cm-cosmetica": "From an invisible new brand to an online dermocosmetics reference in under a year.",
+      "af-iberia": "From Latin American prestige to building a digital presence in the Spanish market.",
+      "artquitrabe": "Driving growth for a new renovation brand in a highly competitive market.",
+      "haromatics": "Scents that sell: the Google Ads strategy that drove Haromatics' sales through the roof.",
+      "telstar": "Elite engineering, quality leads: the digital strategy that connects Telstar with the world.",
+      "cbc-collection": "From zero to €50k in revenue: jewelry with its own identity in three months.",
+      "polspa": "We built the digital platform to drive their international growth.",
+      "prominsol": "We modernized their digital presence to generate more business opportunities.",
+      "solvify": "We built the digital presence that cemented their leadership in legaltech.",
+      "milton-home": "109 real estate leads in 30 days at €3 per lead. The trial month that changed everything."
+    }
+  },
+  "proyectoDetailPage": {
+    "notFoundTitle": "Project not found",
+    "strategyHeading": "Strategy",
+    "solutionHeading": "Solution",
+    "reviewHeading": "Review",
+    "strategyImageAltSuffix": "strategy",
+    "solutionImageAltSuffix": "solution",
+    "projects": {
+      "clinica-morales-raya": {
+        "tagline": "From digital invisibility to scaling qualified patient acquisition",
+        "description": "Clínica Dr. Morales Raya is a medical center specializing in aesthetic medicine and advanced treatments. Its main challenge was that its clinical excellence wasn't reflected in its digital presence, severely limiting its ability to reach new patients.",
+        "statLabel": "increase in qualified visibility after 4 months",
+        "strategyText": "We set up precise measurement of the digital ecosystem, ensuring every action was traceable so campaigns could be optimized. On top of this solid analytical foundation, we drove reach generation to exponentially increase visibility for the services. Finally, all of this outreach effort was channeled into qualified acquisition, attracting users with a genuine intent to start therapy and securing new patients.",
+        "solutionText": "Starting from an initial scenario marked by inefficient processes and zero digital positioning, we completely restructured their ecosystem. Our approach projected the true value of their brand directly to the right audience. As a result, we turned a stagnant operational setup into an optimized acquisition engine, driving sustained commercial growth and cementing their authority in the mental health sector.",
+        "reviewRole": "Google review · 5/5",
+        "reviewQuote": "A serious, committed and responsible company. Always attentive to what the client needs. Very happy with their services. 100% recommended"
+      },
+      "cm-cosmetica": {
+        "tagline": "From an invisible new brand to an online dermocosmetics reference in under a year",
+        "description": "CM Cosmética Dermatológica is a brand specializing in dermatologically-backed skincare products, focused on the online channel. With a catalog built on clinical efficacy and consumer trust, the brand wanted to scale its digital presence and turn its ad spend into a real, measurable growth engine — both for acquiring new customers and retaining its existing base.",
+        "statLabel": "return on digital marketing ad spend",
+        "strategyText": "We approached the project as a full brand launch. Before activating any acquisition channel, we defined CM Cosmética's positioning, tone of voice and visual narrative. From there, we built a content strategy combining in-house creative production with SEO actions to generate sustainable organic visibility. Only once the brand had solidity and coherence did we activate paid advertising, making sure every euro spent communicated something credible and distinctive.",
+        "solutionText": "We built CM Cosmética's digital presence in a staged, coherent way: first the content foundation and organic positioning to gain search visibility, then paid activation on Google and Meta as an acceleration lever. Every action was aimed at reinforcing brand perception as much as generating sales, treating both goals as inseparable. The result was a brand that, from launch, competed head-to-head with established sector leaders and multiplied its ad spend twelvefold.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "expresa-salud": {
+        "tagline": "From digital invisibility to scaling qualified acquisition in mental health",
+        "description": "Expresa Salud Emocional is a psychology center focused on delivering high-quality therapy and emotional support. However, its main challenge was that its medical excellence wasn't reflected in its digital ecosystem, severely limiting its ability to reach new patients.",
+        "statLabel": "increase in qualified visibility in 4 months",
+        "strategyText": "We set up precise measurement of the digital ecosystem, ensuring every action was traceable so campaigns could be optimized. On top of this solid analytical foundation, we drove reach generation to exponentially increase visibility for the services. Finally, all of this outreach effort was channeled into qualified acquisition, attracting users with a genuine intent to start therapy and securing new patients.",
+        "solutionText": "Starting from an initial scenario marked by inefficient processes and zero digital positioning, we completely restructured their ecosystem. Our approach projected the true value of their brand directly to the right audience. As a result, we turned a stagnant operational setup into an optimized acquisition engine, driving sustained commercial growth and cementing their authority in the mental health sector.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "paralelo-estudio": {
+        "tagline": "We built the brand that let them choose their projects, not just accept them.",
+        "description": "Paralelo Estudio is a Madrid-based corporate interior design studio specializing in turning brands into physical experiences: high-end restaurants, offices and retail spaces.",
+        "statLabel": "Qualified contacts generated over these years",
+        "stat2Label": "Cost per opportunity",
+        "strategyText": "We've worked as their strategic partner for years, with annual planning that grows alongside the studio. The focus from day one: build a digital brand that matches the level of their physical projects, adding new channels every year with consistency and a long-term view.",
+        "solutionText": "The result is a digital presence that today reflects their real level: better Google positioning, more qualified traffic, a brand image perceived as genuinely premium and, above all, more inquiries from clients with high-value projects. Five years on, we're still scaling.",
+        "reviewRole": "Founding Partner, Paralelo Estudio",
+        "reviewQuote": "We've been working with Ítacarb for five years and the difference is clear: we used to wait for projects to come to us, now we choose them. They understood our work from day one and translated it into a digital presence that genuinely reflects who we are."
+      },
+      "af-iberia": {
+        "tagline": "From Latin American prestige to building digital presence in the Spanish market",
+        "description": "AF Iberia is the brand under which Ayassa Fombella — an Argentine architecture firm with over 40 years of history — landed in Spain in 2025. Despite its strong international track record, its entry into the local market lacked the digital presence needed to build trust and win clients in a completely new environment.",
+        "statLabel": "digital identity tailored to the Spanish market",
+        "strategyText": "The challenge was carrying the authority and credentials of a firm well established in Latin America into a market that didn't know it. We designed a digitalization strategy aimed at validating their value proposition for the Spanish audience, clearly differentiating their two client profiles and leveraging their international portfolio as a trust signal.",
+        "solutionText": "We developed a strategic one-page site that acts as a digital introduction to the Spanish market. The site precisely communicates services aimed at individuals and businesses on one side, and developers and studios on the other, backing the brand's credibility with a portfolio of reference projects for clients like Meta, BBVA and PwC. A simple, professional digital presence aligned with the commercial goals of their expansion into Spain.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "artquitrabe": {
+        "tagline": "Driving growth for a new renovation brand in a highly competitive market",
+        "description": "Artquitrabe was born with a clear vision: to design, create and inspire through full renovations of homes and commercial spaces in Madrid. Like many early-stage companies, the challenge wasn't just delivering a great service — it was gaining visibility, building trust and competing against established players in the sector.",
+        "statLabel": "clients generated in under 6 months",
+        "stat2Label": "visits in the first 3 months",
+        "strategyText": "Artquitrabe came to us in an early stage, without a solid digital foundation and with a very tight budget. The short-term goal was clear: land quality leads as fast as possible in a sector with a high average ticket and fierce competition. We developed a progressive strategy built on two pillars: immediate acquisition and long-term brand building.",
+        "solutionText": "We built a digital presence designed to build trust and turn traffic into real business opportunities. From the communication structure to the acquisition strategy, every action was designed to maximize return on investment and accelerate the brand's growth from its earliest stages. The strategy positioned Artquitrabe in front of clients looking for higher-value full renovation projects.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "milton-home": {
+        "tagline": "One month to prove the buyer was already out there — they just had to be found",
+        "description": "Milton Homes is a new-build real estate developer in Cantabria specializing in exclusive seafront homes: apartments, single-family houses and garages in unique locations like Suances and Somo. They came to us with a clear proposal: test a single month before committing to a long-term strategy.",
+        "statLabel": "leads in 30 days",
+        "stat2Label": "cost per conversion",
+        "strategyText": "We launched Meta Ads and Google Ads campaigns in parallel, with segmentation and creative tailored to each product. The homes required a buyer profile with real investment capacity and a long decision process. The garages needed higher volume and a shorter cycle. Two different logics, one acquisition structure.",
+        "solutionText": "The result spoke for itself: 45 leads for homes and 67 for garages in the first month, at an average cost of €3 per conversion across both channels. A figure with no precedent in the real estate sector. The trial month ended. The relationship didn't.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "on-level-quality": {
+        "tagline": "Positioning an industrial company as a quality reference in its sector",
+        "description": "On Level Quality is a company specializing in industrial quality control and metrology. Despite its strong technical capability, its communication didn't convey the reliability and precision that define its services, making it harder to win large accounts.",
+        "statLabel": "increase in qualified quote requests",
+        "strategyText": "We redefined the brand positioning to reflect the technical excellence of their services and built communication that built trust with B2B buying profiles. The content strategy and reinforced digital presence made it possible to reach purchasing decision-makers at large industrial companies.",
+        "solutionText": "Starting from technically sound but unpersuasive communication, we turned their digital presence into a commercial asset. We aligned the brand message with the real needs of their target clients and developed acquisition channels that connected directly with industrial decision-makers, cementing their reputation as a go-to provider in the sector.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "haromatics": {
+        "tagline": "Scents that sell: the Google Ads strategy that drove Haromatics' sales through the roof",
+        "description": "Haromatics is a leading manufacturer of essences and essential oils, known for its innovation capacity and the purity of its raw materials. Its main challenge was that this technical excellence and large-scale production capacity weren't reflected in its digital ecosystem, severely limiting its visibility for attracting new distributors, brands and industrial clients.",
+        "statLabel": "increase in qualified leads in 3 months",
+        "stat2Label": "reduction in cost per lead",
+        "strategyText": "We set up precise measurement of their digital ecosystem, ensuring every action was traceable so Google Ads campaigns could be optimized. On top of this solid analytical foundation, we drove reach generation to exponentially increase visibility for their catalog of essences and essential oils. Finally, all of this outreach effort was channeled into qualified acquisition, attracting brands and distributors with genuine buying intent and securing new commercial clients for the factory.",
+        "solutionText": "Starting from an initial scenario marked by inefficient processes and zero digital positioning, we completely restructured their ecosystem. Our approach projected the true value of their brand and product quality directly to the right audience. As a result, we turned a stagnant digital setup into an optimized acquisition engine for the factory, driving sustained commercial growth and cementing their authority in the essences and essential oils manufacturing sector.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "tecnivalles": {
+        "tagline": "Leaders in accessibility, leaders on Google: the digital strategy that multiplies Tecnivalles' leads",
+        "description": "Tecnivalles is a leading manufacturer and installer of home elevators, vertical lifts and stairlifts, known for its technical strength and commitment to accessibility. Its long-standing challenge was that this excellence in engineering and installation wasn't carrying enough weight in its digital ecosystem, limiting the volume of leads and quotes its sales team could win directly in the market.",
+        "statLabel": "return on ad spend (ROAS)",
+        "strategyText": "We set up precise measurement of their digital ecosystem, ensuring every action was traceable so Google Ads campaigns could be optimized. On top of this solid analytical foundation, we drove a strategy aimed at capturing high market demand, exponentially increasing visibility for their home elevator, lift and stairlift solutions. Finally, all of this effort was channeled into a high-volume acquisition model, driving mass acquisition of individuals and professionals with a real installation need.",
+        "solutionText": "After completely redesigning and restructuring their web ecosystem to maximize conversion, we turned their online presence into a highly competitive channel. Our strategic focus on Google Ads projected the technical value of their solutions directly to people looking to improve accessibility in their properties. As a result, we turned their digital environment into a mass acquisition engine, driving an unprecedented volume of quote requests and cementing Tecnivalles as the undisputed reference in the elevator and home lift sector.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "telstar": {
+        "tagline": "Elite engineering, quality leads: the digital strategy that connects Telstar with the world",
+        "description": "Telstar is a leading company in GMP engineering, construction and integrated process equipment for the life sciences industries, with an active presence in more than 29 countries. Its main challenge was that this globally established technical authority didn't translate into efficient digital acquisition of qualified leads, limiting its sales team's performance in key markets.",
+        "statLabel": "more qualified leads",
+        "strategyText": "We started from an ad account with high spend and virtually no return, with no analytical structure or real result tracking. The first step was cleaning up and rebuilding the LinkedIn Ads and Google Ads campaign ecosystem from scratch, setting up precise measurement. On this solid foundation, we designed an acquisition strategy adapted to the complexity and long sales cycle typical of the GMP engineering sector, launching campaigns segmented by market and client profile across multiple countries.",
+        "solutionText": "Starting from a poorly structured ad account with inefficient spend, we completely restructured Telstar's LinkedIn Ads and Google Ads campaigns across multiple international markets. Our approach aligned every campaign with the real decision-maker profile in the life sciences sector, segmenting by country, industry and professional role. As a result, we turned an ad spend with no return into a qualified acquisition engine that sustainably generates real commercial opportunities for Telstar's sales teams at a global scale.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "cbc-collection": {
+        "tagline": "From zero to €50k in revenue: jewelry with its own identity in three months",
+        "description": "Carmen Ballesta Collection is a jewelry store offering unique pieces with their own identity. Its themed collections are built on stories and timeless values meant to accompany customers in everyday life, standing out through the meaning behind each piece.",
+        "statLabel": "in revenue in the first 3 months",
+        "strategyText": "The strategy was to build a brand from scratch with a strong, coherent visual identity. We set out to stand apart in a saturated online jewelry market through themed collections tied to mythology and symbolism. We defined a positioning built on pieces with a story — not just accessories, but symbols of timeless values. Social media presence was prioritized as the key channel for connecting with an audience looking for meaning in what they buy.",
+        "solutionText": "We built a Shopify e-commerce store with custom design reflecting the brand's essence. We created a distinctive visual identity: logo, color palette and coherent product photography. We implemented an intuitive site architecture with themed collections, a newsletter for retention and an Instagram content strategy. Every element was designed to convey brand values and smooth the customer journey toward conversion.",
+        "reviewRole": "Founder, CBC Collection",
+        "reviewQuote": "Great professionals, very attentive to your needs, they make everything really easy."
+      },
+      "polspa": {
+        "tagline": "We built the digital platform to drive their international growth",
+        "description": "Polspa is a company specializing in organizing sports trips between Poland and Spain, focused on international tournaments for young athletes. Their challenge was delivering a digital experience that matched the quality of their events, simplifying both participant acquisition and trip management.",
+        "statLabel": "languages on a single platform",
+        "strategyText": "We designed a digital ecosystem built to support families and organizers throughout the whole process. The new site became the hub of a strategy that unifies acquisition, communication and participant management, offering a smooth experience in both languages.",
+        "solutionText": "We developed a full platform on Webflow, available in Polish and Spanish, optimized to present every tournament and simplify participant registration. We also implemented an automation system that centralizes email marketing and simplifies sending and managing minors' documentation, reducing administrative load and improving the experience for both families and the Polspa team.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "prominsol": {
+        "tagline": "We modernized their digital presence to generate more business opportunities",
+        "description": "Prominsol is a company specializing in HVAC, maintenance and thermal solutions in Madrid. With extensive experience in the sector, they needed a digital presence capable of conveying the quality of their services and easing the acquisition of new clients.",
+        "strategyText": "We put together a comprehensive digital strategy to align Prominsol's online presence with the quality of their services. The goal was to turn their digital ecosystem into an acquisition tool, with a website ready to lead a growth-oriented multichannel strategy.",
+        "solutionText": "We created a modern, clear, conversion-optimized website capable of reflecting Prominsol's experience and professionalism. Together with ongoing SEO work and digital campaigns, we increased their visibility, attracted qualified traffic and turned the website into a steady channel for generating opportunities.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      },
+      "solvify": {
+        "tagline": "We built the digital presence that cemented their leadership in legaltech",
+        "description": "Solvify is a leading legaltech company in Spain dedicated to transforming the way people face their legal and financial challenges. Through innovative solutions, it helps individuals and families overcome over-indebtedness and regain control of their financial future.",
+        "strategyText": "We designed a comprehensive digital strategy with a clear goal: turn Solvify's online presence into a reflection of its market leadership. The new website became the center of the strategy, backed by positioning, acquisition and continuous optimization efforts.",
+        "solutionText": "We developed a new conversion-focused digital platform capable of conveying trust, simplifying complex processes and guiding users through every step. The result is a stronger brand, a better digital experience and a greater ability to generate quality business opportunities.",
+        "reviewRole": "",
+        "reviewQuote": ""
+      }
+    }
+  },
+  "avisoLegalPage": {
+    "metaTitle": "Legal Notice",
+    "metaDescription": "Terms of access and use of the Ítacarb website, identification of the site owner and liability regime.",
+    "h1": "Legal Notice",
+    "intro": "This Legal Notice governs access to and use of the website <site>https://itacarb.es</site> (hereinafter, the \"Website\"), owned by <brand>Ítacarb</brand>.",
+    "identification": {
+      "heading": "Owner identification",
+      "denominacion": "Company name",
+      "sitioWeb": "Website",
+      "email": "Contact email",
+      "telefono": "Phone",
+      "direccion": "Address"
+    },
+    "object": {
+      "heading": "Purpose",
+      "body": "Through the Website, Ítacarb provides information about its strategic marketing consultancy services, as well as a contact channel and newsletter subscription. Access to the Website is free and does not require prior registration, except for those features that expressly state otherwise."
+    },
+    "accessConditions": {
+      "heading": "Terms of access and use",
+      "body": "Use of the Website grants the status of user and implies full acceptance of the terms included in this Legal Notice. The user agrees to make appropriate and lawful use of the Website, as well as of the content and services offered on it, in accordance with current legislation, good faith and public order."
+    },
+    "ip": {
+      "heading": "Intellectual and industrial property",
+      "body": "All content on the Website (text, images, graphic design, logos, source code and other elements) is owned by Ítacarb or by third parties who have authorized its use, and is protected by intellectual and industrial property regulations. Its reproduction, distribution or transformation without express authorization from the owner is prohibited, except for personal and private use."
+    },
+    "liability": {
+      "heading": "Disclaimer of liability",
+      "body": "Ítacarb is not liable for damages arising from interference, interruptions, computer viruses, breakdowns or disconnections in the operation of the Website caused by circumstances beyond Ítacarb's control. Ítacarb reserves the right to modify the presentation, configuration and content of the Website at any time and without prior notice."
+    },
+    "thirdPartyLinks": {
+      "heading": "Third-party links",
+      "body": "The Website may contain links to third-party pages. Ítacarb assumes no responsibility for the content, privacy policies or practices of such external websites."
+    },
+    "law": {
+      "heading": "Governing law and jurisdiction",
+      "body": "These terms are governed by Spanish law. For any dispute that may arise from access to or use of the Website, the parties submit to the Courts and Tribunals with competent jurisdiction under the law."
+    }
+  },
+  "privacyPage": {
+    "metaTitle": "Privacy Policy",
+    "metaDescription": "How Ítacarb handles personal data collected through the contact form, the newsletter and browsing the website.",
+    "h1": "Privacy Policy",
+    "intro": "Our website address is: https://itacarb.es. This policy explains what personal data we collect through the Website, for what purpose, and what rights you have over it.",
+    "controller": {
+      "heading": "Data controller",
+      "emailLabel": "Email",
+      "telefonoLabel": "Phone",
+      "direccionLabel": "Address"
+    },
+    "contactForm": {
+      "heading": "Contact form",
+      "body": "When you write to us through the contact form, we collect your name, email, phone, company and the message you send us. This data is used solely to respond to your inquiry and is sent by email to our team through our email delivery provider (Resend). The legal basis is your consent, given when submitting the form."
+    },
+    "newsletter": {
+      "heading": "Newsletter",
+      "body": "If you subscribe to our newsletter, your email address is stored on our email marketing platform (Brevo) in order to send you content and updates about Ítacarb. You can unsubscribe at any time via the link included in each communication. The legal basis is your consent."
+    },
+    "cookies": {
+      "heading": "Cookies",
+      "body": "The Website uses first-party and third-party cookies for technical purposes and, if you give your consent, for measurement and analytics. You can find the details in our <link>Cookie Policy</link>."
+    },
+    "embedded": {
+      "heading": "Embedded content from other websites",
+      "body": "Some pages of the Website (for example, blog articles) may include content embedded from other websites (videos, images, etc.). This content behaves exactly as if you had visited the originating website, which may collect data about you, use cookies, or embed additional third-party tracking."
+    },
+    "sharing": {
+      "heading": "Who we share your data with",
+      "body": "We share your data only with the providers strictly necessary to deliver our services, who act as data processors under contract: Resend (sending contact form emails), Brevo (newsletter management), Vercel (Website hosting) and, if you accept measurement cookies, Google (Google Tag Manager / Google Analytics). We do not disclose your data to third parties for purposes other than those described in this policy."
+    },
+    "retention": {
+      "heading": "How long we keep your data",
+      "body": "We keep contact form data for as long as necessary to handle your inquiry and, where applicable, any resulting business relationship. Newsletter data is kept for as long as you remain subscribed, and is deleted when you unsubscribe."
+    },
+    "rights": {
+      "heading": "What rights you have over your data",
+      "body": "You may exercise your rights of access, rectification, erasure, objection, restriction of processing and portability at any time by writing to hola@itacarb.es. You also have the right to file a complaint with the Spanish Data Protection Agency (www.aepd.es) if you believe the processing of your data does not comply with applicable regulations."
+    },
+    "contact": {
+      "heading": "Contact",
+      "body": "For any questions about this Privacy Policy, you can write to us at hola@itacarb.es."
+    }
+  },
+  "cookiesPage": {
+    "metaTitle": "Cookie Policy",
+    "metaDescription": "Which cookies the Ítacarb website uses, for what purpose, and how you can disable or delete them.",
+    "h1": "Cookie Policy",
+    "intro": "A cookie is a small text file stored in your browser when you visit almost any website. Its purpose is to let the website remember your visit the next time you browse it. Following the guidelines of the Spanish Data Protection Agency, we detail below the use of cookies on this website.",
+    "own": {
+      "heading": "First-party cookies",
+      "body": "<strong>itacarb_cookie_consent</strong>: stores your decision on the cookie notice (accept or reject), so you're not asked again on every visit. It lasts for one year."
+    },
+    "thirdParty": {
+      "heading": "Third-party cookies",
+      "intro": "These are only loaded if you accept the cookie notice:",
+      "gtm": "<strong>Google Tag Manager</strong>: a tag manager that can activate, among other tools, measurement tools like Google Analytics to build statistics on this website's traffic and visit volume. By accepting these cookies, you consent to Google processing information about you. You can review its privacy policy at https://policies.google.com/privacy."
+    },
+    "disabling": {
+      "heading": "Disabling or deleting cookies",
+      "body": "You can reject this site's cookies from the cookie notice itself, or delete them at any time from your browser settings. Note that, in some cases, a first-party cookie needs to be installed to remember your decision not to accept."
+    },
+    "notes": {
+      "heading": "Additional notes",
+      "body": "Neither this website nor its legal representatives are responsible for the content or accuracy of the privacy policies of the third parties mentioned on this page. For any questions about this Cookie Policy, you can write to us at hola@itacarb.es."
+    }
+  },
+  "nosotrosPage": {
+    "metaTitle": "About",
+    "metaDescription": "Meet Ítacarb: a strategic marketing consultancy where the team, real hands-on experience in every sector, and genuine commitment to the client's business make the difference.",
+    "sidebarAria": "About",
+    "nav": {
+      "itaca": "Ítaca",
+      "equipo": "Team",
+      "valores": "Values",
+      "newsletter": "Newsletter"
+    },
+    "hero": {
+      "heading": "A strategic consultancy where the team makes the difference.",
+      "body": "A team with real experience in the sectors we work in, and a way of doing things where we get as involved as if the business were our own."
+    },
+    "team": {
+      "heading": "The team",
+      "intro": "Ítaca is the people behind it. A team with no middlemen, with experience in the sectors we work in, and the conviction that supporting a client well starts with truly knowing them.",
+      "itaca": {
+        "label": "ÍTACA",
+        "body": "Behind every deliverable are people who give it their all. The team that turns ideas into results and holds the course when the sea gets rough."
+      },
+      "rb": {
+        "label": "R&B",
+        "body": "RB isn't just two letters, it's two flesh-and-blood people: Javier Revuelta and Antonio González. Without them, we wouldn't know how to set a course for Ítaca."
+      },
+      "roles": {
+        "patricia": "Accounts & Media Strategist",
+        "isabel": "Engineering & Web Presence",
+        "mario": "Creative Design & Innovation",
+        "antonio": "Founder & Strategy Director",
+        "javier": "Founder & CEO"
+      }
+    },
+    "values": {
+      "heading": "Ítaca's Values",
+      "list": ["Fresh", "Decisive", "Transparent", "Exclusive", "Strategic"]
+    },
+    "newsletter": {
+      "heading": "Ítaca's newsletter",
+      "body": "Marketing strategy, market trends and real case studies. No noise, once a month.",
+      "placeholder": "you@email.com",
+      "success": "You're in. See you soon.",
+      "error": "Something went wrong. Please try again.",
+      "sendLabel": "Subscribe",
+      "sendingLabel": "Sending…"
+    }
+  },
+  "notFound": {
+    "eyebrow": "Error 404",
+    "headingLine1": "Page not",
+    "headingLine2": "found.",
+    "description": "The URL you're looking for doesn't exist or has moved.",
+    "backHome": "Back to home",
+    "contact": "Contact"
+  }
+}

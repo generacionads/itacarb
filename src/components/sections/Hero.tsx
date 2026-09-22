@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { LogoAnimated } from "@/components/ui/LogoAnimated";
 import type Lenis from "lenis";
 
 export function Hero() {
+  const t = useTranslations("hero");
   const [ended, setEnded] = useState(false);
   const videoDesktopRef = useRef<HTMLVideoElement>(null);
   const videoMobileRef = useRef<HTMLVideoElement>(null);
@@ -59,7 +61,7 @@ export function Hero() {
         muted
         playsInline
         onEnded={handleEnded}
-        aria-label="Vídeo introductorio de Ítacarb"
+        aria-label={t("videoAria")}
       />
       {/* Mobile */}
       <video
@@ -70,7 +72,7 @@ export function Hero() {
         muted
         playsInline
         onEnded={handleEnded}
-        aria-label="Vídeo introductorio de Ítacarb"
+        aria-label={t("videoAria")}
       />
 
       {ended && (
@@ -82,7 +84,7 @@ export function Hero() {
       <button
         ref={buttonRef}
         onClick={handleScrollDown}
-        aria-label="Ir al contenido"
+        aria-label={t("scrollAria")}
         className="absolute bottom-8 right-4 sm:right-16 w-12 h-12 border border-foreground flex items-center justify-center opacity-0 hover:bg-foreground hover:text-background transition-colors duration-200"
       >
         <svg viewBox="0 0 24 24" className="w-6 h-6" aria-hidden="true">

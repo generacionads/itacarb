@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
 import { RevealWrap } from "@/components/ui/RevealWrap";
+import { Link } from "@/i18n/navigation";
 
 const projects = [
   {
@@ -32,7 +34,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
     // grid-template-rows scopes the reflow to this grid context instead of
     // triggering a full-document layout pass on every frame (transition-[height] did)
     <div className="group grid w-full overflow-hidden transition-[grid-template-rows] duration-500 ease-out [grid-template-rows:288px] hover:[grid-template-rows:360px] sm:[grid-template-rows:420px] sm:hover:[grid-template-rows:560px]">
-      <a href={project.href} className="relative overflow-hidden min-h-0">
+      <Link href={project.href} className="relative overflow-hidden min-h-0">
         {project.image ? (
           <Image
             src={project.image}
@@ -61,12 +63,14 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
             {project.name}
           </span>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
 
 export function Projects() {
+  const t = useTranslations("projects");
+
   return (
     <section className="py-24 bg-background">
       <Container>
@@ -74,7 +78,7 @@ export function Projects() {
           <RevealH2
             className="text-foreground text-4xl md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
           >
-            Proyectos que dejan huella
+            {t("heading")}
           </RevealH2>
         </div>
 
@@ -88,20 +92,20 @@ export function Projects() {
 
         <div className="mt-12 flex flex-col items-end gap-12">
           <p className="text-foreground text-[16px] font-light tracking-[0.04em] text-right max-w-2xl">
-            Cada empresa tiene sus propios retos y objetivos. Si buscas un proyecto con el que identificarte, explora otros casos de éxito y descubre cómo hemos ayudado a empresas de diferentes sectores a impulsar su crecimiento.
+            {t("paragraph")}
           </p>
-          <a
+          <Link
             href="/proyectos"
             className="group flex items-center gap-3 bg-brand-accent px-3 py-3 text-background"
           >
             <span className="text-[24px] font-medium tracking-[-0.04em] whitespace-nowrap">
-              Explora más Proyectos
+              {t("cta")}
             </span>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0 btn-morph-svg">
               <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
-          </a>
+          </Link>
         </div>
       </Container>
     </section>

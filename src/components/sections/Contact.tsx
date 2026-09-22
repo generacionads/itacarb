@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
 
@@ -8,6 +9,7 @@ type FormStatus = "idle" | "pending" | "success" | "error";
 
 export function Contact() {
   const [status, setStatus] = useState<FormStatus>("idle");
+  const t = useTranslations("contact");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,7 +32,7 @@ export function Contact() {
       <section id="contacto" className="py-24 bg-background">
         <Container>
           <p className="text-[48px] md:text-[64px] font-medium tracking-[-0.04em] text-foreground leading-tight">
-            Gracias. Nos ponemos<br />en contacto contigo pronto.
+            {t("successLine1")}<br />{t("successLine2")}
           </p>
         </Container>
       </section>
@@ -43,7 +45,7 @@ export function Contact() {
         <RevealH2
           className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
         >
-          Todo viaje comienza con una conversación. Escríbenos.
+          {t("heading")}
         </RevealH2>
 
         <form className="mt-12 flex flex-col gap-6" noValidate onSubmit={handleSubmit}>
@@ -53,9 +55,9 @@ export function Contact() {
               type="text"
               name="nombre"
               autoComplete="name"
-              placeholder="Nombre"
+              placeholder={t("namePlaceholder")}
               required
-              aria-label="Nombre"
+              aria-label={t("nameAria")}
               className="w-full bg-transparent text-[28px] md:text-[48px] font-medium tracking-[-0.04em] text-foreground placeholder:text-brand-muted outline-none"
             />
           </div>
@@ -66,9 +68,9 @@ export function Contact() {
               type="email"
               name="mail"
               autoComplete="email"
-              placeholder="Mail"
+              placeholder={t("mailPlaceholder")}
               required
-              aria-label="Correo electrónico"
+              aria-label={t("mailAria")}
               className="w-full bg-transparent text-[28px] md:text-[48px] font-medium tracking-[-0.04em] text-foreground placeholder:text-brand-muted outline-none"
             />
           </div>
@@ -79,8 +81,8 @@ export function Contact() {
               type="tel"
               name="telefono"
               autoComplete="tel"
-              placeholder="Teléfono"
-              aria-label="Teléfono"
+              placeholder={t("phonePlaceholder")}
+              aria-label={t("phoneAria")}
               className="w-full bg-transparent text-[28px] md:text-[48px] font-medium tracking-[-0.04em] text-foreground placeholder:text-brand-muted outline-none"
             />
           </div>
@@ -91,8 +93,8 @@ export function Contact() {
               type="text"
               name="empresa"
               autoComplete="organization"
-              placeholder="Empresa"
-              aria-label="Empresa"
+              placeholder={t("companyPlaceholder")}
+              aria-label={t("companyAria")}
               className="w-full bg-transparent text-[28px] md:text-[48px] font-medium tracking-[-0.04em] text-foreground placeholder:text-brand-muted outline-none"
             />
           </div>
@@ -101,17 +103,17 @@ export function Contact() {
           <div className="border-b-2 border-brand-muted pb-24 px-1">
             <textarea
               name="mensaje"
-              placeholder="Escribe aquí tu mensaje"
+              placeholder={t("messagePlaceholder")}
               rows={3}
               required
-              aria-label="Mensaje"
+              aria-label={t("messageAria")}
               className="w-full bg-transparent text-[18px] md:text-[24px] font-medium tracking-[-0.04em] text-foreground placeholder:text-brand-muted outline-none resize-none"
             />
           </div>
 
           {status === "error" && (
             <p role="alert" className="text-brand-accent text-[16px] font-medium px-3">
-              Algo ha salido mal. Por favor, inténtalo de nuevo.
+              {t("errorMessage")}
             </p>
           )}
 
@@ -123,7 +125,7 @@ export function Contact() {
               className="flex items-center gap-6 text-foreground group disabled:opacity-50"
             >
               <span className="text-[48px] md:text-[64px] font-medium tracking-[-0.04em] leading-none">
-                {status === "pending" ? "Enviando…" : "Enviar"}
+                {status === "pending" ? t("sendingLabel") : t("sendLabel")}
               </span>
               {status !== "pending" && (
                 <svg

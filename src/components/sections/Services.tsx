@@ -1,15 +1,18 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { RevealH2 } from "@/components/ui/RevealH2";
 import { CrackBox, FallBox, AssembleBox } from "@/components/sections/ServiceAnimations";
+import { Link } from "@/i18n/navigation";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Services() {
+  const t = useTranslations("services");
   const sectionRef = useRef<HTMLElement>(null);
   const rowsRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
@@ -186,7 +189,7 @@ export function Services() {
         <RevealH2
           className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight"
         >
-          Cada marca tiene su Ítaca. Nosotros navegamos contigo.
+          {t("heading")}
         </RevealH2>
 
         <div ref={rowsRef} className="relative mt-16 flex flex-col gap-64">
@@ -223,10 +226,10 @@ export function Services() {
             </div>
             <div className="flex flex-col gap-3 md:w-[30%]">
               <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
-                Comprendemos
+                {t("row1.title")}
               </h3>
               <p className="text-foreground text-[16px] font-light tracking-[0.04em]">
-                Cada empresa es un punto de partida distinto. Nos adentramos en tu negocio, tu sector y tu entorno competitivo para entender con precisión qué puede impulsar tu crecimiento.
+                {t("row1.body")}
               </p>
             </div>
           </div>
@@ -235,10 +238,10 @@ export function Services() {
           <div ref={row2Ref} className="flex flex-col-reverse md:flex-row md:items-end md:justify-between gap-8 md:gap-0">
             <div className="flex flex-col gap-3 md:w-[30%]">
               <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
-                Proyectamos
+                {t("row2.title")}
               </h3>
               <p className="text-foreground text-[16px] font-light tracking-[0.04em]">
-                Transformamos el análisis en decisiones. Desarrollamos una estrategia coherente con tus objetivos, que define con claridad qué hacer, cómo hacerlo y en qué orden.
+                {t("row2.body")}
               </p>
             </div>
             <div ref={img2Ref} className="relative w-full md:w-[67%] aspect-[914/467] shrink-0 overflow-hidden bg-background">
@@ -253,28 +256,28 @@ export function Services() {
             </div>
             <div className="flex flex-col gap-3 md:w-[30%]">
               <h3 className="text-foreground text-[24px] md:text-[32px] font-medium tracking-[-0.04em] leading-tight">
-                Materializamos
+                {t("row3.title")}
               </h3>
               <p className="text-foreground text-[16px] font-light tracking-[0.04em]">
-                La estrategia cobra vida. Implementamos, medimos y evolucionamos para garantizar que cada acción contribuye al crecimiento real de tu empresa.
+                {t("row3.body")}
               </p>
             </div>
           </div>
 
           {/* CTA — path stroke terminates here */}
           <div ref={ctaRef} className="flex justify-center relative z-10">
-            <a
+            <Link
               href="/servicio"
               className="group flex items-center gap-3 bg-brand-accent px-4 py-3 text-background"
             >
               <span className="text-[18px] font-medium tracking-[-0.04em] whitespace-nowrap">
-                Saber más sobre nuestro servicio
+                {t("cta")}
               </span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="btn-morph-svg shrink-0">
                 <path d="M12 5 L12 12 L12 19" className="morph-stroke" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 <path d="M5 12 L19 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </Container>

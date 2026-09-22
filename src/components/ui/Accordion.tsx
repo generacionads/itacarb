@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface AccordionItemProps {
   label: string;
@@ -9,6 +10,7 @@ interface AccordionItemProps {
 
 export function AccordionItem({ label, children }: AccordionItemProps) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("accordion");
   return (
     <div className="border-b border-brand-border">
       <button
@@ -29,7 +31,7 @@ export function AccordionItem({ label, children }: AccordionItemProps) {
           <div className="pb-6 px-1">
             {children ?? (
               <p className="text-brand-muted text-[16px] font-light leading-relaxed">
-                Contenido de {label}.
+                {t("placeholderContent", { label })}
               </p>
             )}
           </div>

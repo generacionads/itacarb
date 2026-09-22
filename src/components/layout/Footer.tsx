@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
+import { Link } from "@/i18n/navigation";
 
-const legalLinks = [
-  { label: "Aviso Legal", href: "/aviso-legal" },
-  { label: "Política de Privacidad", href: "/politica-de-privacidad" },
-  { label: "Política de Cookies", href: "/politica-de-cookies" },
-];
 const socialLinks = [
   { label: "Youtube", href: "https://www.youtube.com/@itacarb" },
   { label: "LinkedIn", href: "https://es.linkedin.com/company/itacarb" },
@@ -17,6 +14,7 @@ const socialLinks = [
 function FooterNewsletterForm() {
   const [status, setStatus] = useState<"idle" | "pending" | "success" | "error">("idle");
   const [email, setEmail] = useState("");
+  const t = useTranslations("footer");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,7 +34,7 @@ function FooterNewsletterForm() {
   if (status === "success") {
     return (
       <p className="text-foreground text-[16px] font-medium tracking-[0.04em]">
-        Apuntado. Nos vemos pronto.
+        {t("newsletterSuccess")}
       </p>
     );
   }
@@ -48,14 +46,14 @@ function FooterNewsletterForm() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
+          placeholder={t("emailPlaceholder")}
           required
           className="flex-1 bg-transparent border-b border-foreground/40 text-foreground placeholder:text-foreground/50 text-[16px] font-medium tracking-[0.04em] pb-2 outline-none focus:border-foreground transition-colors duration-200 disabled:opacity-50"
           disabled={status === "pending"}
         />
         <button
           type="submit"
-          aria-label="Suscribirse"
+          aria-label={t("subscribeAria")}
           disabled={status === "pending"}
           className="group bg-foreground text-background p-3 shrink-0 hover:opacity-80 transition-opacity disabled:opacity-50"
         >
@@ -67,7 +65,7 @@ function FooterNewsletterForm() {
       </div>
       {status === "error" && (
         <p role="alert" className="text-background text-[14px] font-medium">
-          Algo ha salido mal. Inténtalo de nuevo.
+          {t("newsletterError")}
         </p>
       )}
     </form>
@@ -75,6 +73,14 @@ function FooterNewsletterForm() {
 }
 
 export function Footer() {
+  const t = useTranslations("footer");
+
+  const legalLinks = [
+    { label: t("legal.avisoLegal"), href: "/aviso-legal" },
+    { label: t("legal.privacidad"), href: "/politica-de-privacidad" },
+    { label: t("legal.cookies"), href: "/politica-de-cookies" },
+  ];
+
   return (
     <footer className="bg-brand-accent pt-40 pb-10 min-h-screen flex flex-col">
       <Container className="flex flex-col flex-1">
@@ -85,7 +91,7 @@ export function Footer() {
           {/* Izquierda: newsletter */}
           <div className="flex flex-col gap-6 md:max-w-[480px]">
             <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-none">
-              Suscríbete a nuestra newsletter
+              {t("newsletterHeading")}
             </p>
             <FooterNewsletterForm />
           </div>
@@ -94,7 +100,7 @@ export function Footer() {
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-6">
               <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-none">
-                Consultas generales
+                {t("generalInquiries")}
               </p>
               <a
                 href="mailto:hola@itacarb.es"
@@ -112,7 +118,7 @@ export function Footer() {
 
             <div className="flex flex-col gap-6">
               <p className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-none">
-                Dónde estamos
+                {t("whereWeAre")}
               </p>
               <address className="text-background text-[16px] font-medium tracking-[0.04em] not-italic leading-relaxed">
                 Calle la diligencia, 9<br />
@@ -129,9 +135,9 @@ export function Footer() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-0 mt-16 md:mt-0">
           <nav className="flex flex-wrap gap-x-8 gap-y-3 text-foreground text-[14px] font-medium tracking-[0.035em]">
             {legalLinks.map((link) => (
-              <a key={link.href} href={link.href} className="hover:opacity-70 transition-opacity whitespace-nowrap">
+              <Link key={link.href} href={link.href} className="hover:opacity-70 transition-opacity whitespace-nowrap">
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="flex flex-wrap gap-3 sm:gap-8">

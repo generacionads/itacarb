@@ -21,20 +21,33 @@ const PROJECT_SLUGS = [
   "solvify",
 ];
 
-const STATIC_ROUTES: MetadataRoute.Sitemap = [
-  { url: BASE_URL, priority: 1, changeFrequency: "monthly" },
-  { url: `${BASE_URL}/nosotros`, priority: 0.8, changeFrequency: "monthly" },
-  { url: `${BASE_URL}/sectores`, priority: 0.8, changeFrequency: "monthly" },
-  { url: `${BASE_URL}/servicio/consultoria`, priority: 0.8, changeFrequency: "monthly" },
-  { url: `${BASE_URL}/servicio/ppc`, priority: 0.8, changeFrequency: "monthly" },
-  { url: `${BASE_URL}/proyectos`, priority: 0.8, changeFrequency: "monthly" },
+// Routes translated into English get both a bare (es) and /en URL; the blog
+// stays Spanish-only until the CMS itself supports locales.
+const TRANSLATED_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }[] = [
+  { path: "", priority: 1, changeFrequency: "monthly" },
+  { path: "/contacto", priority: 0.7, changeFrequency: "yearly" },
+  { path: "/nosotros", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/sectores", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/servicio/consultoria", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/servicio/ppc", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/proyectos", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/aviso-legal", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/politica-de-privacidad", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/politica-de-cookies", priority: 0.3, changeFrequency: "yearly" },
   ...PROJECT_SLUGS.map((slug) => ({
-    url: `${BASE_URL}/proyectos/${slug}`,
-    priority: 0.7 as const,
+    path: `/proyectos/${slug}`,
+    priority: 0.7,
     changeFrequency: "yearly" as const,
   })),
+];
+
+const STATIC_ROUTES: MetadataRoute.Sitemap = [
+  ...TRANSLATED_ROUTES.flatMap(({ path, priority, changeFrequency }) => [
+    { url: `${BASE_URL}${path}`, priority, changeFrequency },
+    { url: `${BASE_URL}/en${path}`, priority, changeFrequency },
+  ]),
+  // Blog: Spanish only, no /en variant
   { url: `${BASE_URL}/blog`, priority: 0.8, changeFrequency: "weekly" },
-  { url: `${BASE_URL}/contacto`, priority: 0.7, changeFrequency: "yearly" },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

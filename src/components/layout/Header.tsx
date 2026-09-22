@@ -1,31 +1,33 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import gsap from "gsap";
 import { Container } from "@/components/ui/Container";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import type Lenis from "lenis";
-
-const navLinks = [
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Sectores", href: "/sectores" },
-  { label: "Proyectos", href: "/proyectos" },
-  { label: "Servicio", href: "/servicio" },
-  { label: "Blog", href: "/blog" },
-];
-
-const allMobileLinks = [
-  ...navLinks,
-  { label: "Contacto", href: "/contacto" },
-];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const panelRef = useRef<HTMLElement>(null);
   const linksAnim = useRef<gsap.core.Tween | null>(null);
+  const t = useTranslations("nav");
+
+  const navLinks = [
+    { label: t("nosotros"), href: "/nosotros" },
+    { label: t("sectores"), href: "/sectores" },
+    { label: t("proyectos"), href: "/proyectos" },
+    { label: t("servicio"), href: "/servicio" },
+    { label: t("blog"), href: "/blog" },
+  ];
+
+  const allMobileLinks = [
+    ...navLinks,
+    { label: t("contacto"), href: "/contacto" },
+  ];
 
   function handleLogoClick(e: React.MouseEvent<HTMLAnchorElement>) {
     if (pathname === "/") {
@@ -75,7 +77,7 @@ export function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-background/60">
         <Container>
           <div className="flex h-16 items-center justify-between sm:h-[72px]">
-            <a href="/" onClick={handleLogoClick} aria-label="Ítacarb — Inicio">
+            <Link href="/" onClick={handleLogoClick} aria-label={t("homeAria")}>
               <Image
                 src="/logo.svg"
                 alt="Ítacarb"
@@ -83,10 +85,10 @@ export function Header() {
                 height={37}
                 priority
               />
-            </a>
+            </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden items-center gap-12 md:flex">
+            <nav className="hidden items-center gap-8 md:flex">
               <div className="flex items-center gap-8">
                 {navLinks.map((link) => (
                   <Link
@@ -100,11 +102,12 @@ export function Header() {
                   </Link>
                 ))}
               </div>
+              <LanguageSwitcher className="text-foreground" />
               <Link
                 href="/contacto"
                 className="px-6 py-3 text-base font-medium tracking-[0.04em] text-background bg-brand-accent"
               >
-                Contacto
+                {t("contacto")}
               </Link>
             </nav>
 
@@ -112,11 +115,11 @@ export function Header() {
             <button
               className="inline-flex min-h-[44px] items-center justify-center md:hidden text-base font-medium tracking-[0.04em] text-foreground"
               onClick={() => setMenuOpen(true)}
-              aria-label="Abrir menú"
+              aria-label={t("openMenuAria")}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
             >
-              Menú
+              {t("menuLabel")}
             </button>
           </div>
         </Container>
@@ -126,7 +129,7 @@ export function Header() {
       <nav
         ref={panelRef}
         id="mobile-menu"
-        aria-label="Navegación móvil"
+        aria-label={t("mobileNavAria")}
         aria-hidden={!menuOpen}
         className={`fixed inset-0 z-[60] bg-brand-accent transition-transform duration-300 ease-out md:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
@@ -137,7 +140,7 @@ export function Header() {
           <button
             className="inline-flex min-w-[44px] min-h-[44px] items-center justify-center"
             onClick={() => setMenuOpen(false)}
-            aria-label="Cerrar menú"
+            aria-label={t("closeMenuAria")}
           >
             <span className="relative block w-4 h-4">
               <span className="absolute inset-0 bg-brand-accent transition-all duration-200 origin-center scale-0 opacity-0" />
@@ -168,13 +171,16 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          <div className="flex justify-end pt-6">
+            <LanguageSwitcher className="text-background" />
+          </div>
         </div>
 
         {/* Logo — bottom-left, links to home */}
         <Link href="/" className="absolute bottom-8 left-8 opacity-25 hover:opacity-50 transition-opacity duration-200 brightness-0 invert">
           <Image
             src="/logo.svg"
-            alt="Ítacarb — Inicio"
+            alt={t("homeAria")}
             width={120}
             height={32}
           />

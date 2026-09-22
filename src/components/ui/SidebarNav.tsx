@@ -9,27 +9,29 @@ interface SidebarNavProps {
   onSelect: (id: string) => void;
   top?: number;
   ariaLabel?: string;
+  /** Selector for the element whose approach should hide the nav. Defaults to the page footer. */
+  hideBeforeSelector?: string;
 }
 
-export function SidebarNav({ items, activeId, onSelect, top = 72, ariaLabel }: SidebarNavProps) {
+export function SidebarNav({ items, activeId, onSelect, top = 72, ariaLabel, hideBeforeSelector = "footer" }: SidebarNavProps) {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const footer = document.querySelector("footer");
-    if (!footer) return;
+    const target = document.querySelector(hideBeforeSelector);
+    if (!target) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Only hide on genuine scroll-to-bottom. Skip if the footer is
+        // Only hide on genuine scroll-to-bottom. Skip if the target is
         // visible simply because the content is short (e.g. after filtering).
         if (entry.isIntersecting && window.scrollY < 100) return;
         setHidden(entry.isIntersecting);
       },
       { threshold: 0 }
     );
-    observer.observe(footer);
+    observer.observe(target);
     return () => observer.disconnect();
-  }, []);
+  }, [hideBeforeSelector]);
 
   return (
     <aside

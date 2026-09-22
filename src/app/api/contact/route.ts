@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
-    const { nombre, mail, telefono, empresa, mensaje } = await req.json();
+    const { nombre, mail, telefono, empresa, mensaje, origen, modalidad } = await req.json();
 
     if (!nombre || !mail || !mensaje) {
       return NextResponse.json({ error: "Faltan campos obligatorios" }, { status: 400 });
@@ -16,12 +16,14 @@ export async function POST(req: Request) {
       to: "hola@itacarb.es",
       cc: "mzornoza@itacarb.es",
       replyTo: mail,
-      subject: `Nuevo contacto de ${nombre}`,
+      subject: origen ? `[${origen}] Nuevo contacto de ${nombre}` : `Nuevo contacto de ${nombre}`,
       html: `
+        ${origen ? `<p><strong>Origen:</strong> ${origen}</p>` : ""}
         <p><strong>Nombre:</strong> ${nombre}</p>
         <p><strong>Email:</strong> ${mail}</p>
         ${telefono ? `<p><strong>Teléfono:</strong> ${telefono}</p>` : ""}
         ${empresa ? `<p><strong>Empresa:</strong> ${empresa}</p>` : ""}
+        ${modalidad ? `<p><strong>Modalidad de precio:</strong> ${modalidad}</p>` : ""}
         <p><strong>Mensaje:</strong></p>
         <p>${mensaje.replace(/\n/g, "<br>")}</p>
       `,

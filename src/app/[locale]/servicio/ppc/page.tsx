@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import type Lenis from "lenis";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Container } from "@/components/ui/Container";
@@ -12,6 +13,37 @@ import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactPpc } from "@/components/sections/ContactPpc";
 
 const HEADER_H = 72;
+
+// One icon per "Por qué colaborar" feature, matched by array index (order
+// mirrors the reference landing's feature icons: target, layers, person,
+// bar chart, clock, shield).
+const FEATURE_ICONS = [
+  <svg key="target" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
+  </svg>,
+  <svg key="layers" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 3 L21 8 L12 13 L3 8 Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M3 12 L12 17 L21 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M3 16 L12 21 L21 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>,
+  <svg key="person" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>,
+  <svg key="chart" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M5 20V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M12 20V4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M19 20V14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>,
+  <svg key="clock" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M12 7v5l3.5 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>,
+  <svg key="shield" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+  </svg>,
+];
 
 const partnerAgencies = [
   "Digital Mastery Group",
@@ -31,7 +63,7 @@ type Step = { n: string; title: string; body: string };
 type Feature = { title: string; body: string };
 type Stat = { value: string; label: string; meta: string };
 type PricingTier = { range: string; price: string };
-type PricingPlan = { title: string; tiers: PricingTier[] };
+type PricingPlan = { title: string; toggleLabel: string; tiers: PricingTier[] };
 type Faq = { q: string; a: string };
 
 type Subsection = {
@@ -41,6 +73,150 @@ type Subsection = {
   body: string;
   kind: "steps" | "platforms" | "features" | "pricing" | "stats" | "partners" | "faq";
 };
+
+// Clip-path reveal, same mechanic RevealH2 uses for non-string (block) content —
+// replays on every mount, so keying it by the active plan re-triggers it on toggle.
+function RevealBlock({
+  children,
+  className,
+  as: Tag = "div",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  as?: "div" | "span";
+}) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+    const t = setTimeout(() => setVisible(true), 50);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
+    <Tag
+      className={className}
+      style={{
+        display: Tag === "span" ? "inline-block" : undefined,
+        clipPath: visible ? "inset(0 0 -0.2em 0)" : "inset(0 0 100% 0)",
+        transition: "clip-path 0.85s cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function PricingCard({ plans }: { plans: PricingPlan[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const plan = plans[activeIndex];
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [thumb, setThumb] = useState({ left: 0, width: 0 });
+
+  const measure = useCallback(() => {
+    const btn = buttonRefs.current[activeIndex];
+    if (btn) setThumb({ left: btn.offsetLeft, width: btn.offsetWidth });
+  }, [activeIndex]);
+
+  useLayoutEffect(() => {
+    measure();
+  }, [measure]);
+
+  useEffect(() => {
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [measure]);
+
+  return (
+    <div className="mt-10 flex flex-col gap-6">
+      {/* Toggle — the orange thumb slides between buttons instead of popping on/off */}
+      <div className="relative inline-flex self-center border border-brand-border p-1 max-w-full overflow-x-auto">
+        <div
+          aria-hidden
+          className="absolute top-1 bottom-1 bg-brand-accent transition-[left,width] duration-300 ease-out"
+          style={{ left: thumb.left, width: thumb.width }}
+        />
+        {plans.map((p, i) => (
+          <button
+            key={p.title}
+            ref={(el) => {
+              buttonRefs.current[i] = el;
+            }}
+            type="button"
+            onClick={() => setActiveIndex(i)}
+            aria-pressed={activeIndex === i}
+            className={`relative z-10 px-4 py-2 text-[14px] font-medium tracking-[0.02em] whitespace-nowrap transition-colors duration-100 ${
+              activeIndex === i ? "text-background" : "text-brand-muted hover:text-foreground"
+            }`}
+          >
+            {p.toggleLabel}
+          </button>
+        ))}
+      </div>
+
+      <div className="border border-brand-border p-8 flex flex-col gap-6">
+        <h4 className="text-foreground text-[20px] font-medium tracking-[-0.02em] leading-tight">
+          <RevealBlock key={activeIndex} as="span">
+            {plan.title}
+          </RevealBlock>
+        </h4>
+        <div className="flex flex-col">
+          {plan.tiers.map((tier, i) => (
+            <div
+              key={tier.range}
+              className={`flex items-baseline justify-between gap-4 py-4 ${i > 0 ? "border-t border-brand-border" : ""}`}
+            >
+              <p className="text-brand-muted text-[15px] font-light leading-snug">{tier.range}</p>
+              <p className="text-foreground text-[20px] font-medium tracking-[-0.02em] shrink-0">
+                <RevealBlock key={activeIndex} as="span">
+                  {tier.price}
+                </RevealBlock>
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StepsGrid({ steps }: { steps: Step[] }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const interval = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % steps.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [steps.length]);
+
+  return (
+    <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {steps.map((step, i) => (
+        <div
+          key={step.n}
+          className={`border p-6 flex flex-col gap-4 transition-colors duration-700 ${
+            i === activeIndex ? "border-brand-accent" : "border-brand-border"
+          }`}
+        >
+          <div className="w-9 h-9 flex items-center justify-center bg-brand-accent">
+            <span className="text-background text-[14px] font-medium tracking-[0.04em]">{step.n}</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h4 className="text-foreground text-[20px] font-medium tracking-[-0.03em] leading-tight">
+              {step.title}
+            </h4>
+            <p className="text-brand-muted text-[16px] font-light leading-relaxed">{step.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function SubsectionContent({
   kind,
@@ -60,24 +236,12 @@ function SubsectionContent({
   faqs: Faq[];
 }) {
   if (kind === "steps") {
-    return (
-      <div className="mt-10 flex flex-col gap-8">
-        {steps.map((step) => (
-          <div key={step.n} className="flex flex-col gap-2">
-            <p className="text-brand-accent text-[16px] font-medium tracking-[0.04em]">{step.n}</p>
-            <h4 className="text-foreground text-[20px] font-medium tracking-[-0.03em] leading-tight">
-              {step.title}
-            </h4>
-            <p className="text-brand-muted text-[16px] font-light leading-relaxed">{step.body}</p>
-          </div>
-        ))}
-      </div>
-    );
+    return <StepsGrid steps={steps} />;
   }
 
   if (kind === "platforms") {
     return (
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {platforms.map((p) => (
           <div key={p.name} className="border border-brand-border p-6 flex flex-col gap-3">
             <h4 className="text-foreground text-[20px] font-medium tracking-[-0.02em]">{p.name}</h4>
@@ -91,8 +255,8 @@ function SubsectionContent({
   if (kind === "features") {
     return (
       <div className="mt-10">
-        {features.map((f) => (
-          <AccordionItem key={f.title} label={f.title}>
+        {features.map((f, i) => (
+          <AccordionItem key={f.title} label={f.title} icon={FEATURE_ICONS[i]}>
             <p className="text-brand-muted text-[16px] font-light leading-relaxed">{f.body}</p>
           </AccordionItem>
         ))}
@@ -101,28 +265,7 @@ function SubsectionContent({
   }
 
   if (kind === "pricing") {
-    return (
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {pricingPlans.map((plan) => (
-          <div key={plan.title} className="border border-brand-border p-8 flex flex-col gap-6">
-            <h4 className="text-foreground text-[20px] font-medium tracking-[-0.02em] leading-tight">
-              {plan.title}
-            </h4>
-            <div className="flex flex-col">
-              {plan.tiers.map((tier, i) => (
-                <div
-                  key={tier.range}
-                  className={`flex items-baseline justify-between gap-4 py-4 ${i > 0 ? "border-t border-brand-border" : ""}`}
-                >
-                  <p className="text-brand-muted text-[15px] font-light leading-snug">{tier.range}</p>
-                  <p className="text-foreground text-[20px] font-medium tracking-[-0.02em] shrink-0">{tier.price}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
+    return <PricingCard plans={pricingPlans} />;
   }
 
   if (kind === "stats") {
@@ -226,6 +369,8 @@ export default function PpcPage() {
   const allSubsections = data.flatMap((cat) =>
     cat.subsections.map((s) => ({ ...s, h2: cat.h2 }))
   );
+  // "Qué gestionamos" stays on the page but is dropped from the sidebar nav.
+  const sidebarItems = allSubsections.filter((s) => s.id !== "que-gestionamos");
 
   const [activeId, setActiveId] = useState<string>(allSubsections[0].id);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
@@ -245,9 +390,16 @@ export default function PpcPage() {
   }, []);
 
   const scrollToSection = useCallback((id: string) => {
-    const el = sectionRefs.current.get(id);
+    const el = sectionRefs.current.get(id) ?? document.getElementById(id);
     if (!el) return;
     const offset = HEADER_H + 24;
+    // Lenis owns scrolling site-wide; a plain window.scrollTo gets overridden
+    // and jumps instead of animating, so route the scroll through it too.
+    const lenis = (window as unknown as Record<string, Lenis>).__lenis as Lenis | undefined;
+    if (lenis) {
+      lenis.scrollTo(el, { offset: -offset, duration: 1.2 });
+      return;
+    }
     const top = el.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: "smooth" });
   }, []);
@@ -258,7 +410,7 @@ export default function PpcPage() {
       <main className="pt-16 sm:pt-[72px] bg-background min-h-screen flex flex-col">
 
         {/* Hero */}
-        <section className="pt-16 pb-16">
+        <section className="pt-16 pb-32" style={{ minHeight: "calc(100vh - 72px)" }}>
           <Container>
             <RevealH2
               as="h1"
@@ -273,25 +425,13 @@ export default function PpcPage() {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <ArrowCta href="#contacto">{t("hero.ctaPartner")}</ArrowCta>
-              <a
-                href="#como-funciona"
+              <button
+                type="button"
+                onClick={() => scrollToSection("primera-seccion")}
                 className="inline-flex items-center px-6 py-3 border border-foreground text-foreground text-[16px] font-medium tracking-[0.04em] hover:bg-foreground hover:text-background transition-colors duration-200"
               >
                 {t("hero.ctaHow")}
-              </a>
-            </div>
-
-            <div className="mt-16 flex flex-col gap-4">
-              <p className="text-brand-muted text-[14px] font-light tracking-[0.04em] uppercase">
-                {t("hero.platformsRunLabel")}
-              </p>
-              <div className="flex flex-wrap gap-x-8 gap-y-3">
-                {platforms.map((p) => (
-                  <span key={p.name} className="text-foreground text-[18px] font-medium tracking-[-0.02em]">
-                    {p.name}
-                  </span>
-                ))}
-              </div>
+              </button>
             </div>
           </Container>
         </section>
@@ -300,7 +440,7 @@ export default function PpcPage() {
             contact form approaches, instead of waiting for the footer. */}
         <div className="flex">
           <SidebarNav
-            items={allSubsections}
+            items={sidebarItems}
             activeId={activeId}
             onSelect={scrollToSection}
             top={HEADER_H + 32}
@@ -308,45 +448,47 @@ export default function PpcPage() {
             hideBeforeSelector="#contacto"
           />
 
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 flex flex-col">
             {/* Content sections */}
-            <div className="px-4 sm:px-16 py-16 flex flex-col gap-24">
-              {data.map((category) => (
-                <div key={category.h2} className="flex flex-col gap-16">
-                  <RevealH2 className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight">
-                    {category.h2}
-                  </RevealH2>
+            {data.map((category, i) => (
+              <div
+                key={category.h2}
+                id={i === 0 ? "primera-seccion" : undefined}
+                className="px-4 sm:px-16 pt-20 pb-20 flex flex-col gap-16"
+              >
+                <RevealH2 className="text-foreground text-[32px] md:text-[48px] font-medium tracking-[-0.04em] leading-tight">
+                  {category.h2}
+                </RevealH2>
 
-                  {category.subsections.map((s) => (
-                    <section
-                      key={s.id}
-                      id={s.id}
-                      ref={(el) => {
-                        if (el) sectionRefs.current.set(s.id, el);
-                      }}
+                {category.subsections.map((s) => (
+                  <section
+                    key={s.id}
+                    id={s.id}
+                    ref={(el) => {
+                      if (el) sectionRefs.current.set(s.id, el);
+                    }}
+                  >
+                    <RevealH2
+                      as="h3"
+                      className="text-[22px] md:text-[28px] font-medium tracking-[-0.04em] leading-tight"
                     >
-                      <RevealH2
-                        as="h3"
-                        className="text-[22px] md:text-[28px] font-medium tracking-[-0.04em] leading-tight"
-                      >
-                        <span className="text-brand-accent">{s.verb}</span>{" "}
-                        <span className="text-foreground">{s.body}</span>
-                      </RevealH2>
+                      <span className="text-brand-accent">{s.verb}</span>{" "}
+                      <span className="text-foreground">{s.body}</span>
+                    </RevealH2>
 
-                      <SubsectionContent
-                        kind={s.kind}
-                        platforms={platforms}
-                        steps={steps}
-                        features={features}
-                        pricingPlans={pricingPlans}
-                        stats={stats}
-                        faqs={faqs}
-                      />
-                    </section>
-                  ))}
-                </div>
-              ))}
-            </div>
+                    <SubsectionContent
+                      kind={s.kind}
+                      platforms={platforms}
+                      steps={steps}
+                      features={features}
+                      pricingPlans={pricingPlans}
+                      stats={stats}
+                      faqs={faqs}
+                    />
+                  </section>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 

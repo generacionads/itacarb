@@ -266,8 +266,7 @@
       "heading": "Scale your agency's paid advertising without hiring a media buyer",
       "body": "We plan, launch and optimize Google, Meta, TikTok and LinkedIn Ads campaigns for your agency's clients — under your brand, in your dashboards, in reports that never mention our name.",
       "ctaPartner": "Become a partner agency",
-      "ctaHow": "How it works",
-      "platformsRunLabel": "Campaigns run on"
+      "ctaHow": "How it works"
     },
     "platforms": [
       { "name": "Google Ads", "desc": "Search, Shopping, Performance Max, Display" },
@@ -297,16 +296,18 @@
     "pricingPlans": [
       {
         "title": "Monthly management, no client communication or reporting",
+        "toggleLabel": "No client communication or reporting",
         "tiers": [
-          { "range": "Spend under €1,000", "price": "€150/month" },
-          { "range": "Spend between €1,000 and €3,000", "price": "€250/month" }
+          { "range": "Ad spend under €1,000", "price": "€150/month" },
+          { "range": "Ad spend between €1,000 and €3,000", "price": "€250/month" }
         ]
       },
       {
         "title": "Monthly management with communication and reporting",
+        "toggleLabel": "With communication and reporting",
         "tiers": [
-          { "range": "Spend under €1,000", "price": "€200/month" },
-          { "range": "Spend between €1,000 and €3,000", "price": "€300/month" }
+          { "range": "Ad spend under €1,000", "price": "€200/month" },
+          { "range": "Ad spend between €1,000 and €3,000", "price": "€300/month" }
         ]
       }
     ],

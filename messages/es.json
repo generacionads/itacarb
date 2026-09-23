@@ -266,8 +266,7 @@
       "heading": "Escala la publicidad de pago de tu agencia sin contratar un media buyer",
       "body": "Planificamos, lanzamos y optimizamos campañas de Google, Meta, TikTok y LinkedIn Ads para los clientes de tu agencia — bajo tu marca, en tus dashboards, en informes que nunca mencionan nuestro nombre.",
       "ctaPartner": "Conviértete en agencia partner",
-      "ctaHow": "Cómo funciona",
-      "platformsRunLabel": "Las campañas corren sobre"
+      "ctaHow": "Cómo funciona"
     },
     "platforms": [
       { "name": "Google Ads", "desc": "Search, Shopping, Performance Max, Display" },
@@ -297,16 +296,18 @@
     "pricingPlans": [
       {
         "title": "Gestión mensual sin comunicación ni reporting",
+        "toggleLabel": "Sin comunicación ni reporting",
         "tiers": [
-          { "range": "Inversión inferior a 1.000€", "price": "150€/mes" },
-          { "range": "Inversión entre 1.000€ y 3.000€", "price": "250€/mes" }
+          { "range": "Inversión en publicidad inferior a 1.000€", "price": "150€/mes" },
+          { "range": "Inversión en publicidad entre 1.000€ y 3.000€", "price": "250€/mes" }
         ]
       },
       {
         "title": "Gestión mensual con comunicación y reporting",
+        "toggleLabel": "Con comunicación y reporting",
         "tiers": [
-          { "range": "Inversión inferior a 1.000€", "price": "200€/mes" },
-          { "range": "Inversión entre 1.000€ y 3.000€", "price": "300€/mes" }
+          { "range": "Inversión en publicidad inferior a 1.000€", "price": "200€/mes" },
+          { "range": "Inversión en publicidad entre 1.000€ y 3.000€", "price": "300€/mes" }
         ]
       }
     ],

@@ -29,21 +29,21 @@ const sectorsMeta = [
     id: "arquitectura",
     image: "/sectors/arquitectura.jpg",
     stat: "17%",
-    href: "/sectores#arquitectura",
+    hash: "arquitectura",
     clients: ["AF Iberia", "Artquitrabe", "Milton Homes", "Paralelo Estudio"],
   },
   {
     id: "sanitario",
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=75",
     stat: "15x",
-    href: "/sectores#sanitarios",
+    hash: "sanitarios",
     clients: ["Clínica Morales Raya", "CM Cosmética", "Dental Care BCN", "Expresa Salud"],
   },
   {
     id: "industrial",
     image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=75",
     stat: "40%",
-    href: "/sectores#industrial",
+    hash: "industrial",
     clients: ["Haromatics", "On Level Quality", "Telstar"],
   },
 ] as const;
@@ -54,7 +54,7 @@ type Sector = {
   image: string;
   stat: string;
   statLabel: string;
-  href: string;
+  hash: string;
   clients: readonly string[];
 };
 
@@ -77,7 +77,7 @@ function SectorCard({ sector }: { sector: Sector }) {
 
   return (
     <Link
-      href={sector.href}
+      href={{ pathname: "/sectores", hash: sector.hash }}
       className="flex flex-col gap-8 group"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

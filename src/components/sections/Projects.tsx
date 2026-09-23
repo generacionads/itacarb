@@ -8,24 +8,24 @@ import { Link } from "@/i18n/navigation";
 const projects = [
   {
     id: "morales-raya",
+    slug: "clinica-morales-raya",
     name: "Clínica Dr. Morales Raya",
     image: "/projects/clinicas y sector salud/clinica-morales-raya/clinica-morales-raya.webp",
     objectPosition: "center center",
-    href: "/proyectos/clinica-morales-raya",
   },
   {
     id: "paralelo-estudio",
+    slug: "paralelo-estudio",
     name: "Paralelo Estudio",
     image: "/projects/arquitectura y diseño/paralelo-estudio/Img_01_Grupo-PARALELO.webp",
     objectPosition: "center center",
-    href: "/proyectos/paralelo-estudio",
   },
   {
     id: "on-level-quality",
+    slug: "on-level-quality",
     name: "On Level Quality",
     image: "/projects/industrial/on-level-quality/toma_3_1_1-copia-1.webp",
     objectPosition: "center center",
-    href: "/proyectos/on-level-quality",
   },
 ];
 
@@ -34,7 +34,10 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
     // grid-template-rows scopes the reflow to this grid context instead of
     // triggering a full-document layout pass on every frame (transition-[height] did)
     <div className="group grid w-full overflow-hidden transition-[grid-template-rows] duration-500 ease-out [grid-template-rows:288px] hover:[grid-template-rows:360px] sm:[grid-template-rows:420px] sm:hover:[grid-template-rows:560px]">
-      <Link href={project.href} className="relative overflow-hidden min-h-0">
+      <Link
+        href={{ pathname: "/proyectos/[slug]", params: { slug: project.slug } }}
+        className="relative overflow-hidden min-h-0"
+      >
         {project.image ? (
           <Image
             src={project.image}

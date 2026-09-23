@@ -219,9 +219,15 @@ export async function generateMetadata({
     title: project.name,
     description: `${project.name} — ${tagline}`,
     alternates: {
-      canonical: getPathname({ locale, href: `/proyectos/${slug}` }),
+      canonical: getPathname({
+        locale,
+        href: { pathname: "/proyectos/[slug]", params: { slug } },
+      }),
       languages: Object.fromEntries(
-        routing.locales.map((loc) => [loc, getPathname({ locale: loc, href: `/proyectos/${slug}` })])
+        routing.locales.map((loc) => [
+          loc,
+          getPathname({ locale: loc, href: { pathname: "/proyectos/[slug]", params: { slug } } }),
+        ])
       ),
     },
   };

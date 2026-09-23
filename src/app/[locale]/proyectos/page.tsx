@@ -17,137 +17,137 @@ const sectorIds = ["sanitarios", "arquitectura", "industrial", "otros"] as const
 
 interface ProjectMeta {
   id: string;
+  slug: string;
   sector: string;
   name: string;
   image: string | null;
   objectPosition?: string;
-  href: string;
   featured?: boolean;
 }
 
 const projectsMeta: ProjectMeta[] = [
   {
     id: "morales-raya",
+    slug: "clinica-morales-raya",
     sector: "sanitarios",
     name: "Clínica Dr. Morales Raya",
     image: "/projects/clinicas y sector salud/clinica-morales-raya/clinica-morales-raya.webp",
     objectPosition: "center center",
-    href: "/proyectos/clinica-morales-raya",
     featured: true,
   },
   {
     id: "paralelo-estudio",
+    slug: "paralelo-estudio",
     sector: "arquitectura",
     name: "Paralelo Estudio",
     image: "/projects/arquitectura y diseño/paralelo-estudio/Img_01_Grupo-PARALELO.webp",
     objectPosition: "center center",
-    href: "/proyectos/paralelo-estudio",
     featured: true,
   },
   {
     id: "on-level-quality",
+    slug: "on-level-quality",
     sector: "industrial",
     name: "On Level Quality",
     image: "/projects/industrial/on-level-quality/toma_3_1_1-copia-1.webp",
     objectPosition: "center center",
-    href: "/proyectos/on-level-quality",
     featured: true,
   },
   {
     id: "expresa-salud",
+    slug: "expresa-salud",
     sector: "sanitarios",
     name: "Expresa Salud Emocional",
     image: "/projects/clinicas y sector salud/expresa-salud/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/expresa-salud",
     featured: true,
   },
   {
     id: "cm-cosmetica",
+    slug: "cm-cosmetica",
     sector: "sanitarios",
     name: "CM Cosmética Dermatológica",
     image: "/projects/otros sectores/cm-cosmetica/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/cm-cosmetica",
     featured: true,
   },
   {
     id: "af-iberia",
+    slug: "af-iberia",
     sector: "arquitectura",
     name: "AF Iberia",
     image: "/projects/arquitectura y diseño/af-iberia/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/af-iberia",
     featured: true,
   },
   {
     id: "artquitrabe",
+    slug: "artquitrabe",
     sector: "arquitectura",
     name: "Artquitrabe",
     image: "/projects/arquitectura y diseño/artquitrabe/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/artquitrabe",
     featured: true,
   },
   {
     id: "haromatics",
+    slug: "haromatics",
     sector: "industrial",
     name: "Haromatics",
     image: "/projects/industrial/haromatics/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/haromatics",
     featured: true,
   },
   {
     id: "telstar",
+    slug: "telstar",
     sector: "industrial",
     name: "Telstar",
     image: "/projects/industrial/telstar/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/telstar",
     featured: true,
   },
   {
     id: "cbc-collection",
+    slug: "cbc-collection",
     sector: "otros",
     name: "CBC Collection",
     image: "/projects/otros sectores/carmen ballesta collection/cbc_2.webp",
-    href: "/proyectos/cbc-collection",
     featured: true,
   },
   {
     id: "polspa",
+    slug: "polspa",
     sector: "otros",
     name: "Polspa",
     image: "/projects/otros sectores/polspa/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/polspa",
     featured: true,
   },
   {
     id: "prominsol",
+    slug: "prominsol",
     sector: "otros",
     name: "Prominsol",
     image: "/projects/otros sectores/prominsol/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/prominsol",
     featured: true,
   },
   {
     id: "solvify",
+    slug: "solvify",
     sector: "otros",
     name: "Solvify",
     image: "/projects/otros sectores/solvify/hero.webp",
     objectPosition: "center center",
-    href: "/proyectos/solvify",
     featured: true,
   },
   {
     id: "milton-home",
+    slug: "milton-home",
     sector: "arquitectura",
     name: "Milton Home",
     image: "/projects/arquitectura y diseño/milton-homes/MiltonHomes-Promotora-Cantabria-26-2-scaled.jpg",
-    href: "/proyectos/milton-home",
     featured: true,
   },
 ];
@@ -156,7 +156,10 @@ type Project = ProjectMeta & { tagline: string };
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link href={project.href} className="project-card group flex flex-col border border-foreground">
+    <Link
+      href={{ pathname: "/proyectos/[slug]", params: { slug: project.slug } }}
+      className="project-card group flex flex-col border border-foreground"
+    >
       <div className="relative h-[323px] w-full overflow-hidden">
         {project.image ? (
           <Image

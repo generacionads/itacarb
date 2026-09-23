@@ -17,16 +17,16 @@ export function Header() {
   const t = useTranslations("nav");
 
   const navLinks = [
-    { label: t("nosotros"), href: "/nosotros" },
-    { label: t("sectores"), href: "/sectores" },
-    { label: t("proyectos"), href: "/proyectos" },
-    { label: t("servicio"), href: "/servicio" },
-    { label: t("blog"), href: "/blog" },
+    { label: t("nosotros"), href: "/nosotros" as const },
+    { label: t("sectores"), href: "/sectores" as const },
+    { label: t("proyectos"), href: "/proyectos" as const },
+    { label: t("servicio"), href: "/servicio" as const },
+    { label: t("blog"), href: "/blog" as const },
   ];
 
   const allMobileLinks = [
     ...navLinks,
-    { label: t("contacto"), href: "/contacto" },
+    { label: t("contacto"), href: "/contacto" as const },
   ];
 
   function handleLogoClick(e: React.MouseEvent<HTMLAnchorElement>) {

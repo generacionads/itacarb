@@ -76,9 +76,9 @@ export function Footer() {
   const t = useTranslations("footer");
 
   const legalLinks = [
-    { label: t("legal.avisoLegal"), href: "/aviso-legal" },
-    { label: t("legal.privacidad"), href: "/politica-de-privacidad" },
-    { label: t("legal.cookies"), href: "/politica-de-cookies" },
+    { label: t("legal.avisoLegal"), href: "/aviso-legal" as const },
+    { label: t("legal.privacidad"), href: "/politica-de-privacidad" as const },
+    { label: t("legal.cookies"), href: "/politica-de-cookies" as const },
   ];
 
   return (

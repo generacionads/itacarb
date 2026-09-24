@@ -1,14 +1,15 @@
 import { NextResponse } from "next/server";
 
-// Lista "Newsletter genérica" en Brevo
-const BREVO_LIST_ID = 26;
+const DEFAULT_LIST_ID = 26;
 
 export async function POST(req: Request) {
   try {
-    const { email } = await req.json();
+    const { email, listId } = await req.json();
     if (!email) {
       return NextResponse.json({ error: "Email requerido" }, { status: 400 });
     }
+
+    const targetListId = typeof listId === "number" ? listId : DEFAULT_LIST_ID;
 
     const res = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
@@ -18,7 +19,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         email,
-        listIds: [BREVO_LIST_ID],
+        listIds: [targetListId],
         updateEnabled: true,
       }),
     });

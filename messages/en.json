@@ -192,6 +192,7 @@
         "What's the point of having a digital presence if our clients don't look for us online?"
       ]
     },
+    "ctaLabel": "Learn more",
     "otros": {
       "heading": "Other sectors",
       "paragraph": "Don't see your sector here? We work with companies across very different fields. What matters to us isn't the category, but the ambition to grow with strategy. If you have a brand or business challenge, chances are we can help.",
@@ -681,6 +682,27 @@
       "error": "Something went wrong. Please try again.",
       "sendLabel": "Subscribe",
       "sendingLabel": "Sending…"
+    }
+  },
+  "sectorDetailPage": {
+    "back": "Back to Sectors",
+    "ctaHeading": "Let's define your project together.",
+    "ctaLabel": "Get in touch",
+    "sanitarios": {
+      "newsletterDesc": "Strategies, case studies and trends in marketing for clinics and healthcare brands. Once a month."
+    },
+    "arquitectura": {
+      "newsletterDesc": "Brand strategy, visibility and lead generation for architecture and interior design studios. Once a month."
+    },
+    "industrial": {
+      "newsletterDesc": "B2B strategy, digitalisation and growth for industrial and manufacturing companies. Once a month."
+    },
+    "newsletter": {
+      "heading": "Stay up to date in your sector.",
+      "placeholder": "you@email.com",
+      "cta": "Subscribe",
+      "success": "You're in. See you soon.",
+      "error": "Something went wrong. Please try again."
     }
   },
   "notFound": {

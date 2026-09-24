@@ -5,6 +5,12 @@ import { routing } from "@/i18n/routing";
 
 const BASE_URL = "https://itacarb.es";
 
+const SECTOR_SLUGS = [
+  "clinicas-y-sector-salud",
+  "arquitectura-y-diseno",
+  "industrial",
+];
+
 const PROJECT_SLUGS = [
   "clinica-morales-raya",
   "cm-cosmetica",
@@ -44,6 +50,13 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
       url: `${BASE_URL}${getPathname({ locale, href })}`,
       priority,
       changeFrequency,
+    }))
+  ),
+  ...SECTOR_SLUGS.flatMap((slug) =>
+    routing.locales.map((locale) => ({
+      url: `${BASE_URL}${getPathname({ locale, href: { pathname: "/sectores/[slug]", params: { slug } } })}`,
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
     }))
   ),
   ...PROJECT_SLUGS.flatMap((slug) =>

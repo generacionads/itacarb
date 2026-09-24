@@ -8,6 +8,7 @@ export const routing = defineRouting({
     "/": "/",
     "/nosotros": { es: "/nosotros", en: "/about" },
     "/sectores": { es: "/sectores", en: "/sectors" },
+    "/sectores/[slug]": { es: "/sectores/[slug]", en: "/sectors/[slug]" },
     "/servicio": { es: "/servicio", en: "/service" },
     "/servicio/consultoria": { es: "/servicio/consultoria", en: "/service/consulting" },
     "/servicio/ppc": { es: "/servicio/ppc", en: "/service/ppc" },

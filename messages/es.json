@@ -192,6 +192,7 @@
         "¿Para qué sirve tener presencia digital si nuestros clientes no nos buscan por internet?"
       ]
     },
+    "ctaLabel": "Saber más",
     "otros": {
       "heading": "Otros sectores",
       "paragraph": "¿Tu sector no aparece aquí? Trabajamos con empresas de ámbitos muy distintos. Lo que nos importa no es la categoría, sino la ambición de crecer con estrategia. Si tienes un reto de marca o negocio, hay muchas probabilidades de que podamos ayudarte.",
@@ -681,6 +682,27 @@
       "error": "Algo ha salido mal. Inténtalo de nuevo.",
       "sendLabel": "Suscribirme",
       "sendingLabel": "Enviando…"
+    }
+  },
+  "sectorDetailPage": {
+    "back": "Volver a Sectores",
+    "ctaHeading": "Definamos tu proyecto juntos.",
+    "ctaLabel": "Contactar",
+    "sanitarios": {
+      "newsletterDesc": "Recibe estrategias, casos de éxito y tendencias del marketing para clínicas y centros de salud. Una vez al mes."
+    },
+    "arquitectura": {
+      "newsletterDesc": "Estrategia de marca, visibilidad y captación para estudios de arquitectura y diseño de interiores. Una vez al mes."
+    },
+    "industrial": {
+      "newsletterDesc": "Estrategia B2B, digitalización y crecimiento para empresas industriales y de fabricación. Una vez al mes."
+    },
+    "newsletter": {
+      "heading": "Mantente al día en tu sector.",
+      "placeholder": "tu@email.com",
+      "cta": "Suscribirme",
+      "success": "Apuntado. Nos vemos pronto.",
+      "error": "Algo ha salido mal. Inténtalo de nuevo."
     }
   },
   "notFound": {

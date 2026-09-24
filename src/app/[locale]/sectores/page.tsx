@@ -203,6 +203,18 @@ export default function SectoresPage() {
                   ))}
                 </div>
               </div>
+
+              <div>
+                <Link
+                  href={{ pathname: "/sectores/[slug]", params: { slug: "clinicas-y-sector-salud" } }}
+                  className="inline-flex items-center gap-2 text-brand-accent text-[15px] font-medium tracking-[0.02em] hover:opacity-70 transition-opacity duration-200"
+                >
+                  {t("ctaLabel")}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
             </section>
 
             {/* ── Arquitectura y Diseño ── */}
@@ -280,6 +292,18 @@ export default function SectoresPage() {
                   ))}
                 </div>
               </div>
+
+              <div>
+                <Link
+                  href={{ pathname: "/sectores/[slug]", params: { slug: "arquitectura-y-diseno" } }}
+                  className="inline-flex items-center gap-2 text-brand-accent text-[15px] font-medium tracking-[0.02em] hover:opacity-70 transition-opacity duration-200"
+                >
+                  {t("ctaLabel")}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
             </section>
 
             {/* ── Industrial ── */}
@@ -356,6 +380,18 @@ export default function SectoresPage() {
                     <AccordionItem key={q} label={q} />
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <Link
+                  href={{ pathname: "/sectores/[slug]", params: { slug: "industrial" } }}
+                  className="inline-flex items-center gap-2 text-brand-accent text-[15px] font-medium tracking-[0.02em] hover:opacity-70 transition-opacity duration-200"
+                >
+                  {t("ctaLabel")}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
               </div>
             </section>
 

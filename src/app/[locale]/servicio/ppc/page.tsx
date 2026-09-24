@@ -410,7 +410,7 @@ export default function PpcPage() {
       <main className="pt-16 sm:pt-[72px] bg-background min-h-screen flex flex-col">
 
         {/* Hero */}
-        <section className="pt-16 pb-32" style={{ minHeight: "calc(100vh - 72px)" }}>
+        <section className="pt-16 pb-32" style={{ minHeight: "min(calc(100vh - 72px), 880px)" }}>
           <Container>
             <RevealH2
               as="h1"

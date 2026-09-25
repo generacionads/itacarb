@@ -106,6 +106,7 @@ export default async function SectorDetailPage({
         <SectorNewsletter
           description={td(`${sectorKey}.newsletterDesc`)}
           listId={brevoListId}
+          newsletterType={sectorKey}
         />
 
         {/* FAQ */}

@@ -25,7 +25,12 @@ function FooterNewsletterForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      setStatus(res.ok ? "success" : "error");
+      if (res.ok) {
+        setStatus("success");
+        window.dataLayer?.push({ event: "newsletter_subscribe", newsletter_type: "general" });
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }

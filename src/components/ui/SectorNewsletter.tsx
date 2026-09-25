@@ -6,9 +6,10 @@ import { useTranslations } from "next-intl";
 interface Props {
   description: string;
   listId: number;
+  newsletterType: string;
 }
 
-export function SectorNewsletter({ description, listId }: Props) {
+export function SectorNewsletter({ description, listId, newsletterType }: Props) {
   const t = useTranslations("sectorDetailPage.newsletter");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
@@ -22,7 +23,12 @@ export function SectorNewsletter({ description, listId }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, listId }),
       });
-      setStatus(res.ok ? "ok" : "error");
+      if (res.ok) {
+        setStatus("ok");
+        window.dataLayer?.push({ event: "newsletter_subscribe", newsletter_type: newsletterType });
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }

@@ -100,7 +100,12 @@ export function ContactPpc() {
         body: JSON.stringify(Object.fromEntries(data)),
         headers: { "Content-Type": "application/json" },
       });
-      setStatus(res.ok ? "success" : "error");
+      if (res.ok) {
+        setStatus("success");
+        window.dataLayer?.push({ event: "form_submit", form_name: "contact_ppc" });
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }

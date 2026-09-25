@@ -23,7 +23,7 @@ export function Contact() {
       });
       if (res.ok) {
         setStatus("success");
-        window.dataLayer?.push({ event: "form_submit", form_name: "contact" });
+        window.dataLayer?.push({ event: "form_success", form_name: "contact" });
       } else {
         setStatus("error");
       }

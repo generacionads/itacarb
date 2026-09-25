@@ -102,7 +102,7 @@ export function ContactPpc() {
       });
       if (res.ok) {
         setStatus("success");
-        window.dataLayer?.push({ event: "form_submit", form_name: "contact_ppc" });
+        window.dataLayer?.push({ event: "form_success", form_name: "contact_ppc" });
       } else {
         setStatus("error");
       }

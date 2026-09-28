@@ -35,8 +35,8 @@ export function SectorNewsletter({ description, listId, newsletterType }: Props)
   }
 
   return (
-    <section className="bg-foreground px-4 sm:px-16 py-20 flex flex-col gap-8">
-      <div className="flex flex-col gap-4 max-w-[560px]">
+    <section className="bg-foreground px-4 sm:px-16 py-20 flex flex-col gap-8 items-center">
+      <div className="flex flex-col gap-4 max-w-[560px] w-full text-center">
         <h2 className="text-background text-[32px] md:text-[40px] font-medium tracking-[-0.04em] leading-tight">
           {t("heading")}
         </h2>
@@ -48,7 +48,7 @@ export function SectorNewsletter({ description, listId, newsletterType }: Props)
       {status === "ok" ? (
         <p className="text-brand-accent text-[16px] font-light">{t("success")}</p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-[480px]">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-[480px] w-full">
           <input
             type="email"
             required

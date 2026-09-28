@@ -57,17 +57,13 @@ export default async function SectorDetailPage({
 
         {/* Hero */}
         <div className="px-4 sm:px-16 pt-16 pb-12 flex flex-col gap-6">
-          <Link
-            href="/sectores"
-            className="group inline-flex items-center gap-2 text-brand-muted text-[13px] hover:text-foreground transition-colors duration-200"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"
-              className="transition-transform duration-200 group-hover:-translate-x-1">
-              <path d="M19 12 L5 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              <path d="M11 6 L5 12 L11 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            {td("back")}
-          </Link>
+          <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 text-[13px]">
+            <Link href="/sectores" className="text-brand-muted hover:text-foreground transition-colors duration-200">
+              {td("back")}
+            </Link>
+            <span className="text-brand-muted">/</span>
+            <span className="text-brand-accent">{t(`${sectorKey}.heading`)}</span>
+          </nav>
 
           <RevealH2
             as="h1"

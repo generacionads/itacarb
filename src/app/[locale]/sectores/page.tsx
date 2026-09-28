@@ -23,11 +23,8 @@ export default function SectoresPage() {
   const t = useTranslations("sectoresPage");
   const sectors = sectorIds.map((id) => ({ id, label: t(`nav.${id}`) }));
   const saniOpportunities = t.raw("sanitarios.opportunities") as string[];
-  const saniFaqs = t.raw("sanitarios.faqs") as string[];
   const arquiOpportunities = t.raw("arquitectura.opportunities") as string[];
-  const arquiFaqs = t.raw("arquitectura.faqs") as string[];
   const induOpportunities = t.raw("industrial.opportunities") as string[];
-  const induFaqs = t.raw("industrial.faqs") as string[];
 
   const [activeId, setActiveId] = useState<string>(sectors[0].id);
   const sectionRefs = useRef<Map<string, HTMLElement>>(new Map());
@@ -192,18 +189,6 @@ export default function SectoresPage() {
                 </div>
               </div>
 
-              {/* FAQ — salud */}
-              <div className="flex flex-col gap-6">
-                <h3 className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight text-balance">
-                  {t("sanitarios.faqHeading")}
-                </h3>
-                <div className="flex flex-col border-t border-brand-border">
-                  {saniFaqs.map((q) => (
-                    <AccordionItem key={q} label={q} />
-                  ))}
-                </div>
-              </div>
-
               <div>
                 <Link
                   href={{ pathname: "/sectores/[slug]", params: { slug: "clinicas-y-sector-salud" } }}
@@ -281,18 +266,6 @@ export default function SectoresPage() {
                 </div>
               </div>
 
-              {/* FAQ — arquitectura */}
-              <div className="flex flex-col gap-6">
-                <h3 className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight text-balance">
-                  {t("arquitectura.faqHeading")}
-                </h3>
-                <div className="flex flex-col border-t border-brand-border">
-                  {arquiFaqs.map((q) => (
-                    <AccordionItem key={q} label={q} />
-                  ))}
-                </div>
-              </div>
-
               <div>
                 <Link
                   href={{ pathname: "/sectores/[slug]", params: { slug: "arquitectura-y-diseno" } }}
@@ -366,18 +339,6 @@ export default function SectoresPage() {
                         {item}
                       </p>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* FAQ — industrial */}
-              <div className="flex flex-col gap-6">
-                <h3 className="text-foreground text-[32px] font-medium tracking-[-0.04em] leading-tight text-balance">
-                  {t("industrial.faqHeading")}
-                </h3>
-                <div className="flex flex-col border-t border-brand-border">
-                  {induFaqs.map((q) => (
-                    <AccordionItem key={q} label={q} />
                   ))}
                 </div>
               </div>

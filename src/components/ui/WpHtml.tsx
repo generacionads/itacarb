@@ -24,6 +24,10 @@ export function WpHtml({ html }: { html: string }) {
         "[&_pre]:bg-brand-border [&_pre]:rounded-[4px] [&_pre]:px-5 [&_pre]:py-4 [&_pre]:overflow-x-auto [&_pre]:mb-5",
         "[&_hr]:border-brand-border [&_hr]:my-8",
         "[&_img]:max-w-full [&_img]:my-6",
+        "[&_table]:w-full [&_table]:my-8 [&_table]:text-[16px] [&_table]:border-collapse",
+        "[&_th]:text-left [&_th]:font-medium [&_th]:text-foreground [&_th]:px-4 [&_th]:py-3 [&_th]:border-b-2 [&_th]:border-brand-accent [&_th]:bg-brand-light",
+        "[&_td]:px-4 [&_td]:py-3 [&_td]:border-b [&_td]:border-brand-border [&_td]:text-foreground [&_td]:font-light [&_td]:align-top",
+        "[&_tr:last-child_td]:border-b-0",
       )}
       dangerouslySetInnerHTML={{ __html: clean }}
     />

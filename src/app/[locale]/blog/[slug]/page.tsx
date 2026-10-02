@@ -130,11 +130,6 @@ export default async function ArticlePage({
               {article.title}
             </h1>
 
-            {/* Excerpt */}
-            <p className="text-brand-muted text-[18px] font-light leading-relaxed">
-              {article.excerpt}
-            </p>
-
             {/* Cover image */}
             {article.cover && (
               <div className="relative w-full aspect-[16/9] overflow-hidden">

@@ -22,6 +22,7 @@ export function Header() {
     { label: t("proyectos"), href: "/proyectos" as const },
     { label: t("servicio"), href: "/servicio" as const },
     { label: t("blog"), href: "/blog" as const },
+    { label: t("recursos"), href: "/recursos" as const },
   ];
 
   const allMobileLinks = [
@@ -77,7 +78,7 @@ export function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 w-full backdrop-blur-md bg-background/60">
         <Container>
           <div className="flex h-16 items-center justify-between sm:h-[72px]">
-            <Link href="/" onClick={handleLogoClick} aria-label={t("homeAria")}>
+            <Link href="/" onClick={handleLogoClick} aria-label={t("homeAria")} className="shrink-0">
               <Image
                 src="/logo.svg"
                 alt="Ítacarb"
@@ -88,8 +89,8 @@ export function Header() {
             </Link>
 
             {/* Desktop nav */}
-            <nav className="hidden items-center gap-8 md:flex">
-              <div className="flex items-center gap-8">
+            <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
+              <div className="flex items-center gap-6 xl:gap-8">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -113,7 +114,7 @@ export function Header() {
 
             {/* Mobile toggle — "Menú" label, opens panel */}
             <button
-              className="inline-flex min-h-[44px] items-center justify-center md:hidden text-base font-medium tracking-[0.04em] text-foreground"
+              className="inline-flex min-h-[44px] items-center justify-center lg:hidden text-base font-medium tracking-[0.04em] text-foreground"
               onClick={() => setMenuOpen(true)}
               aria-label={t("openMenuAria")}
               aria-expanded={menuOpen}
@@ -131,7 +132,7 @@ export function Header() {
         id="mobile-menu"
         aria-label={t("mobileNavAria")}
         aria-hidden={!menuOpen}
-        className={`fixed inset-0 z-[60] bg-brand-accent transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed inset-0 z-[60] bg-brand-accent transition-transform duration-300 ease-out lg:hidden ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

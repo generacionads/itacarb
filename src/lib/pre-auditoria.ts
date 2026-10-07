@@ -80,10 +80,10 @@ export const LANDING_COPY = {
 
   image: {
     /** Ruta de la imagen en /public (p. ej. "/pre-auditoria.jpg"). Vacía = se muestra el placeholder. */
-    src: "",
-    alt: "",
-    width: 660,
-    height: 660,
+    src: "/pre-auditoria.webp",
+    alt: "Informe de pre-auditoría abierto en un portátil, con una matriz de benchmarking frente a competidores.",
+    width: 1024,
+    height: 687,
   },
 
   cta: "Solicitar pre-auditoría",

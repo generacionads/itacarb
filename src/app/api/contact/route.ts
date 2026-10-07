@@ -1,10 +1,11 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
   try {
+    // Se crea al enviar, no al importar: sin la clave (p. ej. en un preview) el build no falla.
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const { nombre, mail, telefono, empresa, mensaje, origen, modalidad } = await req.json();
 
     if (!nombre || !mail || !mensaje) {

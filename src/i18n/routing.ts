@@ -22,5 +22,9 @@ export const routing = defineRouting({
     // so both locales share the same path.
     "/blog": "/blog",
     "/blog/[slug]": "/blog/[slug]",
+    // Pre-auditoría lead magnet: Spanish-only copy (src/lib/pre-auditoria.ts),
+    // so both locales share the same path and render the same content.
+    "/pre-auditoria": "/pre-auditoria",
+    "/gracias-pre-auditoria": "/gracias-pre-auditoria",
   },
 });

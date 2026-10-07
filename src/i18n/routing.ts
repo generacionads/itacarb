@@ -26,5 +26,8 @@ export const routing = defineRouting({
     // so both locales share the same path and render the same content.
     "/pre-auditoria": "/pre-auditoria",
     "/gracias-pre-auditoria": "/gracias-pre-auditoria",
+    // Recursos descargables: copy solo en español (src/lib/recursos.ts), ruta compartida.
+    "/recursos": "/recursos",
+    "/recursos/[slug]": "/recursos/[slug]",
   },
 });

@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 import {
@@ -5,7 +7,7 @@ import {
   getRecurso,
   type Recurso,
 } from "@/lib/recursos";
-import { RECURSO_DOWNLOADS } from "@/lib/recursos-downloads";
+import { RECURSOS_PRIVATE_DIR, RECURSO_FILES } from "@/lib/recursos-files";
 import { validateRecursoLead, type RecursoLead } from "@/lib/recursos-validation";
 
 const NOTIFY_TO = process.env.PRE_AUDITORIA_NOTIFY_EMAIL || "hola@itacarb.es";
@@ -65,21 +67,25 @@ function internalHtml(d: RecursoLead, recurso: Recurso, receivedAt: string): str
     </div>`;
 }
 
-function confirmationHtml(recurso: Recurso, url: string): string {
+function confirmationHtml(recurso: Recurso): string {
   const c = RECURSO_EMAIL_COPY;
   return `
     <div style="background:#f9f8f6;padding:32px 16px;font-family:Arial,Helvetica,sans-serif;color:#36383a">
       <div style="max-width:560px;margin:0 auto">
         <h1 style="font-size:24px;font-weight:500;margin:0 0 16px">${escapeHtml(c.heading(recurso.name))}</h1>
         <p style="font-size:16px;line-height:1.6;margin:0 0 24px">${escapeHtml(c.body)}</p>
-        <p style="margin:0 0 24px"><a href="${escapeHtml(url)}" style="display:inline-block;background:#c8553d;color:#f9f8f6;padding:12px 24px;text-decoration:none;font-size:16px">${escapeHtml(c.button)}</a></p>
         <p style="font-size:16px;line-height:1.6;margin:0 0 24px">${escapeHtml(c.reply)}</p>
         <p style="font-size:16px;margin:0">${escapeHtml(c.signature)}</p>
       </div>
     </div>`;
 }
 
-async function sendEmails(d: RecursoLead, recurso: Recurso, url: string, receivedAt: string) {
+async function sendEmails(
+  d: RecursoLead,
+  recurso: Recurso,
+  pdf: { filename: string; content: string },
+  receivedAt: string
+) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   const c = RECURSO_EMAIL_COPY;
 
@@ -96,8 +102,9 @@ async function sendEmails(d: RecursoLead, recurso: Recurso, url: string, receive
       to: d.email,
       replyTo: "hola@itacarb.es",
       subject: c.subject(recurso.name),
-      html: confirmationHtml(recurso, url),
-      text: [c.body, url, c.reply, c.signature].join("\n\n"),
+      html: confirmationHtml(recurso),
+      text: [c.body, c.reply, c.signature].join("\n\n"),
+      attachments: [pdf],
     }),
   ]);
 
@@ -158,8 +165,8 @@ export async function POST(req: Request) {
 
   const slug = typeof body.slug === "string" ? body.slug : "";
   const recurso = getRecurso(slug);
-  const url = RECURSO_DOWNLOADS[slug];
-  if (!recurso || !url) {
+  const fileInfo = RECURSO_FILES[slug];
+  if (!recurso || !fileInfo) {
     return NextResponse.json({ error: "Recurso no encontrado" }, { status: 404 });
   }
 
@@ -173,9 +180,22 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Demasiados intentos" }, { status: 429 });
   }
 
+  // Se lee antes de enviar nada: sin PDF no hay recurso que entregar.
+  let pdf: { filename: string; content: string };
+  try {
+    pdf = {
+      filename: fileInfo.attachmentName,
+      // base64: así el SDK de Resend lo envía tal cual (un Buffer se serializaría como objeto JSON).
+      content: (await readFile(path.join(RECURSOS_PRIVATE_DIR, fileInfo.file))).toString("base64"),
+    };
+  } catch (err) {
+    console.error("[recursos] No se pudo leer el PDF:", fileInfo.file, err);
+    return NextResponse.json({ error: "Error interno" }, { status: 500 });
+  }
+
   const receivedAt = new Date().toISOString();
   const [emails, brevoOk] = await Promise.all([
-    sendEmails(result.data, recurso, url, receivedAt).catch((err) => {
+    sendEmails(result.data, recurso, pdf, receivedAt).catch((err) => {
       console.error("[recursos] Resend:", err);
       return { internalOk: false, confirmationOk: false };
     }),

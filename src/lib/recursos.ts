@@ -1,9 +1,10 @@
 /**
  * Recursos descargables (/recursos) — copy y configuración.
  *
- * Para añadir un recurso: nueva entrada en RECURSOS + su enlace de descarga en
- * src/lib/recursos-downloads.ts (el enlace NO está aquí a propósito: este
- * archivo llega al navegador y el enlace solo debe verse tras dejar el email).
+ * Para añadir un recurso: nueva entrada en RECURSOS + su PDF en
+ * /private/recursos y en src/lib/recursos-files.ts (el PDF NO se referencia
+ * aquí a propósito: este archivo llega al navegador y el recurso solo se
+ * entrega por email).
  * Solo español (como el blog, ambos idiomas comparten ruta).
  */
 
@@ -27,7 +28,7 @@ export type Recurso = {
   /** Texto del botón de la entrada. */
   cta: string;
   image: {
-    /** Ruta en /public (p. ej. "/recursos/checklist.webp"). Vacía = placeholder gris. */
+    /** Ruta en /public (p. ej. "/recursos/checklist.webp") o URL de Unsplash. Vacía = placeholder gris. */
     src: string;
     alt: string;
     width: number;
@@ -47,8 +48,14 @@ export const RECURSOS: Recurso[] = [
     metaTitle: "Checklist Web Industrial B2B: 30 puntos para auditar tu web",
     metaDescription:
       "Descarga gratis el checklist de 30 puntos para auditar tu web industrial B2B antes de invertir más en marketing.",
-    cta: "Descargar checklist",
-    image: { src: "", alt: "", width: 660, height: 660 },
+    cta: "Recibir checklist",
+    // Foto de stock provisional (ya usada en el sector industrial); sustituir por la imagen definitiva.
+    image: {
+      src: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=75",
+      alt: "",
+      width: 1200,
+      height: 800,
+    },
   },
 ];
 
@@ -84,10 +91,10 @@ export const RECURSO_FORM_COPY = {
   errorGeneric:
     "No hemos podido enviar tu solicitud. Inténtalo de nuevo en unos minutos o escríbenos a hola@itacarb.es.",
 
-  // El recurso se entrega solo por email: la web no muestra ningún enlace de descarga.
+  // El recurso se entrega solo por email (PDF adjunto): la web no muestra ningún enlace de descarga.
   success: {
     heading: "¡Listo!",
-    body: "Te hemos enviado el recurso a tu email. Si no lo ves en unos minutos, revisa la carpeta de spam.",
+    body: "Te hemos enviado el PDF a tu email. Si no lo ves en unos minutos, revisa la carpeta de spam.",
   },
 } as const;
 
@@ -96,8 +103,7 @@ export const RECURSO_FORM_COPY = {
 export const RECURSO_EMAIL_COPY = {
   subject: (name: string) => `Tu descarga: ${name}`,
   heading: (name: string) => name,
-  body: "Gracias por tu interés. Aquí tienes tu recurso:",
-  button: "Descargar",
+  body: "Gracias por tu interés. Te adjuntamos el PDF en este email.",
   reply: "Si tienes cualquier duda, responde directamente a este email.",
   signature: "El equipo de Ítacarb",
 } as const;

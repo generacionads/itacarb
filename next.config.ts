@@ -4,6 +4,10 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  // PDF de los recursos (fuera de /public): se leen con fs en /api/recursos y hay que incluirlos en el despliegue.
+  outputFileTracingIncludes: {
+    "/api/recursos": ["./private/recursos/**/*"],
+  },
   async redirects() {
     return [
       {

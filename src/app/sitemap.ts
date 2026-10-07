@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getArticles } from "@/lib/wordpress";
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { RECURSOS } from "@/lib/recursos";
 
 const BASE_URL = "https://itacarb.es";
 
@@ -68,6 +69,13 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
   ),
   // Blog: Spanish only, no /en variant
   { url: `${BASE_URL}/blog`, priority: 0.8, changeFrequency: "weekly" },
+  // Recursos: Spanish only, no /en variant
+  { url: `${BASE_URL}/recursos`, priority: 0.7, changeFrequency: "monthly" },
+  ...RECURSOS.map((r) => ({
+    url: `${BASE_URL}/recursos/${r.slug}`,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

@@ -46,7 +46,7 @@ const MAX_TRACKING = 300;
 
 const CONTROL_CHARS = /[\u0000-\u001f\u007f]/g;
 
-function clean(value: unknown, max: number): string {
+export function clean(value: unknown, max: number): string {
   if (typeof value !== "string") return "";
   return value.replace(CONTROL_CHARS, " ").replace(/\s+/g, " ").trim().slice(0, max);
 }
@@ -79,7 +79,7 @@ export function normalizeUrl(input: string): string | null {
   return url.toString();
 }
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function validateLead(
   raw: Record<string, unknown>
